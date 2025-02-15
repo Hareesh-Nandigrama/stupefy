@@ -11,7 +11,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Spotify',
-      theme: ThemeData(primaryColor: MaterialColor(0xFF1DB954, <int, Color>{})),
+      theme: ThemeData(
+        // fontFamily: CircularBlack,
+        primaryColor: MaterialColor(0xFF1DB954, <int, Color>{})
+        ),
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(title: 'Spotify - Splash Screen'),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_screen';
+import 'home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key, required this.title});
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor:  MaterialColor(0xFF121212, <int, Color>{}),
       body: Center(
-        child: Image.asset("assets/images/spotify_logo.png", width: screenWidth/2, height: screenHeight/2)
+        // child: Image.asset("assets/images/spotify_logo.png", width: screenWidth/2, height: screenHeight/2)
       ),
     );
   }
