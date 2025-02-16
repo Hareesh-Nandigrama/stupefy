@@ -1,0 +1,187 @@
+import 'package:flutter/material.dart';
+
+import '../../../constants/constants.dart';
+import '../../../widgets/media_player/bottom_player.dart';
+import '../../../widgets/search/search_bar.dart';
+import '../../../widgets/search/search_page_tile.dart';
+
+class SearchCategoryScreen extends StatefulWidget {
+  const SearchCategoryScreen({super.key});
+
+  @override
+  State<SearchCategoryScreen> createState() => _SearchCategoryScreenState();
+}
+
+class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
+  String? scanResault;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: MyColors.blackColor,
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        bottom: false,
+        child: Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 30, bottom: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            "Search",
+                            style: TextStyle(
+                              fontFamily: "AB",
+                              fontSize: 25,
+                              color: MyColors.whiteColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SearchBox(),
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 17, bottom: 17),
+                      child: Text(
+                        "Your top genres",
+                        style: TextStyle(
+                          fontFamily: "AM",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: MyColors.whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SearchPageTile(title: "", image: "pop.png"),
+                        SearchPageTile(title: "", image: "indie.png"),
+                      ],
+                    ),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 25, bottom: 10),
+                      child: Text(
+                        "Popular podcast categories",
+                        style: TextStyle(
+                          fontFamily: "AM",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: MyColors.whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                              width:
+                                  (MediaQuery.of(context).size.width / 1.75) -
+                                      50,
+                              height: 100,
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    "images/news&politics.png",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const Positioned(
+                              top: 10,
+                              left: 10,
+                              child: SizedBox(
+                                width: 72,
+                                child: Text(
+                                  "News & Politics",
+                                  style: TextStyle(
+                                    fontFamily: "AB",
+                                    fontSize: 16,
+                                    color: MyColors.whiteColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SearchPageTile(
+                            title: "Comdey", image: "comedy.png"),
+                      ],
+                    ),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 25, bottom: 10),
+                      child: Text(
+                        "Browse all",
+                        style: TextStyle(
+                          fontFamily: "AM",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: MyColors.whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SearchPageTile(
+                            title: "2023 Wrapped", image: "2023_wrapped.png"),
+                        SearchPageTile(
+                            title: "Podcasts", image: "podcasts.png"),
+                      ],
+                    ),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SearchPageTile(
+                              title: "Made for you", image: "made_for_you.png"),
+                          SearchPageTile(title: "Charts", image: "charts.png"),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SliverPadding(
+                    padding: EdgeInsets.only(bottom: 130),
+                  ),
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 94),
+              child: BottomPlayer(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
