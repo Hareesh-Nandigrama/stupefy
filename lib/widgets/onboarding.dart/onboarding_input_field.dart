@@ -23,7 +23,7 @@ class _OnboardingInputFieldState extends State<OnboardingInputField> {
     String inputQuestion = "What's your ";
     String supportingText = "";
     Widget nextPage = RequestUserDetails(requiredDetails: 'password');
-    switch (this.widget.inputType) {
+    switch (widget.inputType) {
       case 'email':
         inputQuestion += "email?";
         supportingText = "You'll need to confirm this email later.";
@@ -64,43 +64,40 @@ class _OnboardingInputFieldState extends State<OnboardingInputField> {
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
             color: Color(0xff777777),
-            borderRadius: BorderRadius.all(
-              Radius.circular(8),
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
-          child: widget.inputType == "gender"
-              ? GenderDropdown(
-            value: text,
-            onChanged: (newValue) {
-              setState(() {
-                text = newValue!;
-              });
-            },
-          )
-              : TextField(
-            onChanged: (value) {
-              setState(() {
-                text = value;
-              });
-            },
-            style: const TextStyle(
-              fontFamily: "AM",
-              fontSize: 14,
-              color: MyColors.whiteColor,
-            ),
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide(
-                  style: BorderStyle.none,
-                  width: 0,
-                ),
-              ),
-            ),
-          ),
+          child:
+              widget.inputType == "gender"
+                  ? GenderDropdown(
+                    value: text,
+                    onChanged: (newValue) {
+                      setState(() {
+                        text = newValue!;
+                      });
+                    },
+                  )
+                  : TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        text = value;
+                      });
+                    },
+                    style: const TextStyle(
+                      fontFamily: "AM",
+                      fontSize: 14,
+                      color: MyColors.whiteColor,
+                    ),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          style: BorderStyle.none,
+                          width: 0,
+                        ),
+                      ),
+                    ),
+                  ),
         ),
-        const SizedBox(
-          height: 8,
-        ),
+        const SizedBox(height: 8),
         Row(
           children: [
             Text(
@@ -115,69 +112,65 @@ class _OnboardingInputFieldState extends State<OnboardingInputField> {
             ),
           ],
         ),
-        const SizedBox(
-          height: 35,
-        ),
+        const SizedBox(height: 35),
         widget.inputType != "name"
             ? GestureDetector(
-          onTap: () {
-            if (text.length >= 6 || widget.inputType == "gender") {
-              // print("yes");
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => nextPage,
+              onTap: () {
+                if (text.length >= 6 || widget.inputType == "gender") {
+                  // print("yes");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => nextPage),
+                  );
+                }
+              },
+              child: Container(
+                height: 45,
+                width: 90,
+                decoration: BoxDecoration(
+                  color:
+                      (text.length >= 6 || widget.inputType == "gender")
+                          ? MyColors.whiteColor
+                          : MyColors.lightGrey,
+                  borderRadius: const BorderRadius.all(Radius.circular(25)),
                 ),
-              );
-            }
-          },
-          child: Container(
-            height: 45,
-            width: 90,
-            decoration: BoxDecoration(
-              color: (text.length >= 6 || widget.inputType == "gender")
-                  ? MyColors.whiteColor
-                  : MyColors.lightGrey,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(25),
-              ),
-            ),
-            child: const Center(
-              child: Text(
-                "Next",
-                style: TextStyle(
-                  fontFamily: "AB",
-                  color: Colors.black,
-                  fontSize: 15,
+                child: const Center(
+                  child: Text(
+                    "Next",
+                    style: TextStyle(
+                      fontFamily: "AB",
+                      color: Colors.black,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        )
+            )
             : PrivacyPolicy(
-          text: text, // Pass the current text value
-          newsCheck: newsCheck, // Pass the current newsCheck value
-          marketPurposeCheck: marketPurposeCheck, // Pass the current marketPurposeCheck value
-          onNewsCheckChanged: (newValue) {
-            setState(() {
-              newsCheck = newValue;
-            });
-          },
-          onMarketPurposeCheckChanged: (newValue) {
-            setState(() {
-              marketPurposeCheck = newValue;
-            });
-          },
-          onCreateAccountPressed: () {
-            if (text.length > 6) {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const ChooseArtistScreen(),
-                ),
-              );
-            }
-          },
-        ),
+              text: text, // Pass the current text value
+              newsCheck: newsCheck, // Pass the current newsCheck value
+              marketPurposeCheck:
+                  marketPurposeCheck, // Pass the current marketPurposeCheck value
+              onNewsCheckChanged: (newValue) {
+                setState(() {
+                  newsCheck = newValue;
+                });
+              },
+              onMarketPurposeCheckChanged: (newValue) {
+                setState(() {
+                  marketPurposeCheck = newValue;
+                });
+              },
+              onCreateAccountPressed: () {
+                if (text.length > 6) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const ChooseArtistScreen(),
+                    ),
+                  );
+                }
+              },
+            ),
       ],
     );
   }
