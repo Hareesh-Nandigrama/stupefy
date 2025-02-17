@@ -119,7 +119,7 @@ class Home extends StatelessWidget {
                                     },
                                     child: const RecentPlayedTile(
                                       image: "home/american-dream.jpg",
-                                      title: "american dream",
+                                      title: "american",
                                     ),
                                   ),
                                   GestureDetector(
