@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import '../../pages/auth/choose_artist_screen.dart';
 
+
 class PrivacyPolicy extends StatefulWidget {
   final String text;
   final bool newsCheck;
