@@ -8,6 +8,7 @@ class RecentPlayedTile extends StatelessWidget {
   const RecentPlayedTile({required this.image, required this.title});
   final String title;
   final String image;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -15,11 +16,10 @@ class RecentPlayedTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder:
-                (context) => PlaylistScreen(
-                  cover: "Upbeat-Mix.jpg",
-                  playlist: trackList("Drake mix"),
-                ),
+            builder: (context) => PlaylistScreen(
+              cover: "Upbeat-Mix.jpg",
+              playlist: trackList("Drake mix"),
+            ),
           ),
         );
       },
@@ -47,12 +47,27 @@ class RecentPlayedTile extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            AutoSizeText(
-              title,
-              style: const TextStyle(
-                fontSize: 10,
-                color: Colors.white,
-                fontFamily: "AB",
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return AutoSizeText(
+                    title,
+                    maxLines: 2,
+                    overflowReplacement: Text(
+                      _truncateTitle(title),
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                        fontFamily: "AB",
+                      ),
+                    ),
+                    style: const TextStyle(
+                      fontSize: 10,
+                      color: Colors.white,
+                      fontFamily: "AB",
+                    ),
+                  );
+                },
               ),
             ),
           ],
@@ -60,4 +75,9 @@ class RecentPlayedTile extends StatelessWidget {
       ),
     );
   }
+}
+
+String _truncateTitle(String title) {
+  if (title.length <= 15) return title;
+  return "${title.substring(0, 14)}\n${title.substring(14, 27)}...";
 }
