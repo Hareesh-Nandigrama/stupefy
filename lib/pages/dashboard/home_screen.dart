@@ -52,7 +52,7 @@ class Home extends StatelessWidget {
                                 children: [
                                   const RecentPlayedTile(
                                     image: "home/american-dream.jpg",
-                                    title: "American dream whatever dude",
+                                    title: "American dream whatever dude idk anymore",
                                   ),
                                   const RecentPlayedTile(
                                     image: "home/UTOPIA.jpg",

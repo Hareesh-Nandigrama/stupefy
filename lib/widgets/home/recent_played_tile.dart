@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import '../../data/playlist_data.dart';
@@ -48,26 +47,16 @@ class RecentPlayedTile extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             Expanded(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  return AutoSizeText(
-                    title,
-                    maxLines: 2,
-                    overflowReplacement: Text(
-                      _truncateTitle(title),
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Colors.white,
-                        fontFamily: "AB",
-                      ),
-                    ),
-                    style: const TextStyle(
-                      fontSize: 10,
-                      color: Colors.white,
-                      fontFamily: "AB",
-                    ),
-                  );
-                },
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
+                style: const TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                  fontFamily: "AB",
+                ),
               ),
             ),
           ],
@@ -75,9 +64,4 @@ class RecentPlayedTile extends StatelessWidget {
       ),
     );
   }
-}
-
-String _truncateTitle(String title) {
-  if (title.length <= 15) return title;
-  return "${title.substring(0, 14)}\n${title.substring(14, 27)}...";
 }
