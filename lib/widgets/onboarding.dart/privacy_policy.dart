@@ -151,9 +151,9 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                   width: 179,
                   decoration: BoxDecoration(
                     color:
-                        (widget.text.length > 6)
-                            ? MyColors.whiteColor
-                            : MyColors.lightGrey,
+                    (widget.text.length > 6)
+                        ? MyColors.whiteColor
+                        : MyColors.lightGrey,
                     borderRadius: const BorderRadius.all(Radius.circular(25)),
                   ),
                   child: const Center(

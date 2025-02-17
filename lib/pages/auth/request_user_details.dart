@@ -16,6 +16,7 @@ class _RequestUserDetailsState extends State<RequestUserDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.darGreyColor,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),

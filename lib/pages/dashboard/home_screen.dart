@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   const RecentPlayedTile(
                                     image: "artists/JID.jpg",
@@ -48,11 +48,11 @@ class Home extends StatelessWidget {
                               const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   const RecentPlayedTile(
                                     image: "home/american-dream.jpg",
-                                    title: "american dream",
+                                    title: "American dream whatever dude idk anymore",
                                   ),
                                   const RecentPlayedTile(
                                     image: "home/UTOPIA.jpg",
@@ -63,7 +63,7 @@ class Home extends StatelessWidget {
                               const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   const RecentPlayedTile(
                                     image: "home/Upbeat-Mix.jpg",

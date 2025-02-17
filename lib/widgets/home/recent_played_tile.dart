@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import '../../data/playlist_data.dart';
@@ -8,6 +7,7 @@ class RecentPlayedTile extends StatelessWidget {
   const RecentPlayedTile({required this.image, required this.title});
   final String title;
   final String image;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -15,11 +15,10 @@ class RecentPlayedTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder:
-                (context) => PlaylistScreen(
-                  cover: "Upbeat-Mix.jpg",
-                  playlist: trackList("Drake mix"),
-                ),
+            builder: (context) => PlaylistScreen(
+              cover: "Upbeat-Mix.jpg",
+              playlist: trackList("Drake mix"),
+            ),
           ),
         );
       },
@@ -47,12 +46,17 @@ class RecentPlayedTile extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            AutoSizeText(
-              title,
-              style: const TextStyle(
-                fontSize: 10,
-                color: Colors.white,
-                fontFamily: "AB",
+            Expanded(
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
+                style: const TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                  fontFamily: "AB",
+                ),
               ),
             ),
           ],
