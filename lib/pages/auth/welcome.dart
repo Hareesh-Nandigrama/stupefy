@@ -14,8 +14,12 @@ class WelcomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset(
-              "images/onboarding_background.png",
+            SizedBox(
+              width: double.infinity,
+              child: Image.asset(
+                "images/onboarding_background.png",
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(
               height: 10,
@@ -37,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 25,
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -76,28 +80,28 @@ class WelcomeScreen extends StatelessWidget {
                     authMtd: "google",
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 5,
                   ),
                   OnboardingButton(
                     authMtd: "facebook",
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 5,
                   ),
                   OnboardingButton(
                     authMtd: "apple",
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    "Log in",
-                    style: TextStyle(
-                      fontFamily: "AB",
-                      fontSize: 16,
-                      color: MyColors.whiteColor,
+                  SafeArea(
+                    minimum: const EdgeInsets.only(bottom: 10),
+                    child: Text(
+                            "Log in", // Log in functionality during backend implementation
+                            style: TextStyle(
+                              fontFamily: "AB",
+                              fontSize: 16,
+                              color: MyColors.whiteColor,
+                            ),
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
