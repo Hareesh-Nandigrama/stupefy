@@ -15,7 +15,7 @@ class HomeAppBar extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 20,
-              backgroundImage: AssetImage("images/myImage.png"),
+              backgroundImage: AssetImage("assets/images/myImage.png"),
             ),
             SizedBox(width: 12),
             Text(
@@ -33,8 +33,8 @@ class HomeAppBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset('images/icon_bell.png'),
-              Image.asset("images/icon_recent.png"),
+              Image.asset('assets/images/icon_bell.png'),
+              Image.asset("assets/images/icon_recent.png"),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -44,7 +44,7 @@ class HomeAppBar extends StatelessWidget {
                     ),
                   );
                 },
-                child: Image.asset("images/icon_settings.png"),
+                child: Image.asset("assets/images/icon_settings.png"),
               ),
             ],
           ),

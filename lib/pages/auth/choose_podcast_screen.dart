@@ -161,7 +161,7 @@ class _SearchBox extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               children: [
-                Image.asset("images/icon_Search.png"),
+                Image.asset("assets/images/icon_Search.png"),
                 const Expanded(
                   child: TextField(
                     style: TextStyle(

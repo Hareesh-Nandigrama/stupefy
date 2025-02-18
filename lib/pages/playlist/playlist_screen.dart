@@ -25,6 +25,7 @@ class PlaylistScreen extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,
@@ -75,7 +76,7 @@ class _SongList extends StatelessWidget {
                         height: 48,
                         width: 48,
                         child: Image.asset(
-                            'images/${playlist.tracks[index].image}'),
+                            'assets/images/${playlist.tracks[index].image}'),
                       ),
                       const SizedBox(width: 5),
                       Column(
@@ -109,7 +110,7 @@ class _SongList extends StatelessWidget {
                     onTap:(){
                       Navigator.push(context, MaterialPageRoute(builder: (context) => SongDetailsScreen(trackName: playlist.tracks[index].trackName, color: Colors.blue, singer: playlist.tracks[index].singers, albumImage: playlist.tracks[index].image)));
                     },
-                    child: Image.asset("images/icon_more.png")),
+                    child: Image.asset("assets/images/icon_more.png")),
                 ],
               ),
             );
@@ -133,6 +134,7 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
   bool _isInPlay = false;
   bool _isDownloaded = false;
   bool _isLiked = false;
+
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -140,86 +142,82 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                "New and approved indie pop. CoverL No Rome",
-                style: TextStyle(
-                  fontFamily: "AM",
-                  fontSize: 13,
-                  color: MyColors.lightGrey,
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  Image.asset('images/icon_spotify.png'),
-                  const SizedBox(width: 5),
-                  const Text(
-                    "Spotify",
-                    style: TextStyle(
-                      fontFamily: "AM",
-                      fontWeight: FontWeight.w700,
-                      color: MyColors.whiteColor,
-                      fontSize: 16,
-                    ),
+          Flexible( // Wrap the Column in a Flexible widget
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20),
+                const Text(
+                  "New and approved indie pop. CoverL No Rome",
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  style: TextStyle(
+                    fontFamily: "AM",
+                    fontSize: 13,
+                    color: MyColors.lightGrey,
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                "1,629,592 likes . ${widget.time}",
-                style: const TextStyle(
-                  fontFamily: "AM",
-                  fontSize: 13,
-                  color: MyColors.lightGrey,
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              SizedBox(
-                width: 130,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                const SizedBox(height: 5),
+                Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _isLiked = !_isLiked;
-                        });
-                      },
-                      child: (_isLiked)
-                          ? Image.asset(
-                              'images/icon_heart_filled.png',
-                              height: 19,
-                              width: 20,
-                            )
-                          : Image.asset('images/icon_heart.png'),
+                    Image.asset('assets/images/icon_spotify.png'),
+                    const SizedBox(width: 5),
+                    const Text(
+                      "Spotify",
+                      style: TextStyle(
+                        fontFamily: "AM",
+                        fontWeight: FontWeight.w700,
+                        color: MyColors.whiteColor,
+                        fontSize: 16,
+                      ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _isDownloaded = !_isDownloaded;
-                        });
-                      },
-                      child: (_isDownloaded)
-                          ? Image.asset('images/icon_downloaded.png')
-                          : Image.asset('images/icon_download.png'),
-                    ),
-                    Image.asset('images/icon_more.png'),
                   ],
                 ),
-              ),
-            ],
+                const SizedBox(height: 10),
+                Text(
+                  "1,629,592 likes . ${widget.time}",
+                  style: const TextStyle(
+                    fontFamily: "AM",
+                    fontSize: 13,
+                    color: MyColors.lightGrey,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                SizedBox(
+                  width: 130,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _isLiked = !_isLiked;
+                          });
+                        },
+                        child: (_isLiked)
+                            ? Image.asset(
+                          'assets/images/icon_heart_filled.png',
+                          height: 19,
+                          width: 20,
+                        )
+                            : Image.asset('assets/images/icon_heart.png'),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _isDownloaded = !_isDownloaded;
+                          });
+                        },
+                        child: (_isDownloaded)
+                            ? Image.asset('assets/images/icon_downloaded.png')
+                            : Image.asset('assets/images/icon_download.png'),
+                      ),
+                      Image.asset('assets/images/icon_more.png'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
@@ -231,17 +229,17 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
               },
               child: (_isInPlay)
                   ? const PlayButton(
-                      color: MyColors.greenColor,
-                      height: 56,
-                      width: 56,
-                    )
+                color: MyColors.greenColor,
+                height: 56,
+                width: 56,
+              )
                   : const PauseButton(
-                      iconWidth: 5,
-                      iconHeight: 19,
-                      color: MyColors.greenColor,
-                      height: 56,
-                      width: 56,
-                    ),
+                iconWidth: 5,
+                iconHeight: 19,
+                color: MyColors.greenColor,
+                height: 56,
+                width: 56,
+              ),
             ),
           ),
         ],
@@ -304,7 +302,7 @@ class _Header extends StatelessWidget {
           ),
           Center(
             child: Image.asset(
-              'images/home/$cover',
+              'assets/images/home/$cover',
               height: 270,
               width: 270,
             ),
@@ -339,7 +337,7 @@ class _SearchBox extends StatelessWidget {
               child: Row(
                 children: [
                   Image.asset(
-                    "images/icon_search_transparent.png",
+                    "assets/images/icon_search_transparent.png",
                     color: MyColors.whiteColor,
                   ),
                   const Expanded(

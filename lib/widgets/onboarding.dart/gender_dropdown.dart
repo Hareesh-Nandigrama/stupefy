@@ -32,7 +32,7 @@ class _GenderDropdownState extends State<GenderDropdown> {
         dropdownColor: MyColors.lightGrey,
         itemHeight: 50.0,
         isExpanded: true,
-        icon: Image.asset("images/icon_tic.png"),
+        icon: Image.asset("assets/images/icon_tic.png"),
         underline: Container(),
         items: const [
           DropdownMenuItem<String>(

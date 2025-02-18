@@ -12,15 +12,15 @@ class OnboardingButton extends StatelessWidget {
 
     switch (authMtd) {
       case 'google':
-        imagePath = "images/icon_google.png";
+        imagePath = "assets/images/icon_google.png";
         buttonText = "Continue with Google";
         break;
       case 'facebook':
-        imagePath = "images/icon_facebook.png";
+        imagePath = "assets/images/icon_facebook.png";
         buttonText = "Continue with Facebook";
         break;
       case 'apple':
-        imagePath = "images/icon_apple.png";
+        imagePath = "assets/images/icon_apple.png";
         buttonText = "Continue with Apple";
         break;
       default:

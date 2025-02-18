@@ -16,7 +16,7 @@ class SearchPageTile extends StatelessWidget {
           width: (MediaQuery.of(context).size.width / 1.75) - 50,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("images/$image"),
+              image: AssetImage("assets/images/$image"),
               fit: BoxFit.cover,
             ),
             color: Colors.red,

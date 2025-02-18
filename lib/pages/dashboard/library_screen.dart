@@ -44,7 +44,7 @@ class LibraryScreen extends StatelessWidget {
                                 CircleAvatar(
                                   radius: 20,
                                   backgroundImage:
-                                      AssetImage("images/myImage.png"),
+                                      AssetImage("assets/images/myImage.png"),
                                 ),
                                 SizedBox(width: 10),
                                 Text(
@@ -67,7 +67,7 @@ class LibraryScreen extends StatelessWidget {
                                 ),
                               );
                             },
-                            child: Image.asset("images/icon_add.png"),
+                            child: Image.asset("assets/images/icon_add.png"),
                           ),
                         ],
                       ),
@@ -87,12 +87,12 @@ class LibraryScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   Image.asset(
-                                    "images/arrow_component_down.png",
+                                    "assets/images/arrow_component_down.png",
                                     width: 10,
                                     height: 12,
                                   ),
                                   Image.asset(
-                                    "images/arrow_component_up.png",
+                                    "assets/images/arrow_component_up.png",
                                     width: 10,
                                     height: 12,
                                   ),
@@ -112,7 +112,7 @@ class LibraryScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Image.asset("images/icon_category.png"),
+                          Image.asset("assets/images/icon_category.png"),
                         ],
                       ),
                     ),

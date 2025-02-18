@@ -48,12 +48,12 @@ class LibraryTile extends StatelessWidget {
                   isArtist
                       ? CircleAvatar(
                         radius: size,
-                        backgroundImage: AssetImage("images/artists/$image"),
+                        backgroundImage: AssetImage("assets/images/artists/$image"),
                       )
                       : SizedBox(
                         height: size,
                         width: size,
-                        child: Image.asset('images/home/$image'),
+                        child: Image.asset('assets/images/home/$image'),
                       ),
                   const SizedBox(width: 15),
                   Column(
@@ -119,7 +119,7 @@ class LibraryTile extends StatelessWidget {
               Visibility(
                 visible: isDeletable,
                 child: Image.asset(
-                  'images/icon_back.png',
+                  'assets/images/icon_back.png',
                   height: 14,
                   width: 14,
                 ),

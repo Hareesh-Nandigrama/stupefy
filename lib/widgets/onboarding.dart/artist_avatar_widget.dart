@@ -36,7 +36,7 @@ class _ArtistAvatarState extends State<ArtistAvatar> {
                 CircleAvatar(
                   radius: 55,
                   backgroundImage: AssetImage(
-                    "images/artists/${widget.artist.artistImage!}",
+                    "assets/images/artists/${widget.artist.artistImage!}",
                   ),
                 ),
                 const SizedBox(height: 10),

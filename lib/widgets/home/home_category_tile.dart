@@ -30,7 +30,7 @@ class HomeCategoryTile extends StatelessWidget {
           SizedBox(
             height: 153,
             width: 153,
-            child: Image.asset("images/home/UTOPIA.jpg"),
+            child: Image.asset("assets/images/home/UTOPIA.jpg"),
           ),
           const SizedBox(height: 10),
           const Column(

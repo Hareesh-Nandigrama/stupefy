@@ -68,7 +68,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
                             width: 37,
                             decoration: BoxDecoration(
                               image: const DecorationImage(
-                                image: AssetImage('images/home/AUSTIN.jpg'),
+                                image: AssetImage('assets/images/home/AUSTIN.jpg'),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius: BorderRadius.circular(3),
@@ -119,7 +119,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
                               );
                             },
                             child: Image.asset(
-                              'images/icon_listen.png',
+                              'assets/images/icon_listen.png',
                               color: const Color.fromARGB(255, 190, 190, 190),
                               height: 24,
                               width: 24,
@@ -137,7 +137,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
                                   ? Row(
                                       children: [
                                         Image.asset(
-                                          'images/icon_heart_filled.png',
+                                          'assets/images/icon_heart_filled.png',
                                           height: 22,
                                           width: 22,
                                         ),
@@ -148,7 +148,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
                                     )
                                   : Row(
                                       children: [
-                                        Image.asset('images/icon_heart.png'),
+                                        Image.asset('assets/images/icon_heart.png'),
                                         const SizedBox(
                                           width: 9,
                                         ),
@@ -167,7 +167,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
                               width: 20,
                               child: (_isInPlay)
                                   ? Image.asset(
-                                      'images/icon_play.png',
+                                      'assets/images/icon_play.png',
                                       color: MyColors.whiteColor,
                                     )
                                   : Row(

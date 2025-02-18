@@ -152,7 +152,7 @@ class _Header extends StatelessWidget {
             ],
           ),
           Image.asset(
-            'images/icon_flag.png',
+            'assets/images/icon_flag.png',
             height: 24,
             width: 24,
           ),
@@ -231,7 +231,7 @@ class __ActionButtonsState extends State<_ActionButtons> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                'images/icon_sing.png',
+                'assets/images/icon_sing.png',
                 height: 20,
                 width: 20,
                 color: Colors.white,
@@ -257,7 +257,7 @@ class __ActionButtonsState extends State<_ActionButtons> {
                       ),
               ),
               Image.asset(
-                'images/share.png',
+                'assets/images/share.png',
                 color: Colors.white,
                 height: 20,
                 width: 20,

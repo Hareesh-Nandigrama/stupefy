@@ -41,27 +41,27 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             },
             items: [
               BottomNavigationBarItem(
-                icon: Image.asset('images/icon_home.png'),
-                activeIcon: Image.asset('images/icon_home_active.png'),
+                icon: Image.asset('assets/images/icon_home.png'),
+                activeIcon: Image.asset('assets/images/icon_home_active.png'),
                 label: "Home",
               ),
               BottomNavigationBarItem(
                 icon: Image.asset(
-                  'images/icon_search_bottomnav.png',
+                  'assets/images/icon_search_bottomnav.png',
                 ),
                 activeIcon: Image.asset(
-                  'images/icon_search_active.png',
+                  'assets/images/icon_search_active.png',
                   color: MyColors.whiteColor,
                 ),
                 label: "Search",
               ),
               BottomNavigationBarItem(
                 icon: Image.asset(
-                  'images/icon_library.png',
+                  'assets/images/icon_library.png',
                   color: MyColors.lightGrey,
                 ),
                 activeIcon: Image.asset(
-                  'images/icon_library_active.png',
+                  'assets/images/icon_library_active.png',
                   color: MyColors.whiteColor,
                 ),
                 label: "Your Library",

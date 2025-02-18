@@ -118,7 +118,7 @@ class _SearchBox extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset(
-                      "images/icon_search_transparent.png",
+                      "assets/images/icon_search_transparent.png",
                       color: MyColors.whiteColor,
                     ),
                     const Expanded(

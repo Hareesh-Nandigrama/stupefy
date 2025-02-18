@@ -40,7 +40,7 @@ class RecentPlayedTile extends StatelessWidget {
                   bottomLeft: Radius.circular(5),
                 ),
                 image: DecorationImage(
-                  image: AssetImage("images/$image"),
+                  image: AssetImage("assets/images/$image"),
                   fit: BoxFit.cover,
                 ),
               ),
