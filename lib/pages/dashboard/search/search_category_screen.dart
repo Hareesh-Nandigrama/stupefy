@@ -101,7 +101,7 @@ class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
                                 ),
                                 image: DecorationImage(
                                   image: AssetImage(
-                                    "images/news&politics.png",
+                                    "assets/images/news&politics.png",
                                   ),
                                 ),
                               ),

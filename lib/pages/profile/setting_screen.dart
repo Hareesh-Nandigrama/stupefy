@@ -11,6 +11,7 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: MyColors.blackColor,
       appBar: AppBar(
         backgroundColor: const Color(0xff191919),
@@ -29,33 +30,35 @@ class SettingScreen extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Image.asset("images/icon_arrow_left.png"),
+          child: Image.asset("assets/images/icon_arrow_left.png"),
         ),
       ),
-      body: const Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: CustomScrollView(
-              slivers: [
-                _ProfileSection(),
-                _SettingsOptionChip(title: "Account"),
-                _SettingsOptionChip(title: "Data Saver"),
-                _SettingsOptionChip(title: "Langugages"),
-                _SettingsOptionChip(title: "Playback"),
-                _SettingsOptionChip(title: "Explicit Content"),
-                _SettingsOptionChip(title: "Devices"),
-                _SettingsOptionChip(title: "Car"),
-                _SettingsOptionChip(title: "Social"),
-                _SettingsOptionChip(title: "Voice Assistant & Apps"),
-                _SettingsOptionChip(title: "Audio Quality"),
-                _SettingsOptionChip(title: "Storage"),
-              ],
+      body: SafeArea(
+        child: const Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: CustomScrollView(
+                slivers: [
+                  _ProfileSection(),
+                  _SettingsOptionChip(title: "Account"),
+                  _SettingsOptionChip(title: "Data Saver"),
+                  _SettingsOptionChip(title: "Langugages"),
+                  _SettingsOptionChip(title: "Playback"),
+                  _SettingsOptionChip(title: "Explicit Content"),
+                  _SettingsOptionChip(title: "Devices"),
+                  _SettingsOptionChip(title: "Car"),
+                  _SettingsOptionChip(title: "Social"),
+                  _SettingsOptionChip(title: "Voice Assistant & Apps"),
+                  _SettingsOptionChip(title: "Audio Quality"),
+                  _SettingsOptionChip(title: "Storage"),
+                ],
+              ),
             ),
-          ),
-          BottomPlayer(),
-        ],
+            BottomPlayer(),
+          ],
+        ),
       ),
     );
   }
@@ -81,7 +84,7 @@ class _SettingsOptionChip extends StatelessWidget {
                 color: MyColors.whiteColor,
               ),
             ),
-            Image.asset("images/icon_arrow_right.png"),
+            Image.asset("assets/images/icon_arrow_right.png"),
           ],
         ),
       ),
@@ -122,7 +125,7 @@ class _ProfileSection extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 27,
-                      backgroundImage: AssetImage("images/myImage.png"),
+                      backgroundImage: AssetImage("assets/images/myImage.png"),
                     ),
                     SizedBox(
                       width: 10,
@@ -152,7 +155,7 @@ class _ProfileSection extends StatelessWidget {
                   ],
                 ),
               ),
-              Image.asset("images/icon_arrow_right.png"),
+              Image.asset("assets/images/icon_arrow_right.png"),
             ],
           ),
         ),

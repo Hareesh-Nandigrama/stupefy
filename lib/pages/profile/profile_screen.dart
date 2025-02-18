@@ -10,50 +10,53 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
-      body: Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        children: [
-          Column(
-            children: [
-              Expanded(
-                flex: 5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xff101010),
-                      width: 0,
+      body: SafeArea(
+        child: Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  flex: 7,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xff101010),
+                        width: 0,
+                      ),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color(0xff00667B),
+                          Color(0xff002F38),
+                          Color(0xff101010),
+                        ],
+                      ),
                     ),
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xff00667B),
-                        Color(0xff002F38),
-                        Color(0xff101010),
-                      ],
-                    ),
+                    child: const _ProfileHeader(),
                   ),
-                  child: const _ProfileHeader(),
                 ),
-              ),
-              Expanded(
-                flex: 5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
+                Expanded(
+                  flex: 5,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xff101010),
+                        width: 0,
+                      ),
                       color: const Color(0xff101010),
-                      width: 0,
                     ),
-                    color: const Color(0xff101010),
+                    child: const _ProfilePlaylists(),
                   ),
-                  child: const _ProfilePlaylists(),
                 ),
-              ),
-            ],
-          ),
-          const BottomPlayer(),
-        ],
+              ],
+            ),
+            const BottomPlayer(),
+          ],
+        ),
       ),
     );
   }
@@ -70,15 +73,15 @@ class _ProfilePlaylists extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Image.asset("images/shazam_playlist.png"),
+        Image.asset("assets/images/shazam_playlist.png"),
         const SizedBox(
           height: 5,
         ),
-        Image.asset("images/roadtrip_playlist.png"),
+        Image.asset("assets/images/roadtrip_playlist.png"),
         const SizedBox(
           height: 5,
         ),
-        Image.asset("images/study_playlist.png"),
+        Image.asset("assets/images/study_playlist.png"),
         Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
@@ -95,7 +98,7 @@ class _ProfilePlaylists extends StatelessWidget {
                   color: MyColors.whiteColor,
                 ),
               ),
-              Image.asset("images/icon_arrow_right.png"),
+              Image.asset("assets/images/icon_arrow_right.png"),
             ],
           ),
         ),
@@ -124,10 +127,10 @@ class _ProfileHeader extends StatelessWidget {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Image.asset("images/icon_arrow_left.png"),
+                child: Image.asset("assets/images/icon_arrow_left.png"),
               ),
               Image.asset(
-                "images/icon_more.png",
+                "assets/images/icon_more.png",
                 color: MyColors.whiteColor,
               ),
             ],
@@ -140,7 +143,7 @@ class _ProfileHeader extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   radius: 55,
-                  backgroundImage: AssetImage("images/myImage.png"),
+                  backgroundImage: AssetImage("assets/images/myImage.png"),
                 ),
                 const SizedBox(
                   height: 35,
@@ -166,81 +169,26 @@ class _ProfileHeader extends StatelessWidget {
                 const SizedBox(
                   height: 65,
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Adjusted for better spacing
                   children: [
-                    Column(
-                      children: [
-                        Text(
-                          '23',
-                          style: TextStyle(
-                            fontFamily: "AM",
-                            fontSize: 12,
-                            color: MyColors.whiteColor,
-                          ),
-                        ),
-                        Text(
-                          "PlayLists",
-                          style: TextStyle(
-                            fontFamily: "AM",
-                            fontSize: 12,
-                            color: MyColors.lightGrey,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          '58',
-                          style: TextStyle(
-                            fontFamily: "AM",
-                            fontSize: 12,
-                            color: MyColors.whiteColor,
-                          ),
-                        ),
-                        Text(
-                          "Followers",
-                          style: TextStyle(
-                            fontFamily: "AM",
-                            fontSize: 10,
-                            color: MyColors.lightGrey,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          '43',
-                          style: TextStyle(
-                            fontFamily: "AM",
-                            fontSize: 12,
-                            color: MyColors.whiteColor,
-                          ),
-                        ),
-                        Text(
-                          "Following",
-                          style: TextStyle(
-                            fontFamily: "AM",
-                            fontSize: 10,
-                            color: MyColors.lightGrey,
-                          ),
-                        ),
-                      ],
-                    ),
+                    _buildStatColumn("23", "PlayLists"),
+                    _buildStatColumn("58", "Followers"),
+                    _buildStatColumn("43", "Following"),
                   ],
                 ),
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 30),
+          Padding(
+            padding: const EdgeInsets.only(top: 30), // Keep the desired padding
             child: Text(
               "Playlists",
-              style: TextStyle(
+              overflow: TextOverflow.ellipsis, // Handle overflow
+              maxLines: 1, // Ensure single line
+              style: const TextStyle(
                 fontFamily: "AM",
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w800,
                 color: MyColors.whiteColor,
                 fontSize: 19,
               ),
@@ -248,6 +196,29 @@ class _ProfileHeader extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+  Widget _buildStatColumn(String value, String label) {
+    return Column(
+      children: [
+        Text(
+          value,
+          style: const TextStyle(
+            fontFamily: "AM",
+            fontSize: 12,
+            color: MyColors.whiteColor,
+          ),
+        ),
+        const SizedBox(height: 4), // Added spacing for better readability
+        Text(
+          label,
+          style: const TextStyle(
+            fontFamily: "AM",
+            fontSize: 10,
+            color: MyColors.lightGrey,
+          ),
+        ),
+      ],
     );
   }
 }

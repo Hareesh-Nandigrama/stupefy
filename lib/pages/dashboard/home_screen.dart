@@ -84,7 +84,7 @@ class Home extends StatelessWidget {
                   HomeCategoryList(category: "Jump back in"),
                   HomeCategoryList(category: "Your top mixes"),
                   HomeCategoryList(category: "Recently Played"),
-                  SliverPadding(padding: EdgeInsets.only(bottom: 100)),
+                  SliverPadding(padding: EdgeInsets.only(bottom: 180)),
                 ],
               ),
             ),

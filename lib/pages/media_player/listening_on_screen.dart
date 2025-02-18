@@ -39,7 +39,7 @@ class _ListeningOnState extends State<ListeningOn> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Image.asset("images/icon_back.png"),
+                  child: Image.asset("assets/images/icon_back.png"),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
@@ -89,7 +89,7 @@ class _ListeningOnState extends State<ListeningOn> {
                           ),
                           Row(
                             children: [
-                              Image.asset('images/icon_bluetooth.png'),
+                              Image.asset('assets/images/icon_bluetooth.png'),
                               const SizedBox(
                                 width: 5,
                               ),
@@ -131,7 +131,7 @@ class _ListeningOnState extends State<ListeningOn> {
                         Stack(
                           alignment: AlignmentDirectional.center,
                           children: [
-                            Image.asset('images/icon_beta.png'),
+                            Image.asset('assets/images/icon_beta.png'),
                             const Text(
                               "BETA",
                               style: TextStyle(
@@ -163,7 +163,7 @@ class _ListeningOnState extends State<ListeningOn> {
                 const Center(
                   child: CircleAvatar(
                     radius: 25,
-                    backgroundImage: AssetImage("images/myImage.png"),
+                    backgroundImage: AssetImage("assets/images/myImage.png"),
                   ),
                 ),
                 const SizedBox(
@@ -218,7 +218,7 @@ class _ListeningOnState extends State<ListeningOn> {
                 const Spacer(),
                 Row(
                   children: [
-                    Image.asset('images/icon_audio.png'),
+                    Image.asset('assets/images/icon_audio.png'),
                     SliderTheme(
                       data: const SliderThemeData(
                         trackHeight: 2,
@@ -273,7 +273,7 @@ class _SelectDeviceSection extends StatelessWidget {
         ),
         Row(
           children: [
-            Image.asset('images/icon_monitor.png'),
+            Image.asset('assets/images/icon_monitor.png'),
             const SizedBox(width: 15),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,7 +288,7 @@ class _SelectDeviceSection extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Image.asset('images/icon_cast.png'),
+                    Image.asset('assets/images/icon_cast.png'),
                     const SizedBox(width: 3),
                     const Text(
                       "Google Cast",
@@ -312,7 +312,7 @@ class _SelectDeviceSection extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.asset('images/icon_tv.png'),
+                Image.asset('assets/images/icon_tv.png'),
                 const SizedBox(width: 15),
                 const Text(
                   "Mohammad's MacBook Pro",
@@ -325,7 +325,7 @@ class _SelectDeviceSection extends StatelessWidget {
                 ),
               ],
             ),
-            Image.asset('images/icon_more.png'),
+            Image.asset('assets/images/icon_more.png'),
           ],
         ),
         const SizedBox(
@@ -333,7 +333,7 @@ class _SelectDeviceSection extends StatelessWidget {
         ),
         Row(
           children: [
-            Image.asset('images/icon_airplay.png'),
+            Image.asset('assets/images/icon_airplay.png'),
             const SizedBox(width: 10),
             const Text(
               "Airplay or Bluetooth",

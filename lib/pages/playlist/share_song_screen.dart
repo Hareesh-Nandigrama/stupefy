@@ -42,7 +42,7 @@ class ShareSongScreen extends StatelessWidget {
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            child: Image.asset("images/icon_back.png",
+                            child: Image.asset("assets/images/icon_back.png",
                                 height: 15, width: 15),
                           ),
                           const Text(
@@ -65,7 +65,7 @@ class ShareSongScreen extends StatelessWidget {
                       height: 60,
                     ),
                     Image.asset(
-                      "images/home/AUSTIN.jpg",
+                      "assets/images/home/AUSTIN.jpg",
                       height: 220,
                       width: 220,
                     ),
@@ -114,7 +114,7 @@ class ShareSongScreen extends StatelessWidget {
                   color: MyColors.blackColor,
                 ),
               ),
-              child: Image.asset("images/social_links.png"),
+              child: Image.asset("assets/images/social_links.png"),
             ),
           ),
         ],

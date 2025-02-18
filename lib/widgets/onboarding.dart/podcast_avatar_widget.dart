@@ -40,7 +40,7 @@ class _PodcastAvatarWidgetState extends State<PodcastAvatarWidget> {
                     ),
                     image: DecorationImage(
                       image:
-                          AssetImage("images/podcasts/${widget.podcast.image}"),
+                          AssetImage("assets/images/podcasts/${widget.podcast.image}"),
                       fit: BoxFit.cover,
                     ),
                   ),

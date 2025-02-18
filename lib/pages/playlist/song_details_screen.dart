@@ -130,7 +130,7 @@ class _AlbumChip extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.asset("images/$image"),
+          Image.asset("assets/images/$image"),
           const SizedBox(width: 10),
           Text(
             text,
@@ -164,7 +164,7 @@ class _SongHeader extends StatelessWidget {
           height: 50,
         ),
         Image.asset(
-          "images/$albumImage",
+          "assets/images/$albumImage",
           height: 164,
           width: 164,
         ),

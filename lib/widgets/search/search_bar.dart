@@ -31,7 +31,7 @@ class SearchBox extends StatelessWidget {
             },
             child: Row(
               children: [
-                Image.asset("images/icon_search_black.png"),
+                Image.asset("assets/images/icon_search_black.png"),
                 const SizedBox(width: 15),
                 const Text(
                   "What do you want to listen to?",

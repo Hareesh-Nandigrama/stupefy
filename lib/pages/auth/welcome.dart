@@ -19,7 +19,7 @@ class WelcomeScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Image.asset(
-                  "images/onboarding_background.png",
+                  "assets/images/onboarding_background.png",
                   fit: BoxFit.cover,
                 ),
               ),

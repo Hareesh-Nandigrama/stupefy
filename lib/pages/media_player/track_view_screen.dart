@@ -64,7 +64,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                     CircleAvatar(
                                       radius: 15,
                                       backgroundImage: AssetImage(
-                                          'images/artists/Post-Malone.jpg'),
+                                          'assets/images/artists/Post-Malone.jpg'),
                                     ),
                                     SizedBox(width: 15),
                                     Text(
@@ -110,7 +110,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                 width: 120,
                                 child: Center(
                                   child: Image.asset(
-                                    "images/home/AUSTIN.jpg",
+                                    "assets/images/home/AUSTIN.jpg",
                                   ),
                                 ),
                               ),
@@ -198,7 +198,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                     duration: const Duration(milliseconds: 250),
                                     opacity: (isSwitchedToNextTab) ? 0 : 1,
                                     child: Image.asset(
-                                      'images/share.png',
+                                      'assets/images/share.png',
                                       color: Colors.white,
                                     ),
                                   ),
@@ -244,7 +244,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                       ),
                                       child: Center(
                                         child: Image.asset(
-                                          "images/icon_back_song.png",
+                                          "assets/images/icon_back_song.png",
                                           height: 16,
                                           width: 16,
                                         ),
@@ -267,7 +267,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                       ),
                                       child: Center(
                                         child: Image.asset(
-                                          "images/icon_next_song.png",
+                                          "assets/images/icon_next_song.png",
                                           height: 16,
                                           width: 16,
                                         ),
@@ -283,12 +283,12 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                   onTap: () {},
                                   child: (_isLiked)
                                       ? Image.asset(
-                                          'images/icon_heart_filled.png',
+                                          'assets/images/icon_heart_filled.png',
                                           height: 22,
                                           width: 22,
                                         )
                                       : Image.asset(
-                                          'images/icon_heart.png',
+                                          'assets/images/icon_heart.png',
                                           color: Colors.white,
                                         ),
                                 ),
@@ -499,7 +499,7 @@ class _Header extends StatelessWidget {
               );
             },
             child: Image.asset(
-              'images/icon_listen.png',
+              'assets/images/icon_listen.png',
               height: 20,
               width: 20,
               color: Colors.white,

@@ -24,7 +24,7 @@ class PlayButton extends StatelessWidget {
       child: Center(
         child: Padding(
           padding: const EdgeInsets.only(left: 4),
-          child: Image.asset("images/icon_play.png"),
+          child: Image.asset("assets/images/icon_play.png"),
         ),
       ),
     );

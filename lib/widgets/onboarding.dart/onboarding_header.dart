@@ -26,7 +26,7 @@ class OnboardingHeader extends StatelessWidget {
                     ),
                     child: Center(
                       child: Image.asset(
-                        "images/icon_arrow_left.png",
+                        "assets/images/icon_arrow_left.png",
                         height: 16,
                         width: 16,
                       ),

@@ -60,23 +60,22 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
-    - images/
-    - images/artists/
-    - images/podcasts/
-    - images/home/
-    - images/chill/
-    - images/drake mix/
-    - images/upbeat/
-    - images/2010/
-    - video/
+    - assets/images/
+    - assets/images/artists/
+    - assets/images/podcasts/
+    - assets/images/home/
+    - assets/images/chill/
+    - assets/images/drake mix/
+    - assets/images/upbeat/
+    - assets/images/2010/
+    - assets/video/
+
 
   fonts:
     - family: AM
       fonts:
-        - asset: fonts/Avenir Medium.ttf
-
+        - asset: assets/fonts/Avenir Medium.ttf
     - family: AB
       fonts:
-        - asset: fonts/Avenir Next LT Pro Bold.otf
+        - asset: assets/fonts/Avenir Next LT Pro Bold.otf
