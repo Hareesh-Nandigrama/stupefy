@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import '../../widgets/onboarding.dart/auth_selector_button.dart';
+import '../dashboard/home_screen.dart';
 import 'request_user_details.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -12,103 +13,100 @@ class WelcomeScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: MyColors.blackColor,
       body: SafeArea(
-
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                child: Image.asset(
-                  "assets/images/onboarding_background.png",
-                  fit: BoxFit.cover,
+        child: Stack(
+          children: [
+            SizedBox(
+                  width: double.infinity,
+                  child: Image.asset(
+                    "assets/images/onboarding_background.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                "Millions of songs.",
-                style: TextStyle(
-                  fontFamily: "AB",
-                  fontSize: 28,
-                  color: MyColors.whiteColor,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const SizedBox(height: 10),
+                const Text(
+                  "Millions of songs.",
+                  style: TextStyle(
+                    fontFamily: "AB",
+                    fontSize: 28,
+                    color: MyColors.whiteColor,
+                  ),
                 ),
-              ),
-              const Text(
-                "Free on Stupefy.",
-                style: TextStyle(
-                  fontFamily: "AB",
-                  fontSize: 28,
-                  color: MyColors.whiteColor,
+                const Text(
+                  "Free on Stupefy.",
+                  style: TextStyle(
+                    fontFamily: "AB",
+                    fontSize: 28,
+                    color: MyColors.whiteColor,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: Column(
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(MediaQuery.of(context).size.width, 49),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(25),
+                const SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Column(
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(
+                            MediaQuery.of(context).size.width,
+                            49,
+                          ),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
+                          ),
+                          backgroundColor: MyColors.greenColor,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => RequestUserDetails(
+                                    requiredDetails: "email",
+                                  ),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          "ُSign up free",
+                          style: TextStyle(
+                            fontFamily: "AB",
+                            fontSize: 16,
+                            color: MyColors.blackColor,
                           ),
                         ),
-                        backgroundColor: MyColors.greenColor,
                       ),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => RequestUserDetails(requiredDetails: "email"),
+                      const SizedBox(height: 15),
+                      OnboardingButton(authMtd: "google"),
+                      const SizedBox(height: 5),
+                      OnboardingButton(authMtd: "facebook"),
+                      const SizedBox(height: 5),
+                      OnboardingButton(authMtd: "apple"),
+                      const SizedBox(height: 8),
+                      InkWell(
+                        onTap: (){
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>const Home()
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          "Log in", // Log in functionality during backend implementation
+                          style: TextStyle(
+                            fontFamily: "AB",
+                            fontSize: 16,
+                            color: MyColors.whiteColor,
                           ),
-                        );
-                      },
-                      child: const Text(
-                        "ُSign up free",
-                        style: TextStyle(
-                          fontFamily: "AB",
-                          fontSize: 16,
-                          color: MyColors.blackColor,
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    OnboardingButton(
-                      authMtd: "google",
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    OnboardingButton(
-                      authMtd: "facebook",
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    OnboardingButton(
-                      authMtd: "apple",
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    const Text(
-                      "Log in", // Log in functionality during backend implementation
-                      style: TextStyle(
-                        fontFamily: "AB",
-                        fontSize: 16,
-                        color: MyColors.whiteColor,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
       ),
     );

@@ -28,54 +28,23 @@ class Home extends StatelessWidget {
                         children: [
                           HomeAppBar(),
                           const SizedBox(height: 20),
-                          Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const RecentPlayedTile(
-                                    image: "artists/JID.jpg",
-                                    title: "JID",
-                                  ),
-                                  const RecentPlayedTile(
-                                    image: "artists/JID.jpg",
-                                    title: "JID",
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const RecentPlayedTile(
-                                    image: "home/american-dream.jpg",
-                                    title:
-                                        "American dream whatever dude idk anymore",
-                                  ),
-                                  const RecentPlayedTile(
-                                    image: "home/UTOPIA.jpg",
-                                    title: "UTOPIA",
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const RecentPlayedTile(
-                                    image: "home/Upbeat-Mix.jpg",
-                                    title: "Upbeat Mix",
-                                  ),
-                                  const RecentPlayedTile(
-                                    image: "home/Daily-Mix-1.jpg",
-                                    title: "Daily Mix",
-                                  ),
-                                ],
-                              ),
-                            ],
+                          GridView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  mainAxisExtent: 55,
+                                ),
+                            itemCount: 6,
+                            itemBuilder: (context, index) {
+                              return RecentPlayedTile(
+                                image: "artists/JID.jpg",
+                                title: "china japan nepal bhutan e sala cup namde",
+                              );
+                            },
                           ),
                         ],
                       ),
