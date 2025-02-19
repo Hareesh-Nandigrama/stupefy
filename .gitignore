@@ -33,6 +33,7 @@ appLoader.sh
 /build/
 .vscode/
 /.vscode/
+/.dart_tool/
 
 # Web related
 lib/generated_plugin_registrant.dart

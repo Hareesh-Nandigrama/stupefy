@@ -321,10 +321,8 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                       child: Slider(
                                         min: 0,
                                         max: 100,
-                                        activeColor: const Color.fromARGB(
-                                            255, 230, 229, 229),
-                                        inactiveColor: const Color.fromARGB(
-                                            255, 148, 147, 147),
+                                        activeColor: MyColors.whiteColor,
+                                        inactiveColor: MyColors.lightGrey,
                                         value: _currentNumber,
                                         onChanged: (onChanged) {
                                           setState(() {
@@ -347,8 +345,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                             style: TextStyle(
                                               fontFamily: "AM",
                                               fontSize: 12,
-                                              color: Color.fromARGB(
-                                                  255, 230, 229, 229),
+                                              color: MyColors.whiteColor,
                                             ),
                                           ),
                                         ),
@@ -359,8 +356,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                             style: TextStyle(
                                               fontFamily: "AM",
                                               fontSize: 12,
-                                              color: Color.fromARGB(
-                                                  255, 230, 229, 229),
+                                              color: MyColors.whiteColor,
                                             ),
                                           ),
                                         ),

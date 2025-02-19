@@ -117,7 +117,7 @@ class ChooseArtistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 27, 27, 27),
+      backgroundColor: MyColors.blackColor,
       body: SafeArea(
         child:               Stack(
                 alignment: AlignmentDirectional.bottomCenter,

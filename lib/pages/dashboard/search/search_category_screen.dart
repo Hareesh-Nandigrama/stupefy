@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
-import '../../../widgets/media_player/bottom_player.dart';
 import '../../../widgets/search/search_bar.dart';
 import '../../../widgets/search/search_page_tile.dart';
 
@@ -14,6 +13,7 @@ class SearchCategoryScreen extends StatefulWidget {
 
 class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
   String? scanResault;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +93,7 @@ class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
                             Container(
                               width:
                                   (MediaQuery.of(context).size.width / 1.75) -
-                                      50,
+                                  50,
                               height: 100,
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.all(
@@ -124,7 +124,9 @@ class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
                           ],
                         ),
                         const SearchPageTile(
-                            title: "Comdey", image: "comedy.png"),
+                          title: "Comdey",
+                          image: "comedy.png",
+                        ),
                       ],
                     ),
                   ),
@@ -147,9 +149,13 @@ class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SearchPageTile(
-                            title: "2023 Wrapped", image: "2023_wrapped.png"),
+                          title: "2023 Wrapped",
+                          image: "2023_wrapped.png",
+                        ),
                         SearchPageTile(
-                            title: "Podcasts", image: "podcasts.png"),
+                          title: "Podcasts",
+                          image: "podcasts.png",
+                        ),
                       ],
                     ),
                   ),
@@ -160,21 +166,17 @@ class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SearchPageTile(
-                              title: "Made for you", image: "made_for_you.png"),
+                            title: "Made for you",
+                            image: "made_for_you.png",
+                          ),
                           SearchPageTile(title: "Charts", image: "charts.png"),
                         ],
                       ),
                     ),
                   ),
-                  const SliverPadding(
-                    padding: EdgeInsets.only(bottom: 130),
-                  ),
+                  const SliverPadding(padding: EdgeInsets.only(bottom: 130)),
                 ],
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 94),
-              child: BottomPlayer(),
             ),
           ],
         ),
@@ -182,6 +184,3 @@ class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
     );
   }
 }
-
-
-

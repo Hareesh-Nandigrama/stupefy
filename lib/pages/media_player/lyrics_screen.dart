@@ -146,7 +146,7 @@ class _Header extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "AM",
                   fontSize: 12,
-                  color: Color.fromARGB(255, 253, 239, 239),
+                  color: MyColors.whiteColor,
                 ),
               ),
             ],
@@ -190,8 +190,8 @@ class __ActionButtonsState extends State<_ActionButtons> {
                 child: Slider(
                   min: 0,
                   max: 100,
-                  activeColor: const Color.fromARGB(255, 230, 229, 229),
-                  inactiveColor: const Color.fromARGB(255, 199, 196, 196),
+                  activeColor: MyColors.whiteColor,
+                  inactiveColor: MyColors.lightGrey,
                   value: _currentNumber,
                   onChanged: (onChanged) {
                     setState(() {
@@ -211,7 +211,7 @@ class __ActionButtonsState extends State<_ActionButtons> {
                     style: TextStyle(
                       fontFamily: "AM",
                       fontSize: 12,
-                      color: Color.fromARGB(255, 230, 229, 229),
+                      color: MyColors.whiteColor,
                     ),
                   ),
                   Text(
@@ -219,7 +219,7 @@ class __ActionButtonsState extends State<_ActionButtons> {
                     style: TextStyle(
                       fontFamily: "AM",
                       fontSize: 12,
-                      color: Color.fromARGB(255, 230, 229, 229),
+                      color: MyColors.whiteColor,
                     ),
                   ),
                 ],

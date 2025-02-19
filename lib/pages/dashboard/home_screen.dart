@@ -4,7 +4,6 @@ import '../../constants/constants.dart';
 import '../../widgets/home/home_app_bar.dart';
 import '../../widgets/home/home_category_list.dart';
 import '../../widgets/home/recent_played_tile.dart';
-import '../../widgets/media_player/bottom_player.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -33,7 +32,7 @@ class Home extends StatelessWidget {
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const RecentPlayedTile(
                                     image: "artists/JID.jpg",
@@ -48,11 +47,12 @@ class Home extends StatelessWidget {
                               const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const RecentPlayedTile(
                                     image: "home/american-dream.jpg",
-                                    title: "American dream whatever dude idk anymore",
+                                    title:
+                                        "American dream whatever dude idk anymore",
                                   ),
                                   const RecentPlayedTile(
                                     image: "home/UTOPIA.jpg",
@@ -63,7 +63,7 @@ class Home extends StatelessWidget {
                               const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const RecentPlayedTile(
                                     image: "home/Upbeat-Mix.jpg",
@@ -87,10 +87,6 @@ class Home extends StatelessWidget {
                   SliverPadding(padding: EdgeInsets.only(bottom: 180)),
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 88),
-              child: BottomPlayer(),
             ),
           ],
         ),

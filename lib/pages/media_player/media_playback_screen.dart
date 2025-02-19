@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
-import '../playlist/song_details_screen.dart';
-import '../../widgets/media_player/video_player.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:audio_session/audio_session.dart';
+import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
+
+import '../../constants/constants.dart';
+import '../../functions/timestamp_split/format_duration.dart';
+import '../../widgets/media_player/video_player.dart';
+import '../playlist/song_details_screen.dart';
 import 'lyrics_section.dart';
 
 class MediaPlayback extends StatefulWidget {
@@ -59,10 +61,9 @@ class _MediaPlaybackState extends State<MediaPlayback> {
           setState(() {
             _isPlaying = false;
           });
-          _audioPlayer.seek(Duration.zero);  // Reset to beginning
+          _audioPlayer.seek(Duration.zero); // Reset to beginning
         }
       });
-      
     } catch (e) {
       print('Error initializing audio: $e');
     }
@@ -78,13 +79,6 @@ class _MediaPlaybackState extends State<MediaPlayback> {
     } catch (e) {
       print('Error handling play/pause: $e');
     }
-  }
-
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final minutes = twoDigits(duration.inMinutes.remainder(60));
-    final seconds = twoDigits(duration.inSeconds.remainder(60));
-    return '$minutes:$seconds';
   }
 
   @override
@@ -103,11 +97,8 @@ class _MediaPlaybackState extends State<MediaPlayback> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Color(0xff61d6d6),
-              Colors.blue,
-            ],
-          )
+            colors: [Color(0xff61d6d6), Colors.blue],
+          ),
         ),
         child: Stack(
           children: [
@@ -117,7 +108,11 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                 children: [
                   // Top header
                   Padding(
-                    padding: const EdgeInsets.only(top: 38, left: 10, right: 10),
+                    padding: const EdgeInsets.only(
+                      top: 38,
+                      left: 10,
+                      right: 10,
+                    ),
                     child: Row(
                       children: [
                         Image.asset(
@@ -130,39 +125,54 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                           TextSpan(
                             text: 'PLAYING FROM PLAYLIST \n', // First line
                             style: TextStyle(
-                                fontFamily: "AM",
-                                fontSize: 12,
-                                color: MyColors.whiteColor), // Normal styling
+                              fontFamily: "AM",
+                              fontSize: 12,
+                              color: MyColors.whiteColor,
+                            ), // Normal styling
                             children: [
                               TextSpan(
                                 text: 'Your Mix Playlist 1', // Second line
                                 style: TextStyle(
-                                    fontFamily: "AB",
-                                    fontSize: 12,
-                                    color: MyColors.whiteColor), // Bold styling
+                                  fontFamily: "AB",
+                                  fontSize: 12,
+                                  color: MyColors.whiteColor,
+                                ), // Bold styling
                               ),
                             ],
                           ),
-                          textAlign: TextAlign.center, // Center alignment if needed
+                          textAlign:
+                              TextAlign.center, // Center alignment if needed
                         ),
                         Spacer(),
                         GestureDetector(
-                            onTap:(){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => SongDetailsScreen(trackName: "Something in the Sky", color: Colors.blue, singer: "Sam", albumImage: "shazam_playlist.png")));
-                            },
-                            child: Image.asset("assets/images/icon_more.png")),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => SongDetailsScreen(
+                                      trackName: "Something in the Sky",
+                                      color: Colors.blue,
+                                      singer: "Sam",
+                                      albumImage: "shazam_playlist.png",
+                                    ),
+                              ),
+                            );
+                          },
+                          child: Image.asset("assets/images/icon_more.png"),
+                        ),
                       ],
                     ),
                   ),
-                  
+
                   // Main content with spacing
                   SizedBox(height: MediaQuery.of(context).size.height * 0.56),
-                  
+
                   // Player controls and lyrics
                   Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left:10, right: 10),
+                        padding: const EdgeInsets.only(left: 10, right: 10),
                         child: Align(
                           alignment: Alignment.bottomLeft,
                           child: Image.asset(
@@ -172,27 +182,32 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left:10, right: 10),
+                        padding: const EdgeInsets.only(left: 10, right: 10),
                         child: Row(
                           children: [
                             Text.rich(
                               TextSpan(
-                                text: 'Something in the Sky \n', // First line
+                                text: 'Something in the Sky \n',
+                                // First line
                                 style: TextStyle(
-                                    fontFamily: "AB",
-                                    fontSize: 16,
-                                    color: MyColors.whiteColor), // Normal styling
+                                  fontFamily: "AB",
+                                  fontSize: 16,
+                                  color: MyColors.whiteColor,
+                                ),
+                                // Normal styling
                                 children: [
                                   TextSpan(
                                     text: 'Sam Altman', // Second line
                                     style: TextStyle(
-                                        fontFamily: "AM",
-                                        fontSize: 14,
-                                        color: MyColors.whiteColor), // Bold styling
+                                      fontFamily: "AM",
+                                      fontSize: 14,
+                                      color: MyColors.whiteColor,
+                                    ), // Bold styling
                                   ),
                                 ],
                               ),
-                              textAlign: TextAlign.left, // Center alignment if needed
+                              textAlign:
+                                  TextAlign.left, // Center alignment if needed
                             ),
                             Spacer(),
                             GestureDetector(
@@ -201,16 +216,17 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                   _isLiked = !_isLiked;
                                 });
                               },
-                              child: (_isLiked)
-                                  ? Image.asset(
-                                'assets/images/icon_heart_filled.png',
-                                height: 22,
-                                width: 22,
-                              )
-                                  : Image.asset(
-                                'assets/images/icon_heart.png',
-                                color: Colors.white,
-                              ),
+                              child:
+                                  (_isLiked)
+                                      ? Image.asset(
+                                        'assets/images/icon_heart_filled.png',
+                                        height: 22,
+                                        width: 22,
+                                      )
+                                      : Image.asset(
+                                        'assets/images/icon_heart.png',
+                                        color: Colors.white,
+                                      ),
                             ),
                           ],
                         ),
@@ -219,34 +235,45 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                         stream: _audioPlayer.positionStream,
                         builder: (context, snapshot) {
                           final position = snapshot.data ?? Duration.zero;
-                          final duration = _audioPlayer.duration ?? Duration.zero;
+                          final duration =
+                              _audioPlayer.duration ?? Duration.zero;
                           return Column(
                             children: [
                               SliderTheme(
                                 data: SliderThemeData(
                                   trackHeight: 2,
-                                  thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6),
-                                  overlayShape: RoundSliderOverlayShape(overlayRadius: 12),
+                                  thumbShape: RoundSliderThumbShape(
+                                    enabledThumbRadius: 6,
+                                  ),
+                                  overlayShape: RoundSliderOverlayShape(
+                                    overlayRadius: 12,
+                                  ),
                                   activeTrackColor: MyColors.whiteColor,
-                                  inactiveTrackColor: MyColors.whiteColor.withOpacity(0.3),
+                                  inactiveTrackColor: MyColors.whiteColor
+                                      .withOpacity(0.3),
                                   thumbColor: MyColors.whiteColor,
                                 ),
                                 child: Slider(
                                   value: position.inMilliseconds.toDouble(),
                                   onChanged: (value) {
-                                    _audioPlayer.seek(Duration(milliseconds: value.toInt()));
+                                    _audioPlayer.seek(
+                                      Duration(milliseconds: value.toInt()),
+                                    );
                                   },
                                   min: 0.0,
                                   max: duration.inMilliseconds.toDouble(),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                ),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      _formatDuration(position),
+                                      formatDuration(position),
                                       style: TextStyle(
                                         color: MyColors.whiteColor,
                                         fontSize: 12,
@@ -254,7 +281,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                       ),
                                     ),
                                     Text(
-                                      _formatDuration(duration),
+                                      formatDuration(duration),
                                       style: TextStyle(
                                         color: MyColors.whiteColor,
                                         fontSize: 12,
@@ -270,8 +297,13 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                   IconButton(
                                     iconSize: 30,
                                     icon: Icon(
-                                      _isPlaying ? Icons.shuffle : Icons.shuffle_rounded,
-                                      color: _isPlaying ? Colors.white : Colors.green,
+                                      _isPlaying
+                                          ? Icons.shuffle
+                                          : Icons.shuffle_rounded,
+                                      color:
+                                          _isPlaying
+                                              ? Colors.white
+                                              : Colors.green,
                                     ),
                                     onPressed: null,
                                   ),
@@ -279,7 +311,9 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                   IconButton(
                                     iconSize: 50,
                                     icon: Icon(
-                                      _isPlaying ? Icons.navigate_before : Icons.navigate_before_rounded,
+                                      _isPlaying
+                                          ? Icons.navigate_before
+                                          : Icons.navigate_before_rounded,
                                       color: Colors.white,
                                     ),
                                     onPressed: null,
@@ -288,7 +322,9 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                   IconButton(
                                     iconSize: 50,
                                     icon: Icon(
-                                      _isPlaying ? Icons.pause_circle_filled : Icons.play_circle_fill,
+                                      _isPlaying
+                                          ? Icons.pause_circle_filled
+                                          : Icons.play_circle_fill,
                                       color: Colors.white,
                                     ),
                                     onPressed: _handlePlayPause,
@@ -297,7 +333,9 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                   IconButton(
                                     iconSize: 50,
                                     icon: Icon(
-                                      _isPlaying ? Icons.navigate_next : Icons.navigate_next_rounded,
+                                      _isPlaying
+                                          ? Icons.navigate_next
+                                          : Icons.navigate_next_rounded,
                                       color: Colors.white,
                                     ),
                                     onPressed: null,
@@ -306,8 +344,13 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                   IconButton(
                                     iconSize: 30,
                                     icon: Icon(
-                                      _isPlaying ? Icons.loop : Icons.loop_rounded,
-                                      color: _isPlaying ? Colors.white : Colors.green,
+                                      _isPlaying
+                                          ? Icons.loop
+                                          : Icons.loop_rounded,
+                                      color:
+                                          _isPlaying
+                                              ? Colors.white
+                                              : Colors.green,
                                     ),
                                     onPressed: null,
                                   ),
@@ -319,7 +362,12 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                       ),
                       const LyricsSection(key: Key("1")),
                       Padding(
-                        padding: const EdgeInsets.only(top: 0, bottom: 0, left: 15, right: 15),
+                        padding: const EdgeInsets.only(
+                          top: 0,
+                          bottom: 0,
+                          left: 15,
+                          right: 15,
+                        ),
                         child: SafeArea(
                           child: Container(
                             width: MediaQuery.of(context).size.width,
@@ -340,16 +388,19 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                     child: CircleAvatar(
                                       radius: 120,
                                       backgroundImage: AssetImage(
-                                          'assets/images/artists/Adele.jpg'),
+                                        'assets/images/artists/Adele.jpg',
+                                      ),
                                     ),
                                   ),
                                   Positioned(
                                     top: 5,
-                                    child: Text("About the Artist",
+                                    child: Text(
+                                      "About the Artist",
                                       style: TextStyle(
-                                          fontFamily: "AB",
-                                          fontSize: 18,
-                                          color: MyColors.whiteColor),
+                                        fontFamily: "AB",
+                                        fontSize: 18,
+                                        color: MyColors.whiteColor,
+                                      ),
                                     ),
                                   ),
                                   Positioned(
@@ -358,14 +409,16 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                     right: 5,
                                     child: SizedBox(
                                       width: 320,
-                                      child: Text("Adele is a great artist with 10M followers, But did you know that Hareesh has a gf?",
+                                      child: Text(
+                                        "Adele is a great artist with 10M followers, But did you know that Hareesh has a gf?",
                                         softWrap: true,
                                         maxLines: 4,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
-                                            fontFamily: "AM",
-                                            fontSize: 19,
-                                            color: MyColors.whiteColor),
+                                          fontFamily: "AM",
+                                          fontSize: 19,
+                                          color: MyColors.whiteColor,
+                                        ),
                                       ),
                                     ),
                                   ),
