@@ -35,7 +35,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
               const Text(
-                "Free on Spotify.",
+                "Free on Stupefy.",
                 style: TextStyle(
                   fontFamily: "AB",
                   fontSize: 28,

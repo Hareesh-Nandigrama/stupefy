@@ -34,7 +34,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           const Divider(thickness: 1.3, color: MyColors.lightGrey),
           const SizedBox(height: 15),
           const Text(
-            'By tapping on "Create account" you agree to the spotify Terms of Use.',
+            'By tapping on "Create account" you agree to the stupefy Terms of Use.',
             style: TextStyle(
               fontFamily: "AM",
               fontSize: 12,
@@ -53,7 +53,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           ),
           const SizedBox(height: 15),
           const Text(
-            'To learn more about how spotify collect, uses, shares and protects your personal data, Please see the spotify Privacy Policy.',
+            'To learn more about how stupefy collect, uses, shares and protects your personal data, Please see the spotify Privacy Policy.',
             style: TextStyle(
               fontFamily: "AM",
               fontSize: 12,
@@ -75,7 +75,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           Row(
             children: [
               const Text(
-                "Please send me news and offers from spotify.",
+                "Please send me news and offers from stupefy.",
                 style: TextStyle(
                   fontFamily: "AM",
                   fontSize: 12,
@@ -106,7 +106,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               SizedBox(
                 width: 260,
                 child: Text(
-                  "Share my registration data with Spotify's content providers for marketing purposes.",
+                  "Share my registration data with Stupefy's content providers for marketing purposes.",
                   style: TextStyle(
                     fontFamily: "AM",
                     fontSize: 12,

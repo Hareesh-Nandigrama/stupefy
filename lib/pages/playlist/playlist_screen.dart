@@ -12,42 +12,54 @@ class PlaylistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xff7c837b),
-            Colors.black,
-          ],
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Stack(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: CustomScrollView(
-                        slivers: [
-                          _Header(
-                            cover: cover,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus(); // Dismiss keyboard on tap outside
+      },
+      
+      child: NotificationListener<ScrollNotification>(
+        onNotification: (ScrollNotification notification) {
+          FocusScope.of(context).unfocus(); // Dismiss keyboard on scroll
+          return false;
+        },
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xff7c837b),
+                Colors.black,
+              ],
+            ),
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            resizeToAvoidBottomInset: false,
+            body: SafeArea(
+              child: Stack(
+                      alignment: AlignmentDirectional.bottomCenter,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: CustomScrollView(
+                            slivers: [
+                              _Header(
+                                cover: cover,
+                              ),
+                              _PlaylistActionButtons(time: playlist.time),
+                              _SongList(playlist: playlist),
+                              const SliverPadding(
+                                padding: EdgeInsets.only(bottom: 50),
+                              ),
+                            ],
                           ),
-                          _PlaylistActionButtons(time: playlist.time),
-                          _SongList(playlist: playlist),
-                          const SliverPadding(
-                            padding: EdgeInsets.only(bottom: 50),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const BottomPlayer(),
-                  ],
-                )
+                        ),
+                        const BottomPlayer(),
+                      ],
+                    )
+            ),
+          ),
         ),
       ),
     );

@@ -35,7 +35,7 @@ class _OnboardingInputFieldState extends State<OnboardingInputField> {
         break;
       case 'name':
         inputQuestion += "name?";
-        supportingText = "This appears on your spotify profile";
+        supportingText = "This appears on your stupefy profile";
         break;
       default:
         inputQuestion = "Create your password";

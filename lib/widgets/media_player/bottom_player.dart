@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import '../../pages/media_player/listening_on_screen.dart';
 import '../../pages/media_player/track_view_screen.dart';
+import '../../pages/media_player/media_playback_screen.dart';
 
 
 class BottomPlayer extends StatefulWidget {
@@ -46,7 +47,8 @@ class _BottomPlayerState extends State<BottomPlayer> {
                           transitionDuration: const Duration(milliseconds: 250),
                           pageBuilder:
                               (context, animation, secondaryAnimation) =>
-                                  const TrackViewScreen(),
+                                  // const TrackViewScreen(),
+                                  const MediaPlayback(),
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {
                             const begin = Offset(0.0, 1.0);

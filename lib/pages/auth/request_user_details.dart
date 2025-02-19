@@ -14,21 +14,25 @@ class RequestUserDetails extends StatefulWidget {
 class _RequestUserDetailsState extends State<RequestUserDetails> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: MyColors.darGreyColor,
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Column(
-            children: [
-              OnboardingHeader(title: "Create Account",),
-              OnboardingInputField(inputType: widget.requiredDetails),
-            ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus(); // Dismiss keyboard on tap outside
+      },
+      child: Scaffold(
+        backgroundColor: MyColors.darGreyColor,
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Column(
+              children: [
+                OnboardingHeader(title: "Create Account"),
+                OnboardingInputField(inputType: widget.requiredDetails),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-

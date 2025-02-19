@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../constants/constants.dart';
 import 'auth/welcome.dart';
 
@@ -11,20 +10,28 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  static const int splashDuration = 1800; // Delay in seconds
+
   @override
   void initState() {
-    Future.delayed(
-      const Duration(seconds: 3),
-      () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const WelcomeScreen(),
-          ),
-        );
-      },
-    );
     super.initState();
+
+    // Ensure navigation occurs only after build phase
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(
+        Duration(milliseconds: splashDuration),
+            () {
+          if (mounted) { // Prevents errors if widget is disposed
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const WelcomeScreen(),
+              ),
+            );
+          }
+        },
+      );
+    });
   }
 
   @override
@@ -33,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: MyColors.blackColor,
       body: Center(
         child: Image.asset(
-          'assets/images/splah_logo.png',
+          'assets/images/stupefy.gif', // Ensure GIF is in assets
           height: 200,
           width: 200,
         ),
