@@ -32,7 +32,6 @@ class SearchResultsScreen extends StatelessWidget {
                       child: Text(
                         "Recent searches",
                         style: TextStyle(
-                           
                           fontWeight: FontWeight.w400,
                           color: MyColors.whiteColor,
                           fontSize: 17,
@@ -40,59 +39,19 @@ class SearchResultsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                   LibraryTile(
-                    isArtist: true,
-                    image: 'Doja-Cat.jpg',
-                    title: "Doja Cat",
-                    size: 23,
-                    isDeletable: true,
-                  ),
-                  LibraryTile(
-                    image: "AUSTIN.jpg",
-                    author: 'Post Malone',
-                    title: "Laugh It Off",
-                    size: 47,
-                    isArtist: false,
-                    isDeletable: true,
-                  ),
-                   LibraryTile(
-                    isArtist: true,
-                    image: 'Doja-Cat.jpg',
-                    title: "Doja Cat",
-                    size: 23,
-                    isDeletable: true,
-                  ),
-                   LibraryTile(
-                    isArtist: true,
-                    image: 'Doja-Cat.jpg',
-                    title: "Doja Cat",
-                    size: 23,
-                    isDeletable: true,
-                  ),
-
-                  LibraryTile(
-                    image: "AUSTIN.jpg",
-                    author: 'Post Malone',
-                    title: "Laugh It Off",
-                    size: 47,
-                    isArtist: false,
-                    isDeletable: true,
-                  ),
-                   LibraryTile(
-                    isArtist: true,
-                    image: 'Doja-Cat.jpg',
-                    title: "Doja Cat",
-                    size: 23,
-                    isDeletable: true,
-                  ),
-                  LibraryTile(
-                    image: "AUSTIN.jpg",
-                    author: 'Post Malone',
-                    title: "Laugh It Off",
-                    size: 47,
-                    isArtist: false,
-                    isDeletable: true,
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate((
+                      BuildContext context,
+                      int index,
+                    ) {
+                      return LibraryTile(
+                        isArtist: true,
+                        image: 'Doja-Cat.jpg',
+                        title: "Doja Cat",
+                        size: 23,
+                        isDeletable: true,
+                      );
+                    }, childCount: 7),
                   ),
                 ],
               ),
@@ -120,9 +79,7 @@ class _SearchBox extends StatelessWidget {
               width: MediaQuery.of(context).size.width - 102.5,
               decoration: const BoxDecoration(
                 color: Color(0xff282828),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                ),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -135,7 +92,6 @@ class _SearchBox extends StatelessWidget {
                     const Expanded(
                       child: TextField(
                         style: TextStyle(
-                           
                           fontSize: 16,
                           color: MyColors.whiteColor,
                         ),
@@ -143,7 +99,6 @@ class _SearchBox extends StatelessWidget {
                           contentPadding: EdgeInsets.only(top: 10, left: 15),
                           hintText: "Search",
                           hintStyle: TextStyle(
-                             
                             color: MyColors.whiteColor,
                             fontSize: 15,
                           ),
@@ -166,8 +121,7 @@ class _SearchBox extends StatelessWidget {
               },
               child: const Text(
                 "Cancel",
-                style: TextStyle(
-                      color: MyColors.whiteColor, fontSize: 15),
+                style: TextStyle(color: MyColors.whiteColor, fontSize: 15),
               ),
             ),
           ],
