@@ -16,7 +16,11 @@ class RecentPlayedTile extends StatelessWidget {
           MaterialPageRoute(
             builder:
                 (context) =>
-                    PlaylistScreen(cover: image, playlist: trackList(title)),
+                    PlaylistScreen(
+              cover: "Upbeat-Mix.jpg",
+              playlist: trackList("Drake mix"),
+
+            ),
           ),
         );
       },
