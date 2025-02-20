@@ -3,23 +3,33 @@ import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import '../../model/playlist.dart';
 import '../../widgets/media_player/stream_buttons.dart';
-import '../dashboard/dashboard_screen.dart';
 import '../dashboard/nav_bar.dart';
 import 'song_details_screen.dart';
 
 class PlaylistScreen extends StatefulWidget {
   final Playlist playlist;
-
-  PlaylistScreen({super.key, required this.cover, required this.playlist});
-
   final String cover;
+  final int initialIndex;
+
+  PlaylistScreen({
+    super.key,
+    required this.cover,
+    required this.playlist,
+    required this.initialIndex,
+  });
 
   @override
   State<PlaylistScreen> createState() => _PlaylistScreenState();
 }
 
 class _PlaylistScreenState extends State<PlaylistScreen> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +48,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         bottomNavigationBar: CustomNavBar(
           currentIndex: _currentIndex,
           onTap: (value) {
-            // Navigate to respective screen based on index
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const DashBoardScreen()),
-            );
+            // Just pop with the value, don't dispose songState
+            Navigator.pop<int>(context, value);
           },
         ),
         body: SafeArea(

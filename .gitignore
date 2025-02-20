@@ -34,6 +34,7 @@ appLoader.sh
 .vscode/
 /.vscode/
 /.dart_tool/
+/.idea/
 
 # Web related
 lib/generated_plugin_registrant.dart
@@ -192,3 +193,6 @@ windows/
 *.ps1
 /appLoader.sh
 /buildIPA.sh
+
+
+/External Libraries/
