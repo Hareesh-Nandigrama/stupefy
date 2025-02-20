@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stupefy/pages/playlist/create_playlist_screen.dart';
 import 'package:stupefy/widgets/nav_bar/nav_bar_wrapper.dart';
 
 import '../../constants/colors.dart';
@@ -54,14 +55,10 @@ class LibraryScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ProfileScreen(),
-                          ),
-                        );
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) =>  CreatePlaylistScreen()));
                       },
                       child: Image.asset("assets/images/icon_add.png"),
                     ),
@@ -96,7 +93,6 @@ class LibraryScreen extends StatelessWidget {
                         const Text(
                           "Recently Played",
                           style: TextStyle(
-                            fontFamily: "AM",
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                             color: MyColors.whiteColor,
@@ -109,43 +105,19 @@ class LibraryScreen extends StatelessWidget {
                 ),
               ),
             ),
-      
-            LibraryTile(
-              image: '21-Savage.jpg',
-              title: "21 Savage",
-              size: 35,
-              isDeletable: false,
-              isArtist: true,
-            ),
-            LibraryTile(
-              image: "UTOPIA.jpg",
-              author: 'China',
-              title: "Playlist fav",
-              size: 47,
-              isDeletable: false,
-              isArtist: false,
-            ),
-            LibraryTile(
-              image: "Post-Malone.jpg",
-              title: "Post Malone",
-              size: 35,
-              isArtist: true,
-              isDeletable: false,
-            ),
-            LibraryTile(
-              image: "J-Cole.jpg",
-              title: "J Cole",
-              size: 35,
-              isDeletable: false,
-              isArtist: true,
-            ),
-            LibraryTile(
-              image: "UTOPIA.jpg",
-              author: 'China',
-              title: "Playlist fav",
-              size: 47,
-              isDeletable: false,
-              isArtist: false,
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return LibraryTile(
+                    image: '21-Savage.jpg',
+                    title: "21 Savage",
+                    size: 35,
+                    isDeletable: false,
+                    isArtist: true,
+                  );
+                },
+                childCount: 10, // Dynamic number of items
+              ),
             ),
             const SliverPadding(padding: EdgeInsets.only(bottom: 130)),
           ],

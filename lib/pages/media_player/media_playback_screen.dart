@@ -67,7 +67,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                 TextSpan(
                                   text: 'PLAYING FROM PLAYLIST \n',
                                   style: TextStyle(
-                                    fontFamily: "AM",
+                                     
                                     fontSize: 12,
                                     color: MyColors.whiteColor,
                                   ),
@@ -133,7 +133,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                         TextSpan(
                                           text: 'Sam Altman',
                                           style: TextStyle(
-                                            fontFamily: "AM",
+                                             
                                             fontSize: 14,
                                             color: MyColors.whiteColor,
                                           ),
@@ -204,7 +204,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                         style: TextStyle(
                                           color: MyColors.whiteColor,
                                           fontSize: 12,
-                                          fontFamily: "AM",
+                                           
                                         ),
                                       ),
                                       Text(
@@ -212,7 +212,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                         style: TextStyle(
                                           color: MyColors.whiteColor,
                                           fontSize: 12,
-                                          fontFamily: "AM",
+                                           
                                         ),
                                       ),
                                     ],
@@ -341,7 +341,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                               maxLines: 4,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                fontFamily: "AM",
+                                                 
                                                 fontSize: 19,
                                                 color: MyColors.whiteColor,
                                               ),

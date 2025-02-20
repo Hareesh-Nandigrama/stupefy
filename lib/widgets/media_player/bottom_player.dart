@@ -108,7 +108,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         fontWeight: FontWeight.w700,
-                                        fontFamily: "AM",
+                                         
                                         color: MyColors.whiteColor,
                                         fontSize: 13.5,
                                       ),
@@ -120,7 +120,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      fontFamily: "AM",
+                                       
                                       fontSize: 12,
                                       color: MyColors.whiteColor,
                                     ),

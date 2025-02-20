@@ -38,7 +38,7 @@ class HomeCategoryTile extends StatelessWidget {
               Text(
                 "Album . Travis Scott",
                 style: TextStyle(
-                  fontFamily: "AM",
+                   
                   fontSize: 12.5,
                   color: MyColors.lightGrey,
                 ),

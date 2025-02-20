@@ -71,7 +71,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                       Text(
                                         "by Post Malone",
                                         style: TextStyle(
-                                          fontFamily: "AM",
+                                           
                                           fontSize: 16,
                                           color: Colors.white,
                                         ),
@@ -150,7 +150,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                             "Enough is Enough",
                                             style: TextStyle(
                                               fontWeight: FontWeight.w700,
-                                              fontFamily: "AM",
+                                               
                                               color: MyColors.whiteColor,
                                               fontSize: 20,
                                             ),
@@ -160,7 +160,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                       const Text(
                                         "Post Malne",
                                         style: TextStyle(
-                                          fontFamily: "AM",
+                                           
                                           fontSize: 14,
                                           color: MyColors.whiteColor,
                                         ),
@@ -343,7 +343,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                           child: Text(
                                             "0:55",
                                             style: TextStyle(
-                                              fontFamily: "AM",
+                                               
                                               fontSize: 12,
                                               color: MyColors.whiteColor,
                                             ),
@@ -354,7 +354,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                                           child: Text(
                                             "2:45",
                                             style: TextStyle(
-                                              fontFamily: "AM",
+                                               
                                               fontSize: 12,
                                               color: MyColors.whiteColor,
                                             ),
@@ -402,7 +402,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                             child: Text(
                               "Playing",
                               style: TextStyle(
-                                fontFamily: "AM",
+                                 
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
                                 color:
@@ -434,7 +434,7 @@ class _TrackViewScreenState extends State<TrackViewScreen> {
                           child: Text(
                             "Lyrics",
                             style: TextStyle(
-                              fontFamily: "AM",
+                               
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                               color: (!isOnPlaying) ? Colors.black : Colors.white,

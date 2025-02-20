@@ -41,7 +41,7 @@ class _GenderDropdownState extends State<GenderDropdown> {
               "Male",
               style: TextStyle(
                 color: Colors.white,
-                fontFamily: "AM",
+                 
               ),
             ),
           ),
@@ -51,7 +51,7 @@ class _GenderDropdownState extends State<GenderDropdown> {
               "Female",
               style: TextStyle(
                 color: Colors.white,
-                fontFamily: "AM",
+                 
               ),
             ),
           ),
@@ -61,7 +61,7 @@ class _GenderDropdownState extends State<GenderDropdown> {
               "Prefer not to say",
               style: TextStyle(
                 color: Colors.white,
-                fontFamily: "AM",
+                 
               ),
             ),
           ),

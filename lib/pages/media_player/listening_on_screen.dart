@@ -81,7 +81,7 @@ class _ListeningOnState extends State<ListeningOn> {
                           const Text(
                             "Listening on",
                             style: TextStyle(
-                              fontFamily: "AM",
+                               
                               fontSize: 25,
                               color: MyColors.whiteColor,
                               fontWeight: FontWeight.w700,
@@ -96,7 +96,7 @@ class _ListeningOnState extends State<ListeningOn> {
                               const Text(
                                 "Airpod 3",
                                 style: TextStyle(
-                                  fontFamily: "AM",
+                                   
                                   fontSize: 15,
                                   color: MyColors.greenColor,
                                 ),
@@ -150,7 +150,7 @@ class _ListeningOnState extends State<ListeningOn> {
                     const Text(
                       "Listen with firends, in real time. Pick what to play and control the music together",
                       style: TextStyle(
-                        fontFamily: "AM",
+                         
                         color: MyColors.lightGrey,
                         fontSize: 12.5,
                       ),
@@ -206,7 +206,7 @@ class _ListeningOnState extends State<ListeningOn> {
                       child: Text(
                         "Scan to join",
                         style: TextStyle(
-                          fontFamily: "AM",
+                           
                           fontSize: 13,
                           color: MyColors.lightGrey,
                           fontWeight: FontWeight.w400,
@@ -281,7 +281,7 @@ class _SelectDeviceSection extends StatelessWidget {
                 const Text(
                   "BRAVIA 4K GB",
                   style: TextStyle(
-                      fontFamily: "AM",
+                       
                       fontSize: 17,
                       color: MyColors.whiteColor,
                       fontWeight: FontWeight.w700),
@@ -293,7 +293,7 @@ class _SelectDeviceSection extends StatelessWidget {
                     const Text(
                       "Google Cast",
                       style: TextStyle(
-                        fontFamily: "AM",
+                         
                         color: MyColors.lightGrey,
                         fontSize: 12,
                       ),
@@ -317,7 +317,7 @@ class _SelectDeviceSection extends StatelessWidget {
                 const Text(
                   "Mohammad's MacBook Pro",
                   style: TextStyle(
-                    fontFamily: "AM",
+                     
                     fontSize: 17,
                     color: MyColors.whiteColor,
                     fontWeight: FontWeight.w700,
@@ -338,7 +338,7 @@ class _SelectDeviceSection extends StatelessWidget {
             const Text(
               "Airplay or Bluetooth",
               style: TextStyle(
-                fontFamily: "AM",
+                 
                 fontSize: 17,
                 color: MyColors.whiteColor,
                 fontWeight: FontWeight.w700,

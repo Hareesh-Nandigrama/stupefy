@@ -34,30 +34,24 @@ class SettingScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: const Stack(
-          alignment: AlignmentDirectional.bottomCenter,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: CustomScrollView(
-                slivers: [
-                  _ProfileSection(),
-                  _SettingsOptionChip(title: "Account"),
-                  _SettingsOptionChip(title: "Data Saver"),
-                  _SettingsOptionChip(title: "Langugages"),
-                  _SettingsOptionChip(title: "Playback"),
-                  _SettingsOptionChip(title: "Explicit Content"),
-                  _SettingsOptionChip(title: "Devices"),
-                  _SettingsOptionChip(title: "Car"),
-                  _SettingsOptionChip(title: "Social"),
-                  _SettingsOptionChip(title: "Voice Assistant & Apps"),
-                  _SettingsOptionChip(title: "Audio Quality"),
-                  _SettingsOptionChip(title: "Storage"),
-                ],
-              ),
-            ),
-            BottomPlayer(),
-          ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: CustomScrollView(
+            slivers: [
+              _ProfileSection(),
+              _SettingsOptionChip(title: "Account"),
+              _SettingsOptionChip(title: "Data Saver"),
+              _SettingsOptionChip(title: "Langugages"),
+              _SettingsOptionChip(title: "Playback"),
+              _SettingsOptionChip(title: "Explicit Content"),
+              _SettingsOptionChip(title: "Devices"),
+              _SettingsOptionChip(title: "Car"),
+              _SettingsOptionChip(title: "Social"),
+              _SettingsOptionChip(title: "Voice Assistant & Apps"),
+              _SettingsOptionChip(title: "Audio Quality"),
+              _SettingsOptionChip(title: "Storage"),
+            ],
+          ),
         ),
       ),
     );
@@ -79,7 +73,7 @@ class _SettingsOptionChip extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(
-                fontFamily: "AM",
+                 
                 fontSize: 16,
                 color: MyColors.whiteColor,
               ),
@@ -145,7 +139,7 @@ class _ProfileSection extends StatelessWidget {
                         Text(
                           "View Profile",
                           style: TextStyle(
-                            fontFamily: "AM",
+                             
                             fontSize: 13,
                             color: MyColors.lightGrey,
                           ),

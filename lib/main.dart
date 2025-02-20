@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [Provider<CommonStore>(create: (_) => CommonStore())],
       child: MaterialApp(
-        theme: ThemeData(splashColor: Colors.transparent),
+        theme: ThemeData(splashColor: Colors.transparent, fontFamily: "AM"),
         debugShowCheckedModeBanner: false,
         routes: routes,
       ),

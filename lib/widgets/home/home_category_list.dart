@@ -28,15 +28,20 @@ class HomeCategoryList extends StatelessWidget {
             const SizedBox(height: 10),
             SizedBox(
               height: 199,
-              child: ListView(
+              child: ListView.builder(
+                itemCount: 10,
                 scrollDirection: Axis.horizontal,
-                children: [
-                  HomeCategoryTile(
-                    subtitle: "Upbeat Mix",
-                    image: "Upbeat-Mix.jpg",
-                  ),
-                  const SizedBox(width: 15),
-                ],
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      HomeCategoryTile(
+                        subtitle: "Upbeat Mix",
+                        image: "Upbeat-Mix.jpg",
+                      ),
+                      const SizedBox(width: 15),
+                    ],
+                  );
+                },
               ),
             ),
           ],

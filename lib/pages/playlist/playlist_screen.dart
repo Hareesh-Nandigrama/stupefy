@@ -6,6 +6,7 @@ import '../../constants/colors.dart';
 import '../../model/playlist.dart';
 import '../../widgets/media_player/stream_buttons.dart';
 import 'song_details_screen.dart';
+import 'song_search_page.dart';
 
 class PlaylistScreen extends StatefulWidget {
   final Playlist playlist = trackList("Drake mix");
@@ -77,72 +78,118 @@ class _SongList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverPadding(
       padding: const EdgeInsets.only(top: 20, bottom: 35),
-      sliver: SliverList(
-        delegate: SliverChildBuilderDelegate((context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
+      sliver:
+          playlist.tracks.length != 0
+              ? SliverToBoxAdapter(
+                child: Column(
                   children: [
-                    SizedBox(
-                      height: 48,
-                      width: 48,
-                      child: Image.asset(
-                        'assets/images/${playlist.tracks[index].image}',
+                    Text(
+                      "Let's start building your playlist",
+                      style: TextStyle(
+                        color: MyColors.whiteColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w900,
                       ),
                     ),
-                    const SizedBox(width: 5),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width - 115,
-                          child: Text(
-                            playlist.tracks[index].trackName,
-                            style: const TextStyle(
-                              fontFamily: "AM",
-                              fontSize: 16,
-                              color: MyColors.whiteColor,
-                            ),
-                            overflow: TextOverflow.ellipsis,
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SongSearchPage(),
                           ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                        Text(
-                          playlist.tracks[index].singers,
-                          style: const TextStyle(
-                            fontFamily: "AM",
-                            color: MyColors.lightGrey,
-                            fontSize: 13,
-                          ),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                          horizontal: 30,
                         ),
-                      ],
+                      ),
+                      child: const Text(
+                        'Add to this playlist',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                          fontFamily: "AB",
+                        ),
+                      ),
                     ),
                   ],
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder:
-                            (context) => SongDetailsScreen(
-                              trackName: playlist.tracks[index].trackName,
-                              color: Colors.blue,
-                              singer: playlist.tracks[index].singers,
-                              albumImage: playlist.tracks[index].image,
+              )
+              : SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 48,
+                              width: 48,
+                              child: Image.asset(
+                                'assets/images/${playlist.tracks[index].image}',
+                              ),
                             ),
-                      ),
-                    );
-                  },
-                  child: Image.asset("assets/images/icon_more.png"),
-                ),
-              ],
-            ),
-          );
-        }, childCount: playlist.tracks.length),
-      ),
+                            const SizedBox(width: 5),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width - 115,
+                                  child: Text(
+                                    playlist.tracks[index].trackName,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: MyColors.whiteColor,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                Text(
+                                  playlist.tracks[index].singers,
+                                  style: const TextStyle(
+                                    color: MyColors.lightGrey,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => SongDetailsScreen(
+                                      trackName:
+                                          playlist.tracks[index].trackName,
+                                      color: Colors.blue,
+                                      singer: playlist.tracks[index].singers,
+                                      albumImage: playlist.tracks[index].image,
+                                    ),
+                              ),
+                            );
+                          },
+                          child: Image.asset("assets/images/icon_more.png"),
+                        ),
+                      ],
+                    ),
+                  );
+                }, childCount: playlist.tracks.length),
+              ),
     );
   }
 }
@@ -178,11 +225,7 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
                   "New and approved indie pop. CoverL No Rome",
                   overflow: TextOverflow.ellipsis,
                   softWrap: true,
-                  style: TextStyle(
-                    fontFamily: "AM",
-                    fontSize: 13,
-                    color: MyColors.lightGrey,
-                  ),
+                  style: TextStyle(fontSize: 13, color: MyColors.lightGrey),
                 ),
                 const SizedBox(height: 5),
                 Row(
@@ -192,7 +235,6 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
                     const Text(
                       "Spotify",
                       style: TextStyle(
-                        fontFamily: "AM",
                         fontWeight: FontWeight.w700,
                         color: MyColors.whiteColor,
                         fontSize: 16,
@@ -204,7 +246,6 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
                 Text(
                   "1,629,592 likes . ${widget.time}",
                   style: const TextStyle(
-                    fontFamily: "AM",
                     fontSize: 13,
                     color: MyColors.lightGrey,
                   ),
@@ -281,4 +322,3 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
     );
   }
 }
-

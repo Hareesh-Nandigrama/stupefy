@@ -48,7 +48,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: Text(
                   "Your top genres",
                   style: TextStyle(
-                    fontFamily: "AM",
+                     
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: MyColors.whiteColor,
@@ -71,7 +71,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: Text(
                   "Popular podcast categories",
                   style: TextStyle(
-                    fontFamily: "AM",
+                     
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: MyColors.whiteColor,
@@ -122,7 +122,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: Text(
                   "Browse all",
                   style: TextStyle(
-                    fontFamily: "AM",
+                     
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: MyColors.whiteColor,

@@ -88,7 +88,6 @@ class _SearchBox extends StatelessWidget {
                 const Expanded(
                   child: TextField(
                     style: TextStyle(
-                      fontFamily: "AM",
                       fontSize: 16,
                       color: MyColors.blackColor,
                     ),
@@ -96,7 +95,6 @@ class _SearchBox extends StatelessWidget {
                       contentPadding: EdgeInsets.only(top: 15, left: 15),
                       hintText: "Search",
                       hintStyle: TextStyle(
-                        fontFamily: "AM",
                         color: MyColors.blackColor,
                         fontSize: 14,
                       ),

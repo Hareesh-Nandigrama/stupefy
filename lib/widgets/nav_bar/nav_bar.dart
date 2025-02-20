@@ -36,7 +36,7 @@ class NavBar extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   selectedLabelStyle: const TextStyle(
-                    fontFamily: "AM",
+                     
                     fontSize: 13,
                   ),
                   selectedItemColor: const Color(0xffE5E5E5),

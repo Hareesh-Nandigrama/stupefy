@@ -32,7 +32,7 @@ class SearchResultsScreen extends StatelessWidget {
                       child: Text(
                         "Recent searches",
                         style: TextStyle(
-                          fontFamily: "AM",
+                           
                           fontWeight: FontWeight.w400,
                           color: MyColors.whiteColor,
                           fontSize: 17,
@@ -135,7 +135,7 @@ class _SearchBox extends StatelessWidget {
                     const Expanded(
                       child: TextField(
                         style: TextStyle(
-                          fontFamily: "AM",
+                           
                           fontSize: 16,
                           color: MyColors.whiteColor,
                         ),
@@ -143,7 +143,7 @@ class _SearchBox extends StatelessWidget {
                           contentPadding: EdgeInsets.only(top: 10, left: 15),
                           hintText: "Search",
                           hintStyle: TextStyle(
-                            fontFamily: "AM",
+                             
                             color: MyColors.whiteColor,
                             fontSize: 15,
                           ),
@@ -167,7 +167,7 @@ class _SearchBox extends StatelessWidget {
               child: const Text(
                 "Cancel",
                 style: TextStyle(
-                    fontFamily: "AM", color: MyColors.whiteColor, fontSize: 15),
+                      color: MyColors.whiteColor, fontSize: 15),
               ),
             ),
           ],
