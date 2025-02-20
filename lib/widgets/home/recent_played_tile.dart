@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../data/playlist_data.dart';
 import '../../pages/playlist/playlist_screen.dart';
-import '../../pages/dashboard/dashboard_screen.dart';
 
 class RecentPlayedTile extends StatelessWidget {
   const RecentPlayedTile({required this.image, required this.title});
@@ -13,27 +12,13 @@ class RecentPlayedTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        final int? newIndex = await Navigator.push<int>(
-          context,
+        Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => PlaylistScreen(
-              cover: "Upbeat-Mix.jpg",
-              playlist: trackList("Drake mix"),
-              initialIndex: 0,
-            ),
+            builder:
+                (context) =>
+                    PlaylistScreen(cover: image, playlist: trackList(title)),
           ),
         );
-
-        if (newIndex != null) {
-          // Find the nearest Navigator and pop back to DashboardScreen with the new index
-          Navigator.of(context).popUntil((route) => route.isFirst);
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DashBoardScreen(initialIndex: newIndex),
-            ),
-          );
-        }
       },
       child: Container(
         height: 55,

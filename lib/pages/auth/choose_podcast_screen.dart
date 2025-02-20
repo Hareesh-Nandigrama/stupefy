@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../data/playlist_data.dart';
 import '../../widgets/onboarding.dart/choose_done_button.dart';
 import '../../widgets/onboarding.dart/onboarding_header.dart';

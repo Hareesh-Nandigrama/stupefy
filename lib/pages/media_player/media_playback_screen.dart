@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../functions/timestamp_split/format_duration.dart';
-import '../../store/player/song_state.dart';
+import '../../store/song_state.dart';
 import '../../widgets/media_player/video_player.dart';
 import '../playlist/song_details_screen.dart';
 import 'lyrics_section.dart';

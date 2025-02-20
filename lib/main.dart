@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'pages/splash_screen.dart';
+import 'package:provider/provider.dart';
+
+import 'store/common_store.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +14,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        splashColor: Colors.transparent,
+    return MultiProvider(
+      providers: [Provider<CommonStore>(create: (_) => CommonStore())],
+      child: MaterialApp(
+        theme: ThemeData(splashColor: Colors.transparent),
+        debugShowCheckedModeBanner: false,
+        home: const SplashScreen(),
       ),
-      debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
     );
   }
 }

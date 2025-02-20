@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import 'home_category_tile.dart';
 
 class HomeCategoryList extends StatelessWidget {

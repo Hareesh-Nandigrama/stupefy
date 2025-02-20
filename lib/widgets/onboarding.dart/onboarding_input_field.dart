@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../pages/auth/choose_artist_screen.dart';
 import '../../pages/auth/request_user_details.dart';
 import 'gender_dropdown.dart';

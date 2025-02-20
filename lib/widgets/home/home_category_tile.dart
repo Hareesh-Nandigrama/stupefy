@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../data/playlist_data.dart';
 import '../../pages/playlist/playlist_screen.dart';
 
@@ -20,7 +20,6 @@ class HomeCategoryTile extends StatelessWidget {
                 (context) => PlaylistScreen(
                   cover: "Upbeat-Mix.jpg",
                   playlist: trackList("Drake mix"),
-                  initialIndex: 0,
                 ),
           ),
         );

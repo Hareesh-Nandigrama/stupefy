@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
+import '../../constants/enums.dart';
 import '../../data/playlist_data.dart';
+import '../../store/common_store.dart';
 import '../playlist/playlist_screen.dart';
 import 'home_screen.dart';
 import 'library_screen.dart';
-import 'nav_bar.dart';
+import '../../widgets/home/nav_bar.dart';
 import 'search/search_category_screen.dart';
 
 class DashBoardScreen extends StatefulWidget {
-  final int initialIndex;
   
   const DashBoardScreen({
     super.key,
-    this.initialIndex = 0,
   });
 
   @override
@@ -25,24 +27,25 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   @override
   void initState() {
     super.initState();
-    _currentIndex = widget.initialIndex;
   }
 
   @override
   Widget build(BuildContext context) {
+     var commonStore = context.read<CommonStore>();
     return Scaffold(
       extendBody: true,
-      bottomNavigationBar: CustomNavBar(
-        currentIndex: _currentIndex,
-        onTap: (value) {
-          setState(() {
-            _currentIndex = value;
-          });
+      bottomNavigationBar: NavBar(),
+      body: Observer(
+        builder: (BuildContext context){
+          switch (commonStore.dashboardPage) {
+            case DashboardPageType.library:
+              return LibraryScreen();
+            case DashboardPageType.search:
+              return SearchCategoryScreen();
+            default:
+              return Home();
+          }
         },
-      ),
-      body: IndexedStack(
-        index: _currentIndex,
-        children: const [Home(), SearchCategoryScreen(), LibraryScreen()],
       ),
     );
   }
@@ -60,7 +63,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         builder: (context) => PlaylistScreen(
           cover: "Upbeat-Mix.jpg",
           playlist: trackList("Drake mix"),
-          initialIndex: _currentIndex,
         ),
       ),
     );

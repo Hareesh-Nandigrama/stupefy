@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../widgets/home/home_app_bar.dart';
 import '../../widgets/home/home_category_list.dart';
 import '../../widgets/home/recent_played_tile.dart';

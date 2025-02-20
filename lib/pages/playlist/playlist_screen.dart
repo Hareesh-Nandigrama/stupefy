@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../model/playlist.dart';
 import '../../widgets/media_player/stream_buttons.dart';
-import '../dashboard/nav_bar.dart';
+import '../../widgets/home/nav_bar.dart';
 import 'song_details_screen.dart';
 
 class PlaylistScreen extends StatefulWidget {
   final Playlist playlist;
   final String cover;
-  final int initialIndex;
 
   PlaylistScreen({
     super.key,
     required this.cover,
     required this.playlist,
-    required this.initialIndex,
   });
 
   @override
@@ -23,12 +21,10 @@ class PlaylistScreen extends StatefulWidget {
 }
 
 class _PlaylistScreenState extends State<PlaylistScreen> {
-  late int _currentIndex;
 
   @override
   void initState() {
     super.initState();
-    _currentIndex = widget.initialIndex;
   }
 
   @override
@@ -45,13 +41,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
         extendBody: true,
-        bottomNavigationBar: CustomNavBar(
-          currentIndex: _currentIndex,
-          onTap: (value) {
-            // Just pop with the value, don't dispose songState
-            Navigator.pop<int>(context, value);
-          },
-        ),
+        bottomNavigationBar: NavBar(),
         body: SafeArea(
           child: Stack(
             alignment: AlignmentDirectional.bottomCenter,
@@ -66,7 +56,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   ],
                 ),
               ),
-              // const BottomPlayer(),
             ],
           ),
         ),

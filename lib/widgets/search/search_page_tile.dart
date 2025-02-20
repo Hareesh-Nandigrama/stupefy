@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 
 class SearchPageTile extends StatelessWidget {
   const SearchPageTile({required this.title, required this.image});

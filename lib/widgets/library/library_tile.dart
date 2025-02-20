@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../data/playlist_data.dart';
 import '../../pages/playlist/playlist_screen.dart';
-import '../../pages/dashboard/dashboard_screen.dart';
 
 // ignore: must_be_immutable
 class LibraryTile extends StatelessWidget {
@@ -28,27 +27,14 @@ class LibraryTile extends StatelessWidget {
     return SliverToBoxAdapter(
       child: InkWell(
         onTap: () async {
-          final int? newIndex = await Navigator.push<int>(
-            context,
+          Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => PlaylistScreen(
-                cover: "Upbeat-Mix.jpg",
-                playlist: trackList("Drake mix"),
-                initialIndex: 2,
-              ),
+                      cover: image,
+                      playlist: trackList(title),
+                    ),
             ),
           );
-
-          if (newIndex != null) {
-            // Find the nearest Navigator and pop back to DashboardScreen with the new index
-            Navigator.of(context).popUntil((route) => route.isFirst);
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DashBoardScreen(initialIndex: newIndex),
-              ),
-            );
-          }
         },
         child: Padding(
           padding: const EdgeInsets.only(bottom: 15),

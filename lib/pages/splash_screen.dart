@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/constants.dart';
+import '../constants/colors.dart';
 import 'auth/welcome.dart';
 
 class SplashScreen extends StatefulWidget {
