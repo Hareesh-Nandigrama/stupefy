@@ -4,7 +4,6 @@ import '../../constants/constants.dart';
 import '../../widgets/home/home_app_bar.dart';
 import '../../widgets/home/home_category_list.dart';
 import '../../widgets/home/recent_played_tile.dart';
-import '../../widgets/media_player/bottom_player.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -16,69 +15,39 @@ class Home extends StatelessWidget {
       body: SafeArea(
         bottom: false,
         child: Stack(
-          alignment: AlignmentDirectional.bottomCenter,
+          alignment: Alignment.bottomCenter,
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 30),
-                      child: Column(
-                        children: [
-                          HomeAppBar(),
-                          const SizedBox(height: 20),
-                          Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const RecentPlayedTile(
-                                    image: "artists/JID.jpg",
-                                    title: "JID",
-                                  ),
-                                  const RecentPlayedTile(
-                                    image: "artists/JID.jpg",
-                                    title: "JID",
-                                  ),
-                                ],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        HomeAppBar(),
+                        const SizedBox(height: 20),
+                        GridView.builder(
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                                mainAxisExtent: 55,
                               ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const RecentPlayedTile(
-                                    image: "home/american-dream.jpg",
-                                    title: "American dream whatever dude idk anymore",
-                                  ),
-                                  const RecentPlayedTile(
-                                    image: "home/UTOPIA.jpg",
-                                    title: "UTOPIA",
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const RecentPlayedTile(
-                                    image: "home/Upbeat-Mix.jpg",
-                                    title: "Upbeat Mix",
-                                  ),
-                                  const RecentPlayedTile(
-                                    image: "home/Daily-Mix-1.jpg",
-                                    title: "Daily Mix",
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                          itemCount: 6,
+                          itemBuilder: (context, index) {
+                            return RecentPlayedTile(
+                              image: "artists/JID.jpg",
+                              title:
+                                  "china japan nepal bhutan e sala cup namde",
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ),
                   HomeCategoryList(category: "Jump back in"),
@@ -87,10 +56,6 @@ class Home extends StatelessWidget {
                   SliverPadding(padding: EdgeInsets.only(bottom: 180)),
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 88),
-              child: BottomPlayer(),
             ),
           ],
         ),

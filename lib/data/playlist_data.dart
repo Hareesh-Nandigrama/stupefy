@@ -1,5 +1,7 @@
+import '../model/artist.dart';
 import '../model/playlist.dart';
 import '../model/playlist_track.dart';
+import '../model/podcast.dart';
 
 Playlist trackList(String mix) {
   if (mix == "Drake mix") {
@@ -124,3 +126,173 @@ Playlist trackList(String mix) {
   }
   return Playlist("time", []);
 }
+
+getPodcastList() {
+    return [
+      Podcast(
+        "The-Joe-Rogan-Experience.jpg",
+        "The Joe Rogan Experience",
+      ),
+      Podcast(
+        "The-Iced-coffe-hour.jpg",
+        "The Iced Coffe Hour",
+      ),
+      Podcast(
+        "Startalk.jpg",
+        "StarTalk Radio",
+      ),
+      Podcast(
+        "shxts-ngigs.jpg",
+        "ShxtsNGigs",
+      ),
+      Podcast(
+        "podcast-p.jpg",
+        "Podcast P",
+      ),
+      Podcast(
+        "NFR-Podcast.jpg",
+        "NFR Podcast",
+      ),
+      Podcast(
+        "Modern-Wisdom.jpg",
+        "Modern Wisdom",
+      ),
+      Podcast(
+        "Huberman-Lab.jpg",
+        "Huberman Lab",
+      ),
+      Podcast(
+        "Fresh&Fit.jpg",
+        "Fresh&Fit Podcast",
+      ),
+      Podcast(
+        "Distractible.jpg",
+        "Distractible",
+      ),
+      Podcast(
+        "JordanB.Peterson-Podcast.jpg",
+        "The Jordan B. Peterson Podcast",
+      ),
+      Podcast(
+        "American-English.jpg",
+        "American English Podcast",
+      ),
+      Podcast(
+        "Comedy-is-joke.jpg",
+        "COMEDY IS JOKE",
+      ),
+      Podcast(
+        "Bad-Friends.jpg",
+        "Bad Friends Podcast",
+      ),
+      Podcast(
+        "HotBoxIn.jpg",
+        "Hotboxin",
+      ),
+    ];
+  }
+
+  getArtistList() {
+    return [
+      Artist(
+        "21-Savage.jpg",
+        "21 Savage",
+      ),
+      Artist(
+        "Adele.jpg",
+        "Adele",
+      ),
+      Artist(
+        "Cardi-B.jpg",
+        "Cardi B",
+      ),
+      Artist(
+        "DaBaby.jpg",
+        "DaBaby",
+      ),
+      Artist(
+        "Doja-Cat.jpg",
+        "Doja Cat",
+      ),
+      Artist(
+        "Drake.jpg",
+        "Drake",
+      ),
+      Artist(
+        "Eminem.jpg",
+        "Eminem",
+      ),
+      Artist(
+        "Future.jpg",
+        "Future",
+      ),
+      Artist(
+        "J-Cole.jpg",
+        "J Cole",
+      ),
+      Artist(
+        "Ice-Cube.jpg",
+        "Ice Cube",
+      ),
+      Artist(
+        "JAY-Z.jpg",
+        "Jay z",
+      ),
+      Artist(
+        "JID.jpg",
+        "JID",
+      ),
+      Artist(
+        "Kanye-West.jpg",
+        "Kanye West",
+      ),
+      Artist(
+        "Kendrick-Lamar.jpg",
+        "Kenderick Lamar",
+      ),
+      Artist(
+        "Lil Baby.jpg",
+        "Lil Baby",
+      ),
+      Artist(
+        "Lil-Wayne.jpg",
+        "Lil Wayne",
+      ),
+      Artist(
+        "Megan-Thee-Stallion.jpg",
+        "Megan Thee Stallion",
+      ),
+      Artist(
+        "Metro-Boomin.jpg",
+        "Metro Boomin",
+      ),
+      Artist(
+        "Nicki-Minaj.jpg",
+        "Nicki Minaj",
+      ),
+      Artist(
+        "Post-Malone.jpg",
+        "Post Malone",
+      ),
+      Artist(
+        "Selena-Gomez.jpg",
+        "Selena Gomez",
+      ),
+      Artist(
+        "Snoop Dogg.jpg",
+        "Snoop Dogg",
+      ),
+      Artist(
+        "Taylor-Swift.jpg",
+        "Taylor Swift",
+      ),
+      Artist(
+        "Travis-Scott.jpg",
+        "Travis Scott",
+      ),
+      Artist(
+        "Tyler-The-Creator.jpg",
+        "Tyler The Creator",
+      ),
+    ];
+  }

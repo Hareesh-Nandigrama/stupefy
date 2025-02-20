@@ -10,42 +10,34 @@ class LyricsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xff2c7c93),
-            Color(0xff215260),
-            Color(0xff141517),
-          ],
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: SafeArea(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 100,
-              ),
-              OpenContainer(
-                openElevation: 0.0,
-                closedElevation: 0.0,
-                transitionDuration: const Duration(milliseconds: 400),
-                middleColor: Colors.transparent,
-                closedColor: Colors.transparent,
-                openColor: Colors.transparent,
-                closedBuilder: (context, action) {
-                  return const _LyricsSection();
-                },
-                openBuilder: (context, action) {
-                  return const LyricsScreen();
-                },
-              ),
-            ],
-          ),
+    return SizedBox(
+      height: 400, // Fixed height
+      child: Container(
+        width: double.infinity,
+        // decoration: const BoxDecoration(
+        //   gradient: LinearGradient(
+        //     begin: Alignment.topCenter,
+        //     end: Alignment.bottomCenter,
+        //     colors: [
+        //       Color(0xff2c7c93),
+        //       Color(0xff215260),
+        //       Color(0xff141517),
+        //     ],
+        //   ),
+        // ),
+        child: OpenContainer(
+          openElevation: 0.0,
+          closedElevation: 0.0,
+          transitionDuration: const Duration(milliseconds: 400),
+          middleColor: Colors.transparent,
+          closedColor: Colors.transparent,
+          openColor: Colors.transparent,
+          closedBuilder: (context, action) {
+            return const _LyricsSection();
+          },
+          openBuilder: (context, action) {
+            return const LyricsScreen();
+          },
         ),
       ),
     );
@@ -58,12 +50,12 @@ class _LyricsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 30),
+            padding: const EdgeInsets.only(top: 5, bottom: 0),
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.45,
@@ -116,7 +108,7 @@ class _LyricsSection extends StatelessWidget {
                       const SizedBox(
                         width: 8,
                       ),
-                      Image.asset("images/icon_bigger_size.png"),
+                      Image.asset("assets/images/icon_bigger_size.png"),
                     ],
                   ),
                 ),
@@ -143,7 +135,7 @@ class _LyricsSection extends StatelessWidget {
                     child: Row(
                       children: [
                         Image.asset(
-                          'images/share.png',
+                          'assets/images/share.png',
                           height: 10,
                           width: 10,
                         ),
@@ -151,7 +143,7 @@ class _LyricsSection extends StatelessWidget {
                           width: 5,
                         ),
                         const Text(
-                          "ShARE",
+                          "Share",
                           style: TextStyle(
                             fontFamily: "AM",
                             fontSize: 10,

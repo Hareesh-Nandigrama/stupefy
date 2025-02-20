@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
-import '../../widgets/media_player/bottom_player.dart';
 import '../../widgets/library/library_options.dart';
 import '../../widgets/library/library_tile.dart';
 import '../profile/profile_screen.dart';
@@ -43,8 +42,9 @@ class LibraryScreen extends StatelessWidget {
                               children: [
                                 CircleAvatar(
                                   radius: 20,
-                                  backgroundImage:
-                                      AssetImage("assets/images/myImage.png"),
+                                  backgroundImage: AssetImage(
+                                    "assets/images/myImage.png",
+                                  ),
                                 ),
                                 SizedBox(width: 10),
                                 Text(
@@ -73,9 +73,7 @@ class LibraryScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SliverToBoxAdapter(
-                    child: OptionsList(),
-                  ),
+                  const SliverToBoxAdapter(child: OptionsList()),
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 30, bottom: 10),
@@ -98,9 +96,7 @@ class LibraryScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              const SizedBox(
-                                width: 5,
-                              ),
+                              const SizedBox(width: 5),
                               const Text(
                                 "Recently Played",
                                 style: TextStyle(
@@ -155,15 +151,9 @@ class LibraryScreen extends StatelessWidget {
                     isDeletable: false,
                     isArtist: false,
                   ),
-                  const SliverPadding(
-                    padding: EdgeInsets.only(bottom: 130),
-                  ),
+                  const SliverPadding(padding: EdgeInsets.only(bottom: 130)),
                 ],
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 94),
-              child: BottomPlayer(),
             ),
           ],
         ),
@@ -171,5 +161,3 @@ class LibraryScreen extends StatelessWidget {
     );
   }
 }
-
-

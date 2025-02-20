@@ -20,6 +20,7 @@ class HomeCategoryTile extends StatelessWidget {
                 (context) => PlaylistScreen(
                   cover: "Upbeat-Mix.jpg",
                   playlist: trackList("Drake mix"),
+                  initialIndex: 0,
                 ),
           ),
         );

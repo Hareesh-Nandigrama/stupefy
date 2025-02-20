@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
+
 import '../../constants/constants.dart';
 import '../../model/playlist.dart';
-import '../../widgets/media_player/bottom_player.dart';
 import '../../widgets/media_player/stream_buttons.dart';
+import '../dashboard/nav_bar.dart';
 import 'song_details_screen.dart';
 
-class PlaylistScreen extends StatelessWidget {
+class PlaylistScreen extends StatefulWidget {
   final Playlist playlist;
-  PlaylistScreen({super.key, required this.cover, required this.playlist});
   final String cover;
+  final int initialIndex;
+
+  PlaylistScreen({
+    super.key,
+    required this.cover,
+    required this.playlist,
+    required this.initialIndex,
+  });
+
+  @override
+  State<PlaylistScreen> createState() => _PlaylistScreenState();
+}
+
+class _PlaylistScreenState extends State<PlaylistScreen> {
+  late int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,37 +38,37 @@ class PlaylistScreen extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            Color(0xff7c837b),
-            Colors.black,
-          ],
+          colors: [Color(0xff7c837b), Colors.black],
         ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
+        extendBody: true,
+        bottomNavigationBar: CustomNavBar(
+          currentIndex: _currentIndex,
+          onTap: (value) {
+            // Just pop with the value, don't dispose songState
+            Navigator.pop<int>(context, value);
+          },
+        ),
         body: SafeArea(
           child: Stack(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: CustomScrollView(
-                        slivers: [
-                          _Header(
-                            cover: cover,
-                          ),
-                          _PlaylistActionButtons(time: playlist.time),
-                          _SongList(playlist: playlist),
-                          const SliverPadding(
-                            padding: EdgeInsets.only(bottom: 50),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const BottomPlayer(),
+            alignment: AlignmentDirectional.bottomCenter,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: CustomScrollView(
+                  slivers: [
+                    _Header(cover: widget.cover),
+                    _PlaylistActionButtons(time: widget.playlist.time),
+                    _SongList(playlist: widget.playlist),
                   ],
-                )
+                ),
+              ),
+              // const BottomPlayer(),
+            ],
+          ),
         ),
       ),
     );
@@ -56,6 +77,7 @@ class PlaylistScreen extends StatelessWidget {
 
 class _SongList extends StatelessWidget {
   final Playlist playlist;
+
   const _SongList({required this.playlist});
 
   @override
@@ -63,60 +85,70 @@ class _SongList extends StatelessWidget {
     return SliverPadding(
       padding: const EdgeInsets.only(top: 20, bottom: 35),
       sliver: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 48,
-                        width: 48,
-                        child: Image.asset(
-                            'assets/images/${playlist.tracks[index].image}'),
+        delegate: SliverChildBuilderDelegate((context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(
+                      height: 48,
+                      width: 48,
+                      child: Image.asset(
+                        'assets/images/${playlist.tracks[index].image}',
                       ),
-                      const SizedBox(width: 5),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width - 115,
-                            child: Text(
-                              playlist.tracks[index].trackName,
-                              style: const TextStyle(
-                                fontFamily: "AM",
-                                fontSize: 16,
-                                color: MyColors.whiteColor,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          Text(
-                            playlist.tracks[index].singers,
+                    ),
+                    const SizedBox(width: 5),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width - 115,
+                          child: Text(
+                            playlist.tracks[index].trackName,
                             style: const TextStyle(
                               fontFamily: "AM",
-                              color: MyColors.lightGrey,
-                              fontSize: 13,
+                              fontSize: 16,
+                              color: MyColors.whiteColor,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ],
+                        ),
+                        Text(
+                          playlist.tracks[index].singers,
+                          style: const TextStyle(
+                            fontFamily: "AM",
+                            color: MyColors.lightGrey,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => SongDetailsScreen(
+                              trackName: playlist.tracks[index].trackName,
+                              color: Colors.blue,
+                              singer: playlist.tracks[index].singers,
+                              albumImage: playlist.tracks[index].image,
+                            ),
                       ),
-                    ],
-                  ),
-                  GestureDetector(
-                    onTap:(){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SongDetailsScreen(trackName: playlist.tracks[index].trackName, color: Colors.blue, singer: playlist.tracks[index].singers, albumImage: playlist.tracks[index].image)));
-                    },
-                    child: Image.asset("assets/images/icon_more.png")),
-                ],
-              ),
-            );
-          },
-          childCount: playlist.tracks.length,
-        ),
+                    );
+                  },
+                  child: Image.asset("assets/images/icon_more.png"),
+                ),
+              ],
+            ),
+          );
+        }, childCount: playlist.tracks.length),
       ),
     );
   }
@@ -124,6 +156,7 @@ class _SongList extends StatelessWidget {
 
 class _PlaylistActionButtons extends StatefulWidget {
   const _PlaylistActionButtons({required this.time});
+
   final String time;
 
   @override
@@ -142,7 +175,8 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Flexible( // Wrap the Column in a Flexible widget
+          Flexible(
+            // Wrap the Column in a Flexible widget
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -194,13 +228,14 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
                             _isLiked = !_isLiked;
                           });
                         },
-                        child: (_isLiked)
-                            ? Image.asset(
-                          'assets/images/icon_heart_filled.png',
-                          height: 19,
-                          width: 20,
-                        )
-                            : Image.asset('assets/images/icon_heart.png'),
+                        child:
+                            (_isLiked)
+                                ? Image.asset(
+                                  'assets/images/icon_heart_filled.png',
+                                  height: 19,
+                                  width: 20,
+                                )
+                                : Image.asset('assets/images/icon_heart.png'),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -208,9 +243,14 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
                             _isDownloaded = !_isDownloaded;
                           });
                         },
-                        child: (_isDownloaded)
-                            ? Image.asset('assets/images/icon_downloaded.png')
-                            : Image.asset('assets/images/icon_download.png'),
+                        child:
+                            (_isDownloaded)
+                                ? Image.asset(
+                                  'assets/images/icon_downloaded.png',
+                                )
+                                : Image.asset(
+                                  'assets/images/icon_download.png',
+                                ),
                       ),
                       Image.asset('assets/images/icon_more.png'),
                     ],
@@ -227,19 +267,20 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
                   _isInPlay = !_isInPlay;
                 });
               },
-              child: (_isInPlay)
-                  ? const PlayButton(
-                color: MyColors.greenColor,
-                height: 56,
-                width: 56,
-              )
-                  : const PauseButton(
-                iconWidth: 5,
-                iconHeight: 19,
-                color: MyColors.greenColor,
-                height: 56,
-                width: 56,
-              ),
+              child:
+                  (_isInPlay)
+                      ? const PlayButton(
+                        color: MyColors.greenColor,
+                        height: 56,
+                        width: 56,
+                      )
+                      : const PauseButton(
+                        iconWidth: 5,
+                        iconHeight: 19,
+                        color: MyColors.greenColor,
+                        height: 56,
+                        width: 56,
+                      ),
             ),
           ),
         ],
@@ -250,6 +291,7 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
 
 class _Header extends StatelessWidget {
   const _Header({required this.cover});
+
   final String cover;
 
   @override
@@ -258,47 +300,12 @@ class _Header extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           GestureDetector(
             onTap: () {
               Navigator.pop(context);
             },
-            child: const Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.white,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const _SearchBox(),
-              Container(
-                height: 38,
-                width: 64,
-                decoration: BoxDecoration(
-                  color: MyColors.whiteColor.withOpacity(0.2),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    "Sort",
-                    style: TextStyle(
-                      fontFamily: "AM",
-                      fontSize: 14,
-                      color: MyColors.whiteColor,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
+            child: const Icon(Icons.arrow_back_rounded, color: Colors.white),
           ),
           Center(
             child: Image.asset(
@@ -328,9 +335,7 @@ class _SearchBox extends StatelessWidget {
             width: MediaQuery.of(context).size.width - 105,
             decoration: BoxDecoration(
               color: MyColors.whiteColor.withOpacity(0.2),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5),
-              ),
+              borderRadius: const BorderRadius.all(Radius.circular(5)),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),

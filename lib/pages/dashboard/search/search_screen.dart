@@ -8,84 +8,95 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: MyColors.blackColor,
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: CustomScrollView(
-            slivers: [
-              const _SearchBox(),
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 15, bottom: 20),
-                  child: Text(
-                    "Recent searches",
-                    style: TextStyle(
-                      fontFamily: "AM",
-                      fontWeight: FontWeight.w400,
-                      color: MyColors.whiteColor,
-                      fontSize: 17,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus(); // Dismiss keyboard on tap outside
+      },
+      child: NotificationListener<ScrollNotification>(
+        onNotification: (ScrollNotification notification) {
+          FocusScope.of(context).unfocus(); // Dismiss keyboard on scroll
+          return false;
+        },
+        child: Scaffold(
+          backgroundColor: MyColors.blackColor,
+          resizeToAvoidBottomInset: false,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: CustomScrollView(
+                slivers: [
+                  const _SearchBox(),
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 15, bottom: 20),
+                      child: Text(
+                        "Recent searches",
+                        style: TextStyle(
+                          fontFamily: "AM",
+                          fontWeight: FontWeight.w400,
+                          color: MyColors.whiteColor,
+                          fontSize: 17,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+
+                   LibraryTile(
+                    isArtist: true,
+                    image: 'Doja-Cat.jpg',
+                    title: "Doja Cat",
+                    size: 23,
+                    isDeletable: true,
+                  ),
+                  LibraryTile(
+                    image: "AUSTIN.jpg",
+                    author: 'Post Malone',
+                    title: "Laugh It Off",
+                    size: 47,
+                    isArtist: false,
+                    isDeletable: true,
+                  ),
+                   LibraryTile(
+                    isArtist: true,
+                    image: 'Doja-Cat.jpg',
+                    title: "Doja Cat",
+                    size: 23,
+                    isDeletable: true,
+                  ),
+                   LibraryTile(
+                    isArtist: true,
+                    image: 'Doja-Cat.jpg',
+                    title: "Doja Cat",
+                    size: 23,
+                    isDeletable: true,
+                  ),
+
+                  LibraryTile(
+                    image: "AUSTIN.jpg",
+                    author: 'Post Malone',
+                    title: "Laugh It Off",
+                    size: 47,
+                    isArtist: false,
+                    isDeletable: true,
+                  ),
+                   LibraryTile(
+                    isArtist: true,
+                    image: 'Doja-Cat.jpg',
+                    title: "Doja Cat",
+                    size: 23,
+                    isDeletable: true,
+                  ),
+                  LibraryTile(
+                    image: "AUSTIN.jpg",
+                    author: 'Post Malone',
+                    title: "Laugh It Off",
+                    size: 47,
+                    isArtist: false,
+                    isDeletable: true,
+                  ),
+                ],
               ),
-             
-               LibraryTile(
-                isArtist: true,
-                image: 'Doja-Cat.jpg',
-                title: "Doja Cat",
-                size: 23,
-                isDeletable: true,
-              ),
-              LibraryTile(
-                image: "AUSTIN.jpg",
-                author: 'Post Malone',
-                title: "Laugh It Off",
-                size: 47,
-                isArtist: false,
-                isDeletable: true,
-              ),
-               LibraryTile(
-                isArtist: true,
-                image: 'Doja-Cat.jpg',
-                title: "Doja Cat",
-                size: 23,
-                isDeletable: true,
-              ),
-               LibraryTile(
-                isArtist: true,
-                image: 'Doja-Cat.jpg',
-                title: "Doja Cat",
-                size: 23,
-                isDeletable: true,
-              ),
-              
-              LibraryTile(
-                image: "AUSTIN.jpg",
-                author: 'Post Malone',
-                title: "Laugh It Off",
-                size: 47,
-                isArtist: false,
-                isDeletable: true,
-              ),
-               LibraryTile(
-                isArtist: true,
-                image: 'Doja-Cat.jpg',
-                title: "Doja Cat",
-                size: 23,
-                isDeletable: true,
-              ),
-              LibraryTile(
-                image: "AUSTIN.jpg",
-                author: 'Post Malone',
-                title: "Laugh It Off",
-                size: 47,
-                isArtist: false,
-                isDeletable: true,
-              ),
-            ],
+            ),
           ),
         ),
       ),

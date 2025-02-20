@@ -146,7 +146,7 @@ class _Header extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "AM",
                   fontSize: 12,
-                  color: Color.fromARGB(255, 253, 239, 239),
+                  color: MyColors.whiteColor,
                 ),
               ),
             ],
@@ -174,97 +174,99 @@ class __ActionButtonsState extends State<_ActionButtons> {
   bool _isInPlay = true;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          SliderTheme(
-            data: const SliderThemeData(
-              trackHeight: 2,
-              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6.0),
-              overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0),
-            ),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Slider(
-                min: 0,
-                max: 100,
-                activeColor: const Color.fromARGB(255, 230, 229, 229),
-                inactiveColor: const Color.fromARGB(255, 199, 196, 196),
-                value: _currentNumber,
-                onChanged: (onChanged) {
-                  setState(() {
-                    _currentNumber = onChanged;
-                  });
-                },
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            SliderTheme(
+              data: const SliderThemeData(
+                trackHeight: 2,
+                thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6.0),
+                overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0),
+              ),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Slider(
+                  min: 0,
+                  max: 100,
+                  activeColor: MyColors.whiteColor,
+                  inactiveColor: MyColors.lightGrey,
+                  value: _currentNumber,
+                  onChanged: (onChanged) {
+                    setState(() {
+                      _currentNumber = onChanged;
+                    });
+                  },
+                ),
               ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 3),
-            child: Row(
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 3),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "0:55",
+                    style: TextStyle(
+                      fontFamily: "AM",
+                      fontSize: 12,
+                      color: MyColors.whiteColor,
+                    ),
+                  ),
+                  Text(
+                    "2:45",
+                    style: TextStyle(
+                      fontFamily: "AM",
+                      fontSize: 12,
+                      color: MyColors.whiteColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 2,
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "0:55",
-                  style: TextStyle(
-                    fontFamily: "AM",
-                    fontSize: 12,
-                    color: Color.fromARGB(255, 230, 229, 229),
-                  ),
+                Image.asset(
+                  'assets/images/icon_sing.png',
+                  height: 20,
+                  width: 20,
+                  color: Colors.white,
                 ),
-                Text(
-                  "2:45",
-                  style: TextStyle(
-                    fontFamily: "AM",
-                    fontSize: 12,
-                    color: Color.fromARGB(255, 230, 229, 229),
-                  ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      _isInPlay = !_isInPlay;
+                    });
+                  },
+                  child: (_isInPlay)
+                      ? const PauseButton(
+                          iconWidth: 5,
+                          color: MyColors.whiteColor,
+                          height: 60,
+                          width: 60,
+                          iconHeight: 20,
+                        )
+                      : const PlayButton(
+                          color: MyColors.whiteColor,
+                          height: 60,
+                          width: 60,
+                        ),
+                ),
+                Image.asset(
+                  'assets/images/share.png',
+                  color: Colors.white,
+                  height: 20,
+                  width: 20,
                 ),
               ],
             ),
-          ),
-          const SizedBox(
-            height: 2,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset(
-                'assets/images/icon_sing.png',
-                height: 20,
-                width: 20,
-                color: Colors.white,
-              ),
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    _isInPlay = !_isInPlay;
-                  });
-                },
-                child: (_isInPlay)
-                    ? const PauseButton(
-                        iconWidth: 5,
-                        color: MyColors.whiteColor,
-                        height: 60,
-                        width: 60,
-                        iconHeight: 20,
-                      )
-                    : const PlayButton(
-                        color: MyColors.whiteColor,
-                        height: 60,
-                        width: 60,
-                      ),
-              ),
-              Image.asset(
-                'assets/images/share.png',
-                color: Colors.white,
-                height: 20,
-                width: 20,
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
