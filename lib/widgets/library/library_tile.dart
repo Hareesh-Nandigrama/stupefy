@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
-import '../../data/playlist_data.dart';
 import '../../pages/playlist/playlist_screen.dart';
+import '../nav_bar/custom_navigator.dart';
 
 // ignore: must_be_immutable
 class LibraryTile extends StatelessWidget {
@@ -27,14 +27,7 @@ class LibraryTile extends StatelessWidget {
     return SliverToBoxAdapter(
       child: InkWell(
         onTap: () async {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => PlaylistScreen(
-                      cover: image,
-                      playlist: trackList(title),
-                    ),
-            ),
-          );
+          CustomNavigator.navigateTo(context, PlaylistScreen());
         },
         child: Padding(
           padding: const EdgeInsets.only(bottom: 15),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'pages/splash_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'routes.dart';
 import 'store/common_store.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(splashColor: Colors.transparent),
         debugShowCheckedModeBanner: false,
-        home: const SplashScreen(),
+        routes: routes,
       ),
     );
   }

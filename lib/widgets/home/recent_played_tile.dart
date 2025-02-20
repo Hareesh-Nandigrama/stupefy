@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
-import '../../data/playlist_data.dart';
 import '../../pages/playlist/playlist_screen.dart';
+import '../nav_bar/custom_navigator.dart';
 
 class RecentPlayedTile extends StatelessWidget {
-  const RecentPlayedTile({required this.image, required this.title});
+  const RecentPlayedTile({super.key, required this.image, required this.title});
   final String title;
   final String image;
 
@@ -12,17 +12,7 @@ class RecentPlayedTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder:
-                (context) =>
-                    PlaylistScreen(
-              cover: "Upbeat-Mix.jpg",
-              playlist: trackList("Drake mix"),
-
-            ),
-          ),
-        );
+        CustomNavigator.navigateTo(context, PlaylistScreen());
       },
       child: Container(
         height: 55,

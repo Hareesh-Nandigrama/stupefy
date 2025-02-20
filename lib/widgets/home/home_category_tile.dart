@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
-import '../../data/playlist_data.dart';
 import '../../pages/playlist/playlist_screen.dart';
+import '../nav_bar/custom_navigator.dart';
 
 class HomeCategoryTile extends StatelessWidget {
   const HomeCategoryTile({super.key, required this.subtitle, required this.image});
@@ -13,16 +13,7 @@ class HomeCategoryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder:
-                (context) => PlaylistScreen(
-                  cover: "Upbeat-Mix.jpg",
-                  playlist: trackList("Drake mix"),
-                ),
-          ),
-        );
+        CustomNavigator.navigateTo(context, PlaylistScreen());
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

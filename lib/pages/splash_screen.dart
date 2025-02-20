@@ -4,6 +4,7 @@ import '../constants/colors.dart';
 import 'auth/welcome.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const String id = '/';
   const SplashScreen({super.key});
 
   @override
@@ -20,10 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Future.delayed(Duration(milliseconds: 1800), () {
         if (mounted) {
           // Prevents errors if widget is disposed
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const WelcomeScreen()),
-          );
+          Navigator.pushReplacementNamed(context, WelcomeScreen.id);
         }
       });
     });

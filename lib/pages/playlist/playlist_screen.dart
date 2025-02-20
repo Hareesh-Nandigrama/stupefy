@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:stupefy/data/playlist_data.dart';
+import 'package:stupefy/widgets/nav_bar/nav_bar_wrapper.dart';
 
 import '../../constants/colors.dart';
 import '../../model/playlist.dart';
 import '../../widgets/media_player/stream_buttons.dart';
-import '../../widgets/home/nav_bar.dart';
 import 'song_details_screen.dart';
 
 class PlaylistScreen extends StatefulWidget {
-  final Playlist playlist;
-  final String cover;
+  final Playlist playlist = trackList("Drake mix");
+  final String cover = "Drake-Mix.jpg";
 
-  PlaylistScreen({
-    super.key,
-    required this.cover,
-    required this.playlist,
-  });
+  PlaylistScreen({super.key});
 
   @override
   State<PlaylistScreen> createState() => _PlaylistScreenState();
 }
 
 class _PlaylistScreenState extends State<PlaylistScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -29,33 +25,41 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xff7c837b), Colors.black],
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        resizeToAvoidBottomInset: false,
-        extendBody: true,
-        bottomNavigationBar: NavBar(),
-        body: SafeArea(
-          child: Stack(
-            alignment: AlignmentDirectional.bottomCenter,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: CustomScrollView(
-                  slivers: [
-                    _Header(cover: widget.cover),
-                    _PlaylistActionButtons(time: widget.playlist.time),
-                    _SongList(playlist: widget.playlist),
+    return NavBarWrapper(
+      child: GestureDetector(
+        onHorizontalDragStart: (details) {
+          Navigator.pop(context);
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Center(
+                      child: Image.asset(
+                        'assets/images/home/${widget.cover}',
+                        height: 270,
+                        width: 270,
+                      ),
+                    ),
                   ],
                 ),
               ),
+              _PlaylistActionButtons(time: widget.playlist.time),
+              _SongList(playlist: widget.playlist),
             ],
           ),
         ),
@@ -278,92 +282,3 @@ class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
   }
 }
 
-class _Header extends StatelessWidget {
-  const _Header({required this.cover});
-
-  final String cover;
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20),
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(Icons.arrow_back_rounded, color: Colors.white),
-          ),
-          Center(
-            child: Image.asset(
-              'assets/images/home/$cover',
-              height: 270,
-              width: 270,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _SearchBox extends StatelessWidget {
-  const _SearchBox();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            height: 38,
-            width: MediaQuery.of(context).size.width - 105,
-            decoration: BoxDecoration(
-              color: MyColors.whiteColor.withOpacity(0.2),
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                children: [
-                  Image.asset(
-                    "assets/images/icon_search_transparent.png",
-                    color: MyColors.whiteColor,
-                  ),
-                  const Expanded(
-                    child: TextField(
-                      style: TextStyle(
-                        fontFamily: "AM",
-                        fontSize: 16,
-                        color: MyColors.whiteColor,
-                      ),
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 10, left: 15),
-                        hintText: "Find in playlist",
-                        hintStyle: TextStyle(
-                          fontFamily: "AM",
-                          color: MyColors.whiteColor,
-                          fontSize: 15,
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            style: BorderStyle.none,
-                            width: 0,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
