@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stupefy/data/playlist_data.dart';
 import 'package:stupefy/widgets/nav_bar/nav_bar_wrapper.dart';
+import 'package:stupefy/widgets/playlist/playlist_song_tile.dart';
 
 import '../../constants/colors.dart';
 import '../../model/playlist.dart';
 import '../../widgets/media_player/stream_buttons.dart';
-import 'song_details_screen.dart';
 import 'song_search_page.dart';
 
 class PlaylistScreen extends StatefulWidget {
@@ -23,6 +23,10 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   void initState() {
     super.initState();
   }
+
+  bool _isInPlay = false;
+  bool _isDownloaded = false;
+  bool _isLiked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,265 +63,184 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   ],
                 ),
               ),
-              _PlaylistActionButtons(time: widget.playlist.time),
-              _SongList(playlist: widget.playlist),
+              SliverToBoxAdapter(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Flexible(
+                      // Wrap the Column in a Flexible widget
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 20),
+                          const Text(
+                            "New and approved indie pop. CoverL No Rome",
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: true,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: MyColors.lightGrey,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Row(
+                            children: [
+                              Image.asset('assets/images/icon_spotify.png'),
+                              const SizedBox(width: 5),
+                              const Text(
+                                "Spotify",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  color: MyColors.whiteColor,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "1,629,592 likes . ${widget.playlist.time}",
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: MyColors.lightGrey,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          SizedBox(
+                            width: 130,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _isLiked = !_isLiked;
+                                    });
+                                  },
+                                  child:
+                                      (_isLiked)
+                                          ? Image.asset(
+                                            'assets/images/icon_heart_filled.png',
+                                            height: 19,
+                                            width: 20,
+                                          )
+                                          : Image.asset(
+                                            'assets/images/icon_heart.png',
+                                          ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _isDownloaded = !_isDownloaded;
+                                    });
+                                  },
+                                  child:
+                                      (_isDownloaded)
+                                          ? Image.asset(
+                                            'assets/images/icon_downloaded.png',
+                                          )
+                                          : Image.asset(
+                                            'assets/images/icon_download.png',
+                                          ),
+                                ),
+                                Image.asset('assets/images/icon_more.png'),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _isInPlay = !_isInPlay;
+                          });
+                        },
+                        child:
+                            (_isInPlay)
+                                ? const PlayButton(
+                                  color: MyColors.greenColor,
+                                  height: 56,
+                                  width: 56,
+                                )
+                                : const PauseButton(
+                                  iconWidth: 5,
+                                  iconHeight: 19,
+                                  color: MyColors.greenColor,
+                                  height: 56,
+                                  width: 56,
+                                ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.only(top: 20, bottom: 35),
+                sliver:
+                    widget.playlist.tracks.isEmpty
+                        ? SliverToBoxAdapter(
+                          child: Column(
+                            children: [
+                              Text(
+                                "Let's start building your playlist",
+                                style: TextStyle(
+                                  color: MyColors.whiteColor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                              SizedBox(height: 20),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) => const SongSearchPage(),
+                                    ),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.black,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 16,
+                                    horizontal: 30,
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Add to this playlist',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w300,
+                                    fontFamily: "AB",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                        : SliverList(
+                          delegate: SliverChildBuilderDelegate((
+                            context,
+                            index,
+                          ) {
+                            return PlaylistSongTile(
+                              song: widget.playlist.tracks[index],
+                            );
+                          }, childCount: widget.playlist.tracks.length),
+                        ),
+              ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _SongList extends StatelessWidget {
-  final Playlist playlist;
-
-  const _SongList({required this.playlist});
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.only(top: 20, bottom: 35),
-      sliver:
-          playlist.tracks.length != 0
-              ? SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    Text(
-                      "Let's start building your playlist",
-                      style: TextStyle(
-                        color: MyColors.whiteColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SongSearchPage(),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 16,
-                          horizontal: 30,
-                        ),
-                      ),
-                      child: const Text(
-                        'Add to this playlist',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300,
-                          fontFamily: "AB",
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-              : SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                              height: 48,
-                              width: 48,
-                              child: Image.asset(
-                                'assets/images/${playlist.tracks[index].image}',
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 115,
-                                  child: Text(
-                                    playlist.tracks[index].trackName,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      color: MyColors.whiteColor,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                Text(
-                                  playlist.tracks[index].singers,
-                                  style: const TextStyle(
-                                    color: MyColors.lightGrey,
-                                    fontSize: 13,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder:
-                                    (context) => SongDetailsScreen(
-                                      trackName:
-                                          playlist.tracks[index].trackName,
-                                      color: Colors.blue,
-                                      singer: playlist.tracks[index].singers,
-                                      albumImage: playlist.tracks[index].image,
-                                    ),
-                              ),
-                            );
-                          },
-                          child: Image.asset("assets/images/icon_more.png"),
-                        ),
-                      ],
-                    ),
-                  );
-                }, childCount: playlist.tracks.length),
-              ),
-    );
-  }
-}
-
-class _PlaylistActionButtons extends StatefulWidget {
-  const _PlaylistActionButtons({required this.time});
-
-  final String time;
-
-  @override
-  State<_PlaylistActionButtons> createState() => _PlaylistActionButtonsState();
-}
-
-class _PlaylistActionButtonsState extends State<_PlaylistActionButtons> {
-  bool _isInPlay = false;
-  bool _isDownloaded = false;
-  bool _isLiked = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Flexible(
-            // Wrap the Column in a Flexible widget
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
-                const Text(
-                  "New and approved indie pop. CoverL No Rome",
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: true,
-                  style: TextStyle(fontSize: 13, color: MyColors.lightGrey),
-                ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    Image.asset('assets/images/icon_spotify.png'),
-                    const SizedBox(width: 5),
-                    const Text(
-                      "Spotify",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: MyColors.whiteColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  "1,629,592 likes . ${widget.time}",
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: MyColors.lightGrey,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                SizedBox(
-                  width: 130,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _isLiked = !_isLiked;
-                          });
-                        },
-                        child:
-                            (_isLiked)
-                                ? Image.asset(
-                                  'assets/images/icon_heart_filled.png',
-                                  height: 19,
-                                  width: 20,
-                                )
-                                : Image.asset('assets/images/icon_heart.png'),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _isDownloaded = !_isDownloaded;
-                          });
-                        },
-                        child:
-                            (_isDownloaded)
-                                ? Image.asset(
-                                  'assets/images/icon_downloaded.png',
-                                )
-                                : Image.asset(
-                                  'assets/images/icon_download.png',
-                                ),
-                      ),
-                      Image.asset('assets/images/icon_more.png'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  _isInPlay = !_isInPlay;
-                });
-              },
-              child:
-                  (_isInPlay)
-                      ? const PlayButton(
-                        color: MyColors.greenColor,
-                        height: 56,
-                        width: 56,
-                      )
-                      : const PauseButton(
-                        iconWidth: 5,
-                        iconHeight: 19,
-                        color: MyColors.greenColor,
-                        height: 56,
-                        width: 56,
-                      ),
-            ),
-          ),
-        ],
       ),
     );
   }
