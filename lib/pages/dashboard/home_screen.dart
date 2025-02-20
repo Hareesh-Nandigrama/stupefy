@@ -15,39 +15,39 @@ class Home extends StatelessWidget {
       body: SafeArea(
         bottom: false,
         child: Stack(
-          alignment: AlignmentDirectional.bottomCenter,
+          alignment: Alignment.bottomCenter,
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 30),
-                      child: Column(
-                        children: [
-                          HomeAppBar(),
-                          const SizedBox(height: 20),
-                          GridView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  mainAxisExtent: 55,
-                                ),
-                            itemCount: 6,
-                            itemBuilder: (context, index) {
-                              return RecentPlayedTile(
-                                image: "artists/JID.jpg",
-                                title: "china japan nepal bhutan e sala cup namde",
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        HomeAppBar(),
+                        const SizedBox(height: 20),
+                        GridView.builder(
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                                mainAxisExtent: 55,
+                              ),
+                          itemCount: 6,
+                          itemBuilder: (context, index) {
+                            return RecentPlayedTile(
+                              image: "artists/JID.jpg",
+                              title:
+                                  "china japan nepal bhutan e sala cup namde",
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ),
                   HomeCategoryList(category: "Jump back in"),

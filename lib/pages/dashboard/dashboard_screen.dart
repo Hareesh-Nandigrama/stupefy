@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/media_player/bottom_player.dart';
 import 'home_screen.dart';
 import 'library_screen.dart';
 import 'nav_bar.dart';
@@ -28,20 +27,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           });
         },
       ),
-      body: Stack(
-        children: [
-          IndexedStack(
-            index: _currentIndex,
-            children: const [Home(), SearchCategoryScreen(), LibraryScreen()],
-          ),
-          Positioned(
-            bottom: 100,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: BottomPlayer(),
-            ),
-          ),
-        ],
+      body: IndexedStack(
+        index: _currentIndex,
+        children: const [Home(), SearchCategoryScreen(), LibraryScreen()],
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'home_category_tile.dart';
 
 class HomeCategoryList extends StatelessWidget {
   final String category;
+
   const HomeCategoryList({super.key, required this.category});
 
   @override
@@ -24,9 +25,7 @@ class HomeCategoryList extends StatelessWidget {
                 color: MyColors.whiteColor,
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 10),
             SizedBox(
               height: 199,
               child: ListView(

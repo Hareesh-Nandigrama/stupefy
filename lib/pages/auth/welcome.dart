@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stupefy/pages/dashboard/dashboard_screen.dart';
+
 import '../../constants/constants.dart';
 import '../../widgets/onboarding.dart/auth_selector_button.dart';
-import '../dashboard/home_screen.dart';
 import 'request_user_details.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -16,12 +17,12 @@ class WelcomeScreen extends StatelessWidget {
         child: Stack(
           children: [
             SizedBox(
-                  width: double.infinity,
-                  child: Image.asset(
-                    "assets/images/onboarding_background.png",
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              width: double.infinity,
+              child: Image.asset(
+                "assets/images/onboarding_background.png",
+                fit: BoxFit.cover,
+              ),
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -85,15 +86,16 @@ class WelcomeScreen extends StatelessWidget {
                       OnboardingButton(authMtd: "apple"),
                       const SizedBox(height: 8),
                       InkWell(
-                        onTap: (){
+                        onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) =>const Home()
+                              builder: (context) => const DashBoardScreen(),
                             ),
                           );
                         },
                         child: const Text(
-                          "Log in", // Log in functionality during backend implementation
+                          "Log in",
+                          // Log in functionality during backend implementation
                           style: TextStyle(
                             fontFamily: "AB",
                             fontSize: 16,

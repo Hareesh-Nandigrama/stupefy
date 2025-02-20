@@ -22,7 +22,7 @@ class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
       body: SafeArea(
         bottom: false,
         child: Stack(
-          alignment: AlignmentDirectional.bottomCenter,
+          alignment: Alignment.bottomCenter,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -174,7 +174,7 @@ class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
                       ),
                     ),
                   ),
-                  const SliverPadding(padding: EdgeInsets.only(bottom: 130)),
+                  const SliverPadding(padding: EdgeInsets.only(bottom: 180)),
                 ],
               ),
             ),

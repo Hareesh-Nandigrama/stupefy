@@ -1,4 +1,6 @@
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../constants/constants.dart';
 import '../../pages/media_player/listening_on_screen.dart';
@@ -12,8 +14,71 @@ class BottomPlayer extends StatefulWidget {
 }
 
 class _BottomPlayerState extends State<BottomPlayer> {
-  bool _isInPlay = false;
   bool _isLiked = false;
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  bool _isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initAudio();
+  }
+
+  Future<void> _initAudio() async {
+    try {
+      await _audioPlayer.setAudioSource(
+        AudioSource.asset('assets/audio/Where I come from - Passion Pit.mp3'),
+        initialPosition: Duration.zero,
+        preload: true,
+      );
+
+      await _audioPlayer.setVolume(1.0);
+      await _audioPlayer.setAndroidAudioAttributes(
+        const AndroidAudioAttributes(
+          contentType: AndroidAudioContentType.music,
+          usage: AndroidAudioUsage.media,
+          flags: AndroidAudioFlags.none,
+        ),
+      );
+
+      _audioPlayer.playerStateStream.listen((state) {
+        if (mounted) {
+          setState(() {
+            _isPlaying = state.playing;
+          });
+        }
+      });
+
+      _audioPlayer.processingStateStream.listen((state) {
+        if (state == ProcessingState.completed) {
+          setState(() {
+            _isPlaying = false;
+          });
+          _audioPlayer.seek(Duration.zero);
+        }
+      });
+    } catch (e) {
+      print('Error initializing audio: $e');
+    }
+  }
+
+  void _handlePlayPause() async {
+    try {
+      if (_isPlaying) {
+        await _audioPlayer.pause();
+      } else {
+        await _audioPlayer.play();
+      }
+    } catch (e) {
+      print('Error handling play/pause: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +112,6 @@ class _BottomPlayerState extends State<BottomPlayer> {
                             ),
                             pageBuilder:
                                 (context, animation, secondaryAnimation) =>
-                                    // const TrackViewScreen(),
                                     const MediaPlayback(),
                             transitionsBuilder: (
                               context,
@@ -57,7 +121,6 @@ class _BottomPlayerState extends State<BottomPlayer> {
                             ) {
                               const begin = Offset(0.0, 1.0);
                               const end = Offset.zero;
-
                               final tween = Tween(begin: begin, end: end);
                               final offsetAnimation = animation.drive(tween);
                               return SlideTransition(
@@ -146,7 +209,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
                             });
                           },
                           child:
-                              (_isLiked)
+                              _isLiked
                                   ? Row(
                                     children: [
                                       Image.asset(
@@ -168,16 +231,12 @@ class _BottomPlayerState extends State<BottomPlayer> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {
-                          setState(() {
-                            _isInPlay = !_isInPlay;
-                          });
-                        },
+                        onTap: _handlePlayPause,
                         child: SizedBox(
                           height: 20,
                           width: 20,
                           child:
-                              (_isInPlay)
+                              !_isPlaying
                                   ? Image.asset(
                                     'assets/images/icon_play.png',
                                     color: MyColors.whiteColor,
@@ -204,22 +263,34 @@ class _BottomPlayerState extends State<BottomPlayer> {
                 ],
               ),
             ),
-            SliderTheme(
-              data: SliderThemeData(
-                overlayShape: SliderComponentShape.noOverlay,
-                thumbShape: SliderComponentShape.noThumb,
-                trackShape: const RectangularSliderTrackShape(),
-                trackHeight: 3,
-              ),
-              child: SizedBox(
-                height: 8,
-                child: Slider(
-                  activeColor: MyColors.whiteColor,
-                  inactiveColor: MyColors.lightGrey,
-                  value: 0.5,
-                  onChanged: (onChanged) {},
-                ),
-              ),
+            StreamBuilder<Duration>(
+              stream: _audioPlayer.positionStream,
+              builder: (context, snapshot) {
+                final position = snapshot.data ?? Duration.zero;
+                final duration = _audioPlayer.duration ?? Duration.zero;
+                return SliderTheme(
+                  data: SliderThemeData(
+                    overlayShape: SliderComponentShape.noOverlay,
+                    thumbShape: SliderComponentShape.noThumb,
+                    trackShape: const RectangularSliderTrackShape(),
+                    trackHeight: 3,
+                  ),
+                  child: SizedBox(
+                    height: 8,
+                    child: Slider(
+                      activeColor: MyColors.whiteColor,
+                      inactiveColor: MyColors.lightGrey,
+                      value: position.inMilliseconds.toDouble(),
+                      max: duration.inMilliseconds.toDouble(),
+                      onChanged: (value) {
+                        _audioPlayer.seek(
+                          Duration(milliseconds: value.toInt()),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),
