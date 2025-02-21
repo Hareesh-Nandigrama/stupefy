@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../pages/media_player/listening_on_screen.dart';
 import '../../pages/media_player/media_playback_screen.dart';
-import '../../store/player/song_state.dart';
+import '../../store/song_state.dart';
 
 class BottomPlayer extends StatefulWidget {
   const BottomPlayer({super.key});
@@ -14,11 +14,9 @@ class BottomPlayer extends StatefulWidget {
 }
 
 class _BottomPlayerState extends State<BottomPlayer> {
-  // final SongState songState = SongState();
 
   @override
   void dispose() {
-    // Remove songState.dispose() since it's a singleton
     super.dispose();
   }
 
@@ -110,7 +108,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         fontWeight: FontWeight.w700,
-                                        fontFamily: "AM",
+                                         
                                         color: MyColors.whiteColor,
                                         fontSize: 13.5,
                                       ),
@@ -122,7 +120,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      fontFamily: "AM",
+                                       
                                       fontSize: 12,
                                       color: MyColors.whiteColor,
                                     ),

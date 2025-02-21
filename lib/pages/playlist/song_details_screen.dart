@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import 'share_song_screen.dart';
 
 
@@ -99,7 +99,7 @@ class SongDetailsScreen extends StatelessWidget {
                         child: const Text(
                           "Close",
                           style: TextStyle(
-                            fontFamily: "AM",
+                             
                             fontSize: 16,
                             color: MyColors.whiteColor,
                           ),
@@ -135,7 +135,7 @@ class _AlbumChip extends StatelessWidget {
           Text(
             text,
             style: const TextStyle(
-              fontFamily: "AM",
+               
               fontSize: 16,
               color: MyColors.lightGrey,
             ),
@@ -175,7 +175,7 @@ class _SongHeader extends StatelessWidget {
           child: Text(
             trackName,
             style: const TextStyle(
-              fontFamily: "AM",
+               
               fontSize: 20,
               fontWeight: FontWeight.w700,
               color: MyColors.whiteColor,
@@ -186,7 +186,7 @@ class _SongHeader extends StatelessWidget {
           child: Text(
             singer,
             style: const TextStyle(
-              fontFamily: "AM",
+               
               fontSize: 14,
               color: MyColors.lightGrey,
             ),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
-import '../../data/playlist_data.dart';
+import '../../constants/colors.dart';
 import '../../pages/playlist/playlist_screen.dart';
-import '../../pages/dashboard/dashboard_screen.dart';
+import '../nav_bar/custom_navigator.dart';
 
 class RecentPlayedTile extends StatelessWidget {
-  const RecentPlayedTile({required this.image, required this.title});
+  const RecentPlayedTile({super.key, required this.image, required this.title});
   final String title;
   final String image;
 
@@ -13,27 +12,7 @@ class RecentPlayedTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        final int? newIndex = await Navigator.push<int>(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PlaylistScreen(
-              cover: "Upbeat-Mix.jpg",
-              playlist: trackList("Drake mix"),
-              initialIndex: 0,
-            ),
-          ),
-        );
-
-        if (newIndex != null) {
-          // Find the nearest Navigator and pop back to DashboardScreen with the new index
-          Navigator.of(context).popUntil((route) => route.isFirst);
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DashBoardScreen(initialIndex: newIndex),
-            ),
-          );
-        }
+        CustomNavigator.navigateTo(context, PlaylistScreen());
       },
       child: Container(
         height: 55,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../widgets/media_player/stream_buttons.dart';
 
 
@@ -56,7 +56,7 @@ Take me home, baby, I'm fucked up now
 I know it's easier to leave me down here on the ground""",
                 style: TextStyle(
                   color: MyColors.whiteColor,
-                  fontFamily: "AM",
+                   
                   fontWeight: FontWeight.w700,
                   fontSize: 24,
                 ),
@@ -87,7 +87,7 @@ So I shot that vodka straight, anyway (Ooh)
 """,
                 style: TextStyle(
                   color: MyColors.blackColor,
-                  fontFamily: "AM",
+                   
                   fontWeight: FontWeight.w700,
                   fontSize: 24,
                 ),
@@ -136,7 +136,7 @@ class _Header extends StatelessWidget {
                 "Enough is Enough",
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontFamily: "AM",
+                   
                   color: MyColors.whiteColor,
                   fontSize: 18,
                 ),
@@ -144,7 +144,7 @@ class _Header extends StatelessWidget {
               Text(
                 "Post Malone",
                 style: TextStyle(
-                  fontFamily: "AM",
+                   
                   fontSize: 12,
                   color: MyColors.whiteColor,
                 ),
@@ -209,7 +209,7 @@ class __ActionButtonsState extends State<_ActionButtons> {
                   Text(
                     "0:55",
                     style: TextStyle(
-                      fontFamily: "AM",
+                       
                       fontSize: 12,
                       color: MyColors.whiteColor,
                     ),
@@ -217,7 +217,7 @@ class __ActionButtonsState extends State<_ActionButtons> {
                   Text(
                     "2:45",
                     style: TextStyle(
-                      fontFamily: "AM",
+                       
                       fontSize: 12,
                       color: MyColors.whiteColor,
                     ),

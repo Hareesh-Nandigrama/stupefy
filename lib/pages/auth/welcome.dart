@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:stupefy/pages/dashboard/dashboard_screen.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../widgets/onboarding.dart/auth_selector_button.dart';
+import '../dashboard/home_screen.dart';
 import 'request_user_details.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  static const String id = "/welcome";
   const WelcomeScreen({super.key});
 
   @override
@@ -87,10 +88,9 @@ class WelcomeScreen extends StatelessWidget {
                       const SizedBox(height: 8),
                       InkWell(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const DashBoardScreen(),
-                            ),
+                          Navigator.pushReplacementNamed(
+                            context,
+                            HomeScreen.id,
                           );
                         },
                         child: const Text(

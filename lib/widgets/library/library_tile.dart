@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
-import '../../data/playlist_data.dart';
+import '../../constants/colors.dart';
 import '../../pages/playlist/playlist_screen.dart';
-import '../../pages/dashboard/dashboard_screen.dart';
+import '../nav_bar/custom_navigator.dart';
 
 // ignore: must_be_immutable
 class LibraryTile extends StatelessWidget {
@@ -25,120 +24,65 @@ class LibraryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: InkWell(
-        onTap: () async {
-          final int? newIndex = await Navigator.push<int>(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PlaylistScreen(
-                cover: "Upbeat-Mix.jpg",
-                playlist: trackList("Drake mix"),
-                initialIndex: 2,
-              ),
-            ),
-          );
-
-          if (newIndex != null) {
-            // Find the nearest Navigator and pop back to DashboardScreen with the new index
-            Navigator.of(context).popUntil((route) => route.isFirst);
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DashBoardScreen(initialIndex: newIndex),
-              ),
-            );
-          }
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  isArtist
-                      ? CircleAvatar(
-                        radius: size,
-                        backgroundImage: AssetImage("assets/images/artists/$image"),
-                      )
-                      : SizedBox(
-                        height: size,
-                        width: size,
-                        child: Image.asset('assets/images/home/$image'),
-                      ),
-                  const SizedBox(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          fontFamily: "AM",
-                          fontSize: 15,
-                          color: MyColors.whiteColor,
-                        ),
-                      ),
-                      isArtist
-                          ? Text(
-                            "Artist",
-                            style: TextStyle(
-                              fontFamily: "AM",
-                              fontSize: 13,
-                              color: MyColors.lightGrey,
-                            ),
-                          )
-                          : Row(
-                            children: [
-                              Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    height: 13,
-                                    width: 13,
-                                    decoration: const BoxDecoration(
-                                      color: Color(0xffC4C4C4),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(3),
-                                      ),
-                                    ),
-                                  ),
-                                  const Text(
-                                    "E",
-                                    style: TextStyle(
-                                      fontSize: 8,
-                                      color: MyColors.blackColor,
-                                      fontFamily: "AM",
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(width: 5),
-                              Text(
-                                "Playlist . $author",
-                                style: const TextStyle(
-                                  fontFamily: "AM",
-                                  fontSize: 13,
-                                  color: MyColors.lightGrey,
-                                ),
-                              ),
-                            ],
-                          ),
-                    ],
-                  ),
-                ],
-              ),
-              Visibility(
-                visible: isDeletable,
-                child: Image.asset(
-                  'assets/images/icon_back.png',
-                  height: 14,
-                  width: 14,
+    return InkWell(
+      onTap: () {
+        CustomNavigator.navigateTo(context, PlaylistScreen());
+      },
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(0),
+        leading:
+            isArtist
+                ? CircleAvatar(
+                  radius: size,
+                  backgroundImage: AssetImage("assets/images/artists/$image"),
+                )
+                : SizedBox(
+                  height: size,
+                  width: size,
+                  child: Image.asset('assets/images/home/$image'),
                 ),
-              ),
-            ],
-          ),
+        title: Text(
+          title,
+          style: const TextStyle(fontSize: 15, color: MyColors.whiteColor),
         ),
+        subtitle:
+            !isArtist
+                ? Text(
+                  "Artist",
+                  style: TextStyle(fontSize: 13, color: MyColors.lightGrey),
+                )
+                : Row(
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          height: 13,
+                          width: 13,
+                          decoration: const BoxDecoration(
+                            color: Color(0xffC4C4C4),
+                            borderRadius: BorderRadius.all(Radius.circular(3)),
+                          ),
+                        ),
+                        const Text(
+                          "E",
+                          style: TextStyle(
+                            fontSize: 8,
+                            color: MyColors.blackColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      "Playlist . $author",
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: MyColors.lightGrey,
+                      ),
+                    ),
+                  ],
+                ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 
 class LibraryOptionsChip extends StatelessWidget {
   const LibraryOptionsChip({super.key, required this.index});
@@ -33,7 +33,7 @@ class LibraryOptionsChip extends StatelessWidget {
                 child: Text(
                   chipTitle[index],
                   style: const TextStyle(
-                    fontFamily: "AM",
+                     
                     fontSize: 12,
                     color: MyColors.whiteColor,
                   ),

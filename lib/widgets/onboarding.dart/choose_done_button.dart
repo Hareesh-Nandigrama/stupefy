@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:stupefy/pages/dashboard/home_screen.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../pages/auth/choose_podcast_screen.dart';
-import '../../pages/dashboard/dashboard_screen.dart';
+import '../nav_bar/nav_bar_wrapper.dart';
 
 class ChooseDoneButton extends StatelessWidget {
   final bool isArtist;
@@ -27,7 +28,7 @@ class ChooseDoneButton extends StatelessWidget {
             MaterialPageRoute(
               builder:
                   (context) =>
-                      isArtist ? ChoosePodcastScreen() : DashBoardScreen(),
+                      isArtist ? ChoosePodcastScreen() : HomeScreen(),
             ),
           );
         },

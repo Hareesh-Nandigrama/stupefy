@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../data/playlist_data.dart';
 import '../../widgets/onboarding.dart/choose_done_button.dart';
 import '../../widgets/onboarding.dart/onboarding_header.dart';
@@ -88,7 +88,6 @@ class _SearchBox extends StatelessWidget {
                 const Expanded(
                   child: TextField(
                     style: TextStyle(
-                      fontFamily: "AM",
                       fontSize: 16,
                       color: MyColors.blackColor,
                     ),
@@ -96,7 +95,6 @@ class _SearchBox extends StatelessWidget {
                       contentPadding: EdgeInsets.only(top: 15, left: 15),
                       hintText: "Search",
                       hintStyle: TextStyle(
-                        fontFamily: "AM",
                         color: MyColors.blackColor,
                         fontSize: 14,
                       ),

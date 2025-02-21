@@ -1,175 +1,163 @@
 import 'package:flutter/material.dart';
+import 'package:stupefy/widgets/nav_bar/nav_bar_wrapper.dart';
 
-import '../../../constants/constants.dart';
-import '../../../widgets/library/library_tile.dart';
+import '../../../constants/colors.dart';
+import '../../../widgets/search/search_bar.dart';
+import '../../../widgets/search/search_page_tile.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
+    static const String id = "/search";
+
   const SearchScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus(); // Dismiss keyboard on tap outside
-      },
-      child: NotificationListener<ScrollNotification>(
-        onNotification: (ScrollNotification notification) {
-          FocusScope.of(context).unfocus(); // Dismiss keyboard on scroll
-          return false;
-        },
-        child: Scaffold(
-          backgroundColor: MyColors.blackColor,
-          resizeToAvoidBottomInset: false,
-          body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: CustomScrollView(
-                slivers: [
-                  const _SearchBox(),
-                  const SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 15, bottom: 20),
-                      child: Text(
-                        "Recent searches",
-                        style: TextStyle(
-                          fontFamily: "AM",
-                          fontWeight: FontWeight.w400,
-                          color: MyColors.whiteColor,
-                          fontSize: 17,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                   LibraryTile(
-                    isArtist: true,
-                    image: 'Doja-Cat.jpg',
-                    title: "Doja Cat",
-                    size: 23,
-                    isDeletable: true,
-                  ),
-                  LibraryTile(
-                    image: "AUSTIN.jpg",
-                    author: 'Post Malone',
-                    title: "Laugh It Off",
-                    size: 47,
-                    isArtist: false,
-                    isDeletable: true,
-                  ),
-                   LibraryTile(
-                    isArtist: true,
-                    image: 'Doja-Cat.jpg',
-                    title: "Doja Cat",
-                    size: 23,
-                    isDeletable: true,
-                  ),
-                   LibraryTile(
-                    isArtist: true,
-                    image: 'Doja-Cat.jpg',
-                    title: "Doja Cat",
-                    size: 23,
-                    isDeletable: true,
-                  ),
-
-                  LibraryTile(
-                    image: "AUSTIN.jpg",
-                    author: 'Post Malone',
-                    title: "Laugh It Off",
-                    size: 47,
-                    isArtist: false,
-                    isDeletable: true,
-                  ),
-                   LibraryTile(
-                    isArtist: true,
-                    image: 'Doja-Cat.jpg',
-                    title: "Doja Cat",
-                    size: 23,
-                    isDeletable: true,
-                  ),
-                  LibraryTile(
-                    image: "AUSTIN.jpg",
-                    author: 'Post Malone',
-                    title: "Laugh It Off",
-                    size: 47,
-                    isArtist: false,
-                    isDeletable: true,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchBox extends StatelessWidget {
-  const _SearchBox();
+class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
+    return NavBarWrapper(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              height: 35,
-              width: MediaQuery.of(context).size.width - 102.5,
-              decoration: const BoxDecoration(
-                color: Color(0xff282828),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                ),
-              ),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.only(top: 30, bottom: 20),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(
-                      "assets/images/icon_search_transparent.png",
-                      color: MyColors.whiteColor,
-                    ),
-                    const Expanded(
-                      child: TextField(
-                        style: TextStyle(
-                          fontFamily: "AM",
-                          fontSize: 16,
-                          color: MyColors.whiteColor,
-                        ),
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: 10, left: 15),
-                          hintText: "Search",
-                          hintStyle: TextStyle(
-                            fontFamily: "AM",
-                            color: MyColors.whiteColor,
-                            fontSize: 15,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              style: BorderStyle.none,
-                              width: 0,
-                            ),
-                          ),
-                        ),
+                    const Text(
+                      "Search",
+                      style: TextStyle(
+                        fontFamily: "AB",
+                        fontSize: 25,
+                        color: MyColors.whiteColor,
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: const Text(
-                "Cancel",
-                style: TextStyle(
-                    fontFamily: "AM", color: MyColors.whiteColor, fontSize: 15),
+            const SearchBox(),
+            const SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(top: 17, bottom: 17),
+                child: Text(
+                  "Your top genres",
+                  style: TextStyle(
+                     
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: MyColors.whiteColor,
+                  ),
+                ),
               ),
             ),
+            const SliverToBoxAdapter(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SearchPageTile(title: "", image: "pop.png"),
+                  SearchPageTile(title: "", image: "indie.png"),
+                ],
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(top: 25, bottom: 10),
+                child: Text(
+                  "Popular podcast categories",
+                  style: TextStyle(
+                     
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: MyColors.whiteColor,
+                  ),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        width: (MediaQuery.of(context).size.width / 1.75) - 50,
+                        height: 100,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/news&politics.png"),
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        top: 10,
+                        left: 10,
+                        child: SizedBox(
+                          width: 72,
+                          child: Text(
+                            "News & Politics",
+                            style: TextStyle(
+                              fontFamily: "AB",
+                              fontSize: 16,
+                              color: MyColors.whiteColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SearchPageTile(title: "Comdey", image: "comedy.png"),
+                ],
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(top: 25, bottom: 10),
+                child: Text(
+                  "Browse all",
+                  style: TextStyle(
+                     
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: MyColors.whiteColor,
+                  ),
+                ),
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SearchPageTile(
+                    title: "2023 Wrapped",
+                    image: "2023_wrapped.png",
+                  ),
+                  SearchPageTile(title: "Podcasts", image: "podcasts.png"),
+                ],
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(top: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SearchPageTile(
+                      title: "Made for you",
+                      image: "made_for_you.png",
+                    ),
+                    SearchPageTile(title: "Charts", image: "charts.png"),
+                  ],
+                ),
+              ),
+            ),
+            const SliverPadding(padding: EdgeInsets.only(bottom: 180)),
           ],
         ),
       ),

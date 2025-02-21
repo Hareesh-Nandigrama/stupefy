@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import 'lyrics_screen.dart';
 
 
@@ -73,7 +73,7 @@ class _LyricsSection extends StatelessWidget {
             child: Text(
               "Lyrics",
               style: TextStyle(
-                fontFamily: "AM",
+                 
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: MyColors.whiteColor,
@@ -99,7 +99,7 @@ class _LyricsSection extends StatelessWidget {
                       const Text(
                         "MORE",
                         style: TextStyle(
-                          fontFamily: "AM",
+                           
                           fontSize: 10,
                           color: MyColors.whiteColor,
                           fontWeight: FontWeight.w400,
@@ -145,7 +145,7 @@ class _LyricsSection extends StatelessWidget {
                         const Text(
                           "Share",
                           style: TextStyle(
-                            fontFamily: "AM",
+                             
                             fontSize: 10,
                             color: MyColors.whiteColor,
                             fontWeight: FontWeight.w400,
@@ -172,7 +172,7 @@ So I shot that vodka straight, anyway
 She came in, missin' bottle off the shelf""",
                       style: TextStyle(
                         color: MyColors.whiteColor,
-                        fontFamily: "AM",
+                         
                         fontWeight: FontWeight.w700,
                         fontSize: 20,
                       ),
@@ -190,7 +190,7 @@ I know it's easier to leave me down here on the ground
       """,
                       style: TextStyle(
                         color: MyColors.blackColor,
-                        fontFamily: "AM",
+                         
                         fontWeight: FontWeight.w700,
                         fontSize: 20,
                       ),

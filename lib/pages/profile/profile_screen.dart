@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../widgets/media_player/bottom_player.dart';
 
 
@@ -93,7 +93,7 @@ class _ProfilePlaylists extends StatelessWidget {
               const Text(
                 "See all playlists",
                 style: TextStyle(
-                  fontFamily: "AM",
+                   
                   fontSize: 15,
                   color: MyColors.whiteColor,
                 ),
@@ -187,7 +187,7 @@ class _ProfileHeader extends StatelessWidget {
               overflow: TextOverflow.ellipsis, // Handle overflow
               maxLines: 1, // Ensure single line
               style: const TextStyle(
-                fontFamily: "AM",
+                 
                 fontWeight: FontWeight.w800,
                 color: MyColors.whiteColor,
                 fontSize: 19,
@@ -204,7 +204,7 @@ class _ProfileHeader extends StatelessWidget {
         Text(
           value,
           style: const TextStyle(
-            fontFamily: "AM",
+             
             fontSize: 12,
             color: MyColors.whiteColor,
           ),
@@ -213,7 +213,7 @@ class _ProfileHeader extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-            fontFamily: "AM",
+             
             fontSize: 10,
             color: MyColors.lightGrey,
           ),

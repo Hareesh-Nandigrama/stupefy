@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../pages/auth/choose_artist_screen.dart';
 
 class PrivacyPolicy extends StatefulWidget {
@@ -36,7 +36,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           const Text(
             'By tapping on "Create account" you agree to the stupefy Terms of Use.',
             style: TextStyle(
-              fontFamily: "AM",
+               
               fontSize: 12,
               color: MyColors.whiteColor,
             ),
@@ -45,7 +45,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           const Text(
             'Terms of Use',
             style: TextStyle(
-              fontFamily: "AM",
+               
               fontSize: 12,
               color: MyColors.greenColor,
               fontWeight: FontWeight.w400,
@@ -55,7 +55,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           const Text(
             'To learn more about how stupefy collect, uses, shares and protects your personal data, Please see the spotify Privacy Policy.',
             style: TextStyle(
-              fontFamily: "AM",
+               
               fontSize: 12,
               color: MyColors.whiteColor,
             ),
@@ -64,7 +64,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           const Text(
             'Privacy Policy',
             style: TextStyle(
-              fontFamily: "AM",
+               
               fontSize: 12,
               color: MyColors.greenColor,
               fontWeight: FontWeight.w400,
@@ -77,7 +77,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               const Text(
                 "Please send me news and offers from stupefy.",
                 style: TextStyle(
-                  fontFamily: "AM",
+                   
                   fontSize: 12,
                   color: MyColors.whiteColor,
                 ),
@@ -108,7 +108,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                 child: Text(
                   "Share my registration data with Stupefy's content providers for marketing purposes.",
                   style: TextStyle(
-                    fontFamily: "AM",
+                     
                     fontSize: 12,
                     color: MyColors.whiteColor,
                   ),

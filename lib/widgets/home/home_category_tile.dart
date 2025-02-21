@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
-import '../../data/playlist_data.dart';
+import '../../constants/colors.dart';
 import '../../pages/playlist/playlist_screen.dart';
+import '../nav_bar/custom_navigator.dart';
 
 class HomeCategoryTile extends StatelessWidget {
   const HomeCategoryTile({super.key, required this.subtitle, required this.image});
@@ -13,17 +13,7 @@ class HomeCategoryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder:
-                (context) => PlaylistScreen(
-                  cover: "Upbeat-Mix.jpg",
-                  playlist: trackList("Drake mix"),
-                  initialIndex: 0,
-                ),
-          ),
-        );
+        CustomNavigator.navigateTo(context, PlaylistScreen());
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +38,7 @@ class HomeCategoryTile extends StatelessWidget {
               Text(
                 "Album . Travis Scott",
                 style: TextStyle(
-                  fontFamily: "AM",
+                   
                   fontSize: 12.5,
                   color: MyColors.lightGrey,
                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 import '../../pages/auth/choose_artist_screen.dart';
 import '../../pages/auth/request_user_details.dart';
 import 'gender_dropdown.dart';
@@ -83,7 +83,7 @@ class _OnboardingInputFieldState extends State<OnboardingInputField> {
                       });
                     },
                     style: const TextStyle(
-                      fontFamily: "AM",
+                       
                       fontSize: 14,
                       color: MyColors.whiteColor,
                     ),
@@ -103,7 +103,7 @@ class _OnboardingInputFieldState extends State<OnboardingInputField> {
             Text(
               supportingText,
               style: TextStyle(
-                fontFamily: "AM",
+                 
                 fontSize: 10,
                 color: MyColors.whiteColor,
                 fontWeight: FontWeight.w400,

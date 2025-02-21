@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
-import '../../pages/dashboard/search/search_screen.dart';
+import '../../constants/colors.dart';
+import '../../pages/dashboard/search/search_results_screen.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox();
@@ -25,7 +25,7 @@ class SearchBox extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SearchScreen(),
+                  builder: (context) => const SearchResultsScreen(),
                 ),
               );
             },

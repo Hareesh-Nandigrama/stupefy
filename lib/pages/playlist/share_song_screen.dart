@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/colors.dart';
 
 class ShareSongScreen extends StatelessWidget {
   const ShareSongScreen({super.key});
@@ -48,7 +48,7 @@ class ShareSongScreen extends StatelessWidget {
                           const Text(
                             "Share",
                             style: TextStyle(
-                              fontFamily: "AM",
+                               
                               fontSize: 18,
                               color: MyColors.whiteColor,
                               fontWeight: FontWeight.w400,
@@ -78,7 +78,7 @@ class ShareSongScreen extends StatelessWidget {
                         child: Text(
                           "Enough is Enough",
                           style: TextStyle(
-                            fontFamily: "AM",
+                             
                             color: MyColors.whiteColor,
                             fontSize: 25,
                             fontWeight: FontWeight.w700,
@@ -95,7 +95,7 @@ class ShareSongScreen extends StatelessWidget {
                       child: Text(
                         "Post Malone",
                         style: TextStyle(
-                          fontFamily: "AM",
+                           
                           fontSize: 16,
                           color: MyColors.lightGrey,
                         ),

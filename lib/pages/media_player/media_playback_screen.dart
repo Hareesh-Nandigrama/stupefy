@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../constants/constants.dart';
-import '../../functions/timestamp_split/format_duration.dart';
-import '../../store/player/song_state.dart';
+import '../../constants/colors.dart';
+import '../../functions/format_duration.dart';
+import '../../store/song_state.dart';
 import '../../widgets/media_player/video_player.dart';
 import '../playlist/song_details_screen.dart';
 import 'lyrics_section.dart';
@@ -67,7 +67,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                 TextSpan(
                                   text: 'PLAYING FROM PLAYLIST \n',
                                   style: TextStyle(
-                                    fontFamily: "AM",
+                                     
                                     fontSize: 12,
                                     color: MyColors.whiteColor,
                                   ),
@@ -133,7 +133,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                         TextSpan(
                                           text: 'Sam Altman',
                                           style: TextStyle(
-                                            fontFamily: "AM",
+                                             
                                             fontSize: 14,
                                             color: MyColors.whiteColor,
                                           ),
@@ -204,7 +204,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                         style: TextStyle(
                                           color: MyColors.whiteColor,
                                           fontSize: 12,
-                                          fontFamily: "AM",
+                                           
                                         ),
                                       ),
                                       Text(
@@ -212,7 +212,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                         style: TextStyle(
                                           color: MyColors.whiteColor,
                                           fontSize: 12,
-                                          fontFamily: "AM",
+                                           
                                         ),
                                       ),
                                     ],
@@ -341,7 +341,7 @@ class _MediaPlaybackState extends State<MediaPlayback> {
                                               maxLines: 4,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                fontFamily: "AM",
+                                                 
                                                 fontSize: 19,
                                                 color: MyColors.whiteColor,
                                               ),
