@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stupefy/model/playlist_track.dart';
 
 import '../../constants/colors.dart';
+import '../../model/playlist_track.dart';
 import '../../pages/playlist/song_details_screen.dart';
 
 class PlaylistSongTile extends StatelessWidget {
@@ -10,62 +10,41 @@ class PlaylistSongTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              SizedBox(
-                height: 48,
-                width: 48,
-                child: Image.asset('assets/images/${song.image}'),
-              ),
-              const SizedBox(width: 5),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width - 115,
-                    child: Text(
-                      song.trackName,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: MyColors.whiteColor,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
+    return ListTile(
+      trailing: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder:
+                  (context) => SongDetailsScreen(
+                    trackName: song.trackName,
+                    color: Colors.blue,
+                    singer: song.singers,
+                    albumImage: song.image,
                   ),
-                  Text(
-                    song.singers,
-                    style: const TextStyle(
-                      color: MyColors.lightGrey,
-                      fontSize: 13,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) => SongDetailsScreen(
-                        trackName: song.trackName,
-                        color: Colors.blue,
-                        singer: song.singers,
-                        albumImage: song.image,
-                      ),
-                ),
-              );
-            },
-            child: Image.asset("assets/images/icon_more.png"),
-          ),
-        ],
+            ),
+          );
+        },
+        child: Image.asset("assets/images/icon_more.png"),
+      ),
+      contentPadding: const EdgeInsets.all(0),
+      leading: SizedBox(
+        height: 48,
+        width: 48,
+        child: Image.asset('assets/images/${song.image}'),
+      ),
+      title: SizedBox(
+        width: MediaQuery.of(context).size.width - 115,
+        child: Text(
+          song.trackName,
+          style: const TextStyle(fontSize: 16, color: MyColors.whiteColor),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      subtitle: Text(
+        song.singers,
+        style: const TextStyle(color: MyColors.lightGrey, fontSize: 13),
       ),
     );
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:stupefy/data/playlist_data.dart';
-import 'package:stupefy/widgets/nav_bar/nav_bar_wrapper.dart';
-import 'package:stupefy/widgets/playlist/playlist_song_tile.dart';
 
 import '../../constants/colors.dart';
+import '../../data/playlist_data.dart';
 import '../../model/playlist.dart';
 import '../../widgets/media_player/stream_buttons.dart';
+import '../../widgets/nav_bar/nav_bar_wrapper.dart';
+import '../../widgets/playlist/playlist_song_tile.dart';
 import 'song_search_page.dart';
 
 class PlaylistScreen extends StatefulWidget {
@@ -232,10 +232,37 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                             context,
                             index,
                           ) {
+                            if (index == 0) {
+                              return GestureDetector(
+                                onTap: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) => const SongSearchPage(),
+                                    ),
+                                  );
+                                },
+                                child: ListTile(
+                                  contentPadding: const EdgeInsets.all(0),
+                                  title: Text("Add to this playlist", style: TextStyle(color: Colors.white),),
+                                  leading: Container(
+                                    width: 48,
+                                    height: 48,
+                                    color: Colors.grey[800],
+                                    child: const Icon(
+                                      Icons.add,
+                                      color: Colors.white54,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                            
                             return PlaylistSongTile(
-                              song: widget.playlist.tracks[index],
+                              song: widget.playlist.tracks[index - 1],
                             );
-                          }, childCount: widget.playlist.tracks.length),
+                          }, childCount: widget.playlist.tracks.length + 1),
                         ),
               ),
             ],
