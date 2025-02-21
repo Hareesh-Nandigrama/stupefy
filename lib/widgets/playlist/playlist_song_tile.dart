@@ -26,7 +26,7 @@ class PlaylistSongTile extends StatelessWidget {
             ),
           );
         },
-        child: Image.asset("assets/images/icon_more.png"),
+        child: Icon(Icons.more_vert, color: MyColors.lightGrey),
       ),
       contentPadding: const EdgeInsets.all(0),
       leading: SizedBox(

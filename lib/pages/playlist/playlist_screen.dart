@@ -5,6 +5,7 @@ import '../../data/playlist_data.dart';
 import '../../model/playlist.dart';
 import '../../widgets/media_player/stream_buttons.dart';
 import '../../widgets/nav_bar/nav_bar_wrapper.dart';
+import '../../widgets/playlist/bottom_modal.dart';
 import '../../widgets/playlist/playlist_song_tile.dart';
 import 'song_search_page.dart';
 
@@ -144,7 +145,24 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                                             'assets/images/icon_download.png',
                                           ),
                                 ),
-                                Image.asset('assets/images/icon_more.png'),
+                                InkWell(
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      context: context,
+                                      backgroundColor: Colors.black,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                          top: Radius.circular(20),
+                                        ),
+                                      ),
+                                      builder:
+                                          (context) =>
+                                              const BottomModal(),
+                                    );
+                                  },
+                                  child: Icon(Icons.more_vert, color: Colors.grey,),
+                                ),
                               ],
                             ),
                           ),
@@ -234,7 +252,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                           ) {
                             if (index == 0) {
                               return GestureDetector(
-                                onTap: (){
+                                onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -245,7 +263,10 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                                 },
                                 child: ListTile(
                                   contentPadding: const EdgeInsets.all(0),
-                                  title: Text("Add to this playlist", style: TextStyle(color: Colors.white),),
+                                  title: Text(
+                                    "Add to this playlist",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                   leading: Container(
                                     width: 48,
                                     height: 48,
@@ -258,7 +279,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                                 ),
                               );
                             }
-                            
+
                             return PlaylistSongTile(
                               song: widget.playlist.tracks[index - 1],
                             );
