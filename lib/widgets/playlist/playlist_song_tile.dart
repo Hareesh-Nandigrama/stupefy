@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../model/playlist_track.dart';
-import '../../pages/playlist/song_details_screen.dart';
+import 'bottom_modal.dart';
 
 class PlaylistSongTile extends StatelessWidget {
   final PLaylistTrack song;
@@ -13,17 +13,14 @@ class PlaylistSongTile extends StatelessWidget {
     return ListTile(
       trailing: GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder:
-                  (context) => SongDetailsScreen(
-                    trackName: song.trackName,
-                    color: Colors.blue,
-                    singer: song.singers,
-                    albumImage: song.image,
-                  ),
+          showModalBottomSheet(
+            isScrollControlled: true,
+            context: context,
+            backgroundColor: Colors.black,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
+            builder: (context) => const BottomModal(),
           );
         },
         child: Icon(Icons.more_vert, color: MyColors.lightGrey),
