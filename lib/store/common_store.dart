@@ -18,4 +18,12 @@ abstract class _CommonStore with Store {
     dashboardPage= newPage;
   }
 
+  @observable
+  bool isLibraryGrid = false;
+
+  @action
+  void setLibraryGrid() {
+    isLibraryGrid = !isLibraryGrid;
+  }
+
 }

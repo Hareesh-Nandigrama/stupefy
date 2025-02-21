@@ -25,97 +25,64 @@ class LibraryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () async {
+      onTap: () {
         CustomNavigator.navigateTo(context, PlaylistScreen());
       },
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                isArtist
-                    ? CircleAvatar(
-                      radius: size,
-                      backgroundImage: AssetImage("assets/images/artists/$image"),
-                    )
-                    : SizedBox(
-                      height: size,
-                      width: size,
-                      child: Image.asset('assets/images/home/$image'),
-                    ),
-                const SizedBox(width: 15),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(0),
+        leading:
+            isArtist
+                ? CircleAvatar(
+                  radius: size,
+                  backgroundImage: AssetImage("assets/images/artists/$image"),
+                )
+                : SizedBox(
+                  height: size,
+                  width: size,
+                  child: Image.asset('assets/images/home/$image'),
+                ),
+        title: Text(
+          title,
+          style: const TextStyle(fontSize: 15, color: MyColors.whiteColor),
+        ),
+        subtitle:
+            !isArtist
+                ? Text(
+                  "Artist",
+                  style: TextStyle(fontSize: 13, color: MyColors.lightGrey),
+                )
+                : Row(
                   children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          height: 13,
+                          width: 13,
+                          decoration: const BoxDecoration(
+                            color: Color(0xffC4C4C4),
+                            borderRadius: BorderRadius.all(Radius.circular(3)),
+                          ),
+                        ),
+                        const Text(
+                          "E",
+                          style: TextStyle(
+                            fontSize: 8,
+                            color: MyColors.blackColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 5),
                     Text(
-                      title,
+                      "Playlist . $author",
                       style: const TextStyle(
-                         
-                        fontSize: 15,
-                        color: MyColors.whiteColor,
+                        fontSize: 13,
+                        color: MyColors.lightGrey,
                       ),
                     ),
-                    isArtist
-                        ? Text(
-                          "Artist",
-                          style: TextStyle(
-                             
-                            fontSize: 13,
-                            color: MyColors.lightGrey,
-                          ),
-                        )
-                        : Row(
-                          children: [
-                            Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  height: 13,
-                                  width: 13,
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xffC4C4C4),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(3),
-                                    ),
-                                  ),
-                                ),
-                                const Text(
-                                  "E",
-                                  style: TextStyle(
-                                    fontSize: 8,
-                                    color: MyColors.blackColor,
-                                     
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              "Playlist . $author",
-                              style: const TextStyle(
-                                 
-                                fontSize: 13,
-                                color: MyColors.lightGrey,
-                              ),
-                            ),
-                          ],
-                        ),
                   ],
                 ),
-              ],
-            ),
-            Visibility(
-              visible: isDeletable,
-              child: Image.asset(
-                'assets/images/icon_back.png',
-                height: 14,
-                width: 14,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

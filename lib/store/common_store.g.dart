@@ -25,6 +25,22 @@ mixin _$CommonStore on _CommonStore, Store {
     });
   }
 
+  late final _$isLibraryGridAtom =
+      Atom(name: '_CommonStore.isLibraryGrid', context: context);
+
+  @override
+  bool get isLibraryGrid {
+    _$isLibraryGridAtom.reportRead();
+    return super.isLibraryGrid;
+  }
+
+  @override
+  set isLibraryGrid(bool value) {
+    _$isLibraryGridAtom.reportWrite(value, super.isLibraryGrid, () {
+      super.isLibraryGrid = value;
+    });
+  }
+
   late final _$_CommonStoreActionController =
       ActionController(name: '_CommonStore', context: context);
 
@@ -40,9 +56,21 @@ mixin _$CommonStore on _CommonStore, Store {
   }
 
   @override
+  void setLibraryGrid() {
+    final _$actionInfo = _$_CommonStoreActionController.startAction(
+        name: '_CommonStore.setLibraryGrid');
+    try {
+      return super.setLibraryGrid();
+    } finally {
+      _$_CommonStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-dashboardPage: ${dashboardPage}
+dashboardPage: ${dashboardPage},
+isLibraryGrid: ${isLibraryGrid}
     ''';
   }
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:stupefy/pages/playlist/create_playlist_screen.dart';
-import 'package:stupefy/widgets/nav_bar/nav_bar_wrapper.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
+import 'package:stupefy/widgets/library/library_grid_tile.dart';
 
 import '../../constants/colors.dart';
+import '../../store/common_store.dart';
 import '../../widgets/library/library_options.dart';
 import '../../widgets/library/library_tile.dart';
-import '../profile/profile_screen.dart';
+import '../../widgets/nav_bar/nav_bar_wrapper.dart';
+import '../playlist/create_playlist_screen.dart';
 import '../profile/setting_screen.dart';
 
 class LibraryScreen extends StatelessWidget {
@@ -14,6 +17,7 @@ class LibraryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var commonStore = Provider.of<CommonStore>(context);
     return NavBarWrapper(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -57,8 +61,12 @@ class LibraryScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) =>  CreatePlaylistScreen()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreatePlaylistScreen(),
+                          ),
+                        );
                       },
                       child: Image.asset("assets/images/icon_add.png"),
                     ),
@@ -100,24 +108,48 @@ class LibraryScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Image.asset("assets/images/icon_category.png"),
+                    InkWell(
+                      child: Image.asset("assets/images/icon_category.png"),
+                      onTap: () {
+                        commonStore.setLibraryGrid();
+                      },
+                    ),
                   ],
                 ),
               ),
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return LibraryTile(
-                    image: '21-Savage.jpg',
-                    title: "21 Savage",
-                    size: 35,
-                    isDeletable: false,
-                    isArtist: true,
-                  );
-                },
-                childCount: 10, // Dynamic number of items
-              ),
+            Observer(
+              builder: (context) {
+                return commonStore.isLibraryGrid
+                    ? SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 8.0,
+                        mainAxisSpacing: 8.0,
+                        childAspectRatio: 0.7,
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          return LibraryGridTile();
+                        },
+                        childCount: 10, // Dynamic number of items
+                      ),
+                    )
+                    : SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          return LibraryTile(
+                            image: '21-Savage.jpg',
+                            title: "21 Savage",
+                            size: 35,
+                            isDeletable: false,
+                            isArtist: true,
+                          );
+                        },
+                        childCount: 10, // Dynamic number of items
+                      ),
+                    );
+              },
             ),
             const SliverPadding(padding: EdgeInsets.only(bottom: 130)),
           ],
