@@ -12,7 +12,7 @@ class RecentPlayedTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        CustomNavigator.navigateTo(context, PlaylistScreen());
+        CustomNavigator.navigateTo(context, PlaylistScreen(playlistImage: image, playlistName: title));
       },
       child: Container(
         height: 55,

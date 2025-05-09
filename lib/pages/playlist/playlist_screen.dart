@@ -10,24 +10,31 @@ import '../../widgets/playlist/playlist_song_tile.dart';
 import 'song_search_page.dart';
 
 class PlaylistScreen extends StatefulWidget {
-  final Playlist playlist = trackList("Drake mix");
-  final String cover = "Drake-Mix.jpg";
+  final String playlistName;
+  final String playlistImage;
 
-  PlaylistScreen({super.key});
+  const PlaylistScreen({
+    super.key,
+    this.playlistName = "Drake mix",
+    this.playlistImage = "artists/Drake.jpg",
+  });
 
   @override
   State<PlaylistScreen> createState() => _PlaylistScreenState();
 }
 
 class _PlaylistScreenState extends State<PlaylistScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  late final Playlist playlist;
 
   bool _isInPlay = false;
   bool _isDownloaded = false;
   bool _isLiked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    playlist = trackList(widget.playlistName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +61,33 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         color: Colors.white,
                       ),
                     ),
-                    Center(
-                      child: Image.asset(
-                        'assets/images/home/${widget.cover}',
-                        height: 270,
-                        width: 270,
-                      ),
+                    Stack(
+                      children: [
+                        Center(
+                          child: Image.asset(
+                            "assets/images/${widget.playlistImage}",
+                            height: 270,
+                            width: 270,
+                          ),
+                        ),
+                        Positioned(
+                          top: 5,
+                          right: 35,
+                          child: SizedBox(
+                            width: 100,
+                            child: Text(
+                              widget.playlistName,
+                              textAlign: TextAlign.right,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: true,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: MyColors.lightGrey,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -101,7 +129,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            "1,629,592 likes . ${widget.playlist.time}",
+                            "1,629,592 likes . ${playlist.time}",
                             style: const TextStyle(
                               fontSize: 13,
                               color: MyColors.lightGrey,
@@ -156,12 +184,13 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                                           top: Radius.circular(20),
                                         ),
                                       ),
-                                      builder:
-                                          (context) =>
-                                              const BottomModal(),
+                                      builder: (context) => const BottomModal(),
                                     );
                                   },
-                                  child: Icon(Icons.more_vert, color: Colors.grey,),
+                                  child: Icon(
+                                    Icons.more_vert,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ],
                             ),
@@ -199,7 +228,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               SliverPadding(
                 padding: const EdgeInsets.only(top: 20, bottom: 35),
                 sliver:
-                    widget.playlist.tracks.isEmpty
+                    playlist.tracks.isEmpty
                         ? SliverToBoxAdapter(
                           child: Column(
                             children: [
@@ -281,9 +310,9 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                             }
 
                             return PlaylistSongTile(
-                              song: widget.playlist.tracks[index - 1],
+                              song: playlist.tracks[index - 1],
                             );
-                          }, childCount: widget.playlist.tracks.length + 1),
+                          }, childCount: playlist.tracks.length + 1),
                         ),
               ),
             ],
