@@ -5,47 +5,53 @@ import 'home_category_tile.dart';
 
 class HomeCategoryList extends StatelessWidget {
   final String category;
+  final List<Map<String, String>> items;
 
-  const HomeCategoryList({super.key, required this.category});
+  const HomeCategoryList({
+    super.key,
+    required this.category,
+    required this.items,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5, top: 20),
+            child: Text(
               category,
-              style: TextStyle(
-                fontFamily: "AB",
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: MyColors.whiteColor,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 199,
-              child: ListView.builder(
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Row(
-                    children: [
-                      HomeCategoryTile(
-                        subtitle: "Upbeat Mix",
-                        image: "Upbeat-Mix.jpg",
-                      ),
-                      const SizedBox(width: 15),
-                    ],
-                  );
-                },
-              ),
+          ),
+          SizedBox(
+            height: 199,
+            child: ListView.builder(
+              itemCount: items.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return Row(
+                  children: [
+                    HomeCategoryTile(
+                      subtitle: item["albumTitle"]!,
+                      artist: item["artistName"]!,
+                      image: item["albumImage"]!,
+                    ),
+                    const SizedBox(width: 15),
+                  ],
+                );
+              },
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+        ],
       ),
     );
   }

@@ -5,39 +5,17 @@ import '../../models/recent_played_item.dart';
 import '../../widgets/home/home_app_bar.dart';
 import '../../widgets/home/home_category_list.dart';
 import '../../widgets/home/recent_played_tile.dart';
+import '../../data/recent_played_data.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String id = "/home";
   HomeScreen({super.key});
 
   // Dummy data simulating API response
-  final List<RecentPlayedItem> recentPlayedItems = [
-    RecentPlayedItem(
-      image: "artists/JID.jpg",
-      title: "The Forever Story",
-    ),
-    RecentPlayedItem(
-      image: "artists/Eminem.jpg",
-      title: "Mr. Morale & The Big Steppers",
-    ),
-    RecentPlayedItem(
-      image: "artists/Drake.jpg",
-      title: "Her Loss",
-    ),
-    RecentPlayedItem(
-      image: "artists/Adele.jpg",
-      title: "Utopia",
-    ),
-    RecentPlayedItem(
-      image: "artists/JID.jpg",
-      title: "After Hours",
-    ),
-    RecentPlayedItem(
-      image: "artists/Taylor-Swift.jpg",
-      title: "Blonde",
-    ),
-  ];
+  final List<RecentPlayedItem> recentPlayedItems = getRecentTilesList();
 
+  final List<Map<String, dynamic>> categories = getCategories();
+  
   @override
   Widget build(BuildContext context) {
     return NavBarWrapper(
@@ -73,9 +51,11 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            HomeCategoryList(category: "Jump back in"),
-            HomeCategoryList(category: "Your top mixes"),
-            HomeCategoryList(category: "Recently Played"),
+            for (var category in categories)
+              HomeCategoryList(
+                category: category["category"]!,
+                items: List<Map<String, String>>.from(category["items"] as List),
+              ),
             SliverPadding(padding: EdgeInsets.only(bottom: 180)),
           ],
         ),
