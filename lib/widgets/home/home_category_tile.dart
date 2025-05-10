@@ -14,7 +14,7 @@ class HomeCategoryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        CustomNavigator.navigateTo(context, PlaylistScreen());
+        CustomNavigator.navigateTo(context, PlaylistScreen(playlistName: subtitle, playlistImage: image));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +22,7 @@ class HomeCategoryTile extends StatelessWidget {
           SizedBox(
             height: 153,
             width: 153,
-            child: Image.asset(image),
+            child: Image.asset('assets/images/$image'),
           ),
           const SizedBox(height: 10),
           Column(
