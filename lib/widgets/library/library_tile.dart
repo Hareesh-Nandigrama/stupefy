@@ -26,7 +26,7 @@ class LibraryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        CustomNavigator.navigateTo(context, PlaylistScreen());
+        CustomNavigator.navigateTo(context, PlaylistScreen(playlistName: title, playlistImage: image));
       },
       child: ListTile(
         contentPadding: const EdgeInsets.all(0),
@@ -34,22 +34,22 @@ class LibraryTile extends StatelessWidget {
             isArtist
                 ? CircleAvatar(
                   radius: size,
-                  backgroundImage: AssetImage("assets/images/artists/$image"),
+                  backgroundImage: AssetImage("assets/images/$image"),
                 )
                 : SizedBox(
                   height: size,
                   width: size,
-                  child: Image.asset('assets/images/home/$image'),
+                  child: Image.asset('assets/images/$image'),
                 ),
         title: Text(
           title,
-          style: const TextStyle(fontSize: 15, color: MyColors.whiteColor),
+          style: const TextStyle(fontSize: 15, color: MyColors.whiteColor, overflow: TextOverflow.ellipsis),
         ),
         subtitle:
             !isArtist
                 ? Text(
                   "Artist",
-                  style: TextStyle(fontSize: 13, color: MyColors.lightGrey),
+                  style: TextStyle(fontSize: 13, color: MyColors.lightGrey, overflow: TextOverflow.ellipsis),
                 )
                 : Row(
                   children: [
@@ -79,6 +79,7 @@ class LibraryTile extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 13,
                         color: MyColors.lightGrey,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],

@@ -46,7 +46,7 @@ class SearchResultsScreen extends StatelessWidget {
                     ) {
                       return LibraryTile(
                         isArtist: true,
-                        image: 'Doja-Cat.jpg',
+                        image: 'artists/Doja-Cat.jpg',
                         title: "Doja Cat",
                         size: 23,
                         isDeletable: true,
