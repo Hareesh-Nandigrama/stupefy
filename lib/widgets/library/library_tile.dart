@@ -3,48 +3,43 @@ import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
 import '../../pages/playlist/playlist_screen.dart';
 import '../nav_bar/custom_navigator.dart';
+import '../../model/recent_played_item.dart';
 
 // ignore: must_be_immutable
 class LibraryTile extends StatelessWidget {
-  LibraryTile({
+  const LibraryTile({
     super.key,
-    this.author,
-    required this.image,
-    required this.title,
+    required this.recentPlayedItem,
     required this.size,
-    required this.isArtist,
   });
-  final String image;
-  String? author;
-  final String title;
+  final RecentPlayedItem recentPlayedItem;
   final double size;
-  final bool isArtist;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        CustomNavigator.navigateTo(context, PlaylistScreen(playlistName: title, playlistImage: image));
+        CustomNavigator.navigateTo(context, PlaylistScreen(playlistName: recentPlayedItem.title, playlistImage: recentPlayedItem.image));
       },
       child: ListTile(
         contentPadding: const EdgeInsets.all(0),
         leading:
-            isArtist
+            recentPlayedItem.isArtist
                 ? CircleAvatar(
                   radius: size,
-                  backgroundImage: AssetImage("assets/images/$image"),
+                  backgroundImage: AssetImage("assets/images/${recentPlayedItem.image}"),
                 )
                 : SizedBox(
                   height: size,
                   width: size,
-                  child: Image.asset('assets/images/$image'),
+                  child: Image.asset('assets/images/${recentPlayedItem.image}'),
                 ),
         title: Text(
-          title,
+          recentPlayedItem.title,
           style: const TextStyle(fontSize: 15, color: MyColors.whiteColor, overflow: TextOverflow.ellipsis),
         ),
         subtitle:
-            !isArtist
+            !recentPlayedItem.isArtist
                 ? Text(
                   "Artist",
                   style: TextStyle(fontSize: 13, color: MyColors.lightGrey, overflow: TextOverflow.ellipsis),
@@ -73,7 +68,7 @@ class LibraryTile extends StatelessWidget {
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      "Playlist . $author",
+                      "Playlist . ${recentPlayedItem.author}",
                       style: const TextStyle(
                         fontSize: 13,
                         color: MyColors.lightGrey,

@@ -134,9 +134,7 @@ class LibraryScreen extends StatelessWidget {
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
                           return LibraryGridTile(
-                            image: recentPlayedItems[index].image,
-                            title: recentPlayedItems[index].title,
-                            author: 'multiple artists',
+                            recentPlayedItem: recentPlayedItems[index],
                           );
                         },
                         childCount: recentPlayedItems.length, // Dynamic number of items
@@ -146,10 +144,8 @@ class LibraryScreen extends StatelessWidget {
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
                           return LibraryTile(
-                            image: recentPlayedItems[index].image,
-                            title: recentPlayedItems[index].title,
+                            recentPlayedItem: recentPlayedItems[index],
                             size: 35,
-                            isArtist: true,
                           );
                         },
                         childCount: recentPlayedItems.length, // Dynamic number of items

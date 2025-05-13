@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:stupefy/pages/playlist/playlist_screen.dart';
 import 'package:stupefy/widgets/nav_bar/custom_navigator.dart';
+import '../../model/recent_played_item.dart';
 
 class LibraryGridTile extends StatelessWidget {
   const LibraryGridTile({
     super.key,
-    required this.image,
-    required this.title,
-    required this.author,
+    required this.recentPlayedItem,
   });
 
-  final String image;
-  final String title;
-  final String author;
+  final RecentPlayedItem recentPlayedItem;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +17,7 @@ class LibraryGridTile extends StatelessWidget {
       onTap: () {
         CustomNavigator.navigateTo(
           context,
-          PlaylistScreen(playlistName: title, playlistImage: image),
+          PlaylistScreen(playlistName: recentPlayedItem.title, playlistImage: recentPlayedItem.image),
         );
       },
       child: Column(
@@ -33,11 +30,11 @@ class LibraryGridTile extends StatelessWidget {
               color: Colors.grey[800],
               borderRadius: BorderRadius.circular(8.0),
             ),
-            child: Image.asset("assets/images/$image", fit: BoxFit.cover),
+            child: Image.asset("assets/images/${recentPlayedItem.image}", fit: BoxFit.cover),
           ),
           const SizedBox(height: 8.0),
           Text(
-            title,
+            recentPlayedItem.title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -45,7 +42,7 @@ class LibraryGridTile extends StatelessWidget {
             ),
           ),
           Text(
-            'Playlist • $author',
+            'Playlist • ${recentPlayedItem.author}',
             style: TextStyle(
               color: Colors.white54,
               fontSize: 12,

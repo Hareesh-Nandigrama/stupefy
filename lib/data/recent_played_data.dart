@@ -2,12 +2,12 @@ import '../model/recent_played_item.dart';
 
 getRecentTilesList() {
   return [
-    RecentPlayedItem(image: "artists/JID.jpg", title: "Drake mix"),
-    RecentPlayedItem(image: "artists/Eminem.jpg", title: "Upbeat"),
-    RecentPlayedItem(image: "artists/Drake.jpg", title: "Chill"),
-    RecentPlayedItem(image: "artists/Adele.jpg", title: "2010"),
-    RecentPlayedItem(image: "artists/JID.jpg", title: "Upbeat"),
-    RecentPlayedItem(image: "artists/Taylor-Swift.jpg", title: "Chill"),
+    RecentPlayedItem(image: "artists/JID.jpg", title: "Drake mix", author: "multiple artists", isArtist: false),
+    RecentPlayedItem(image: "artists/Eminem.jpg", title: "Upbeat", author: "multiple artists", isArtist: false),
+    RecentPlayedItem(image: "artists/Drake.jpg", title: "Chill", author: "multiple artists", isArtist: false),
+    RecentPlayedItem(image: "artists/Adele.jpg", title: "2010", author: "multiple artists", isArtist: false),
+    RecentPlayedItem(image: "artists/JID.jpg", title: "Upbeat", author: "multiple artists", isArtist: false),
+    RecentPlayedItem(image: "artists/Taylor-Swift.jpg", title: "Chill", author: "multiple artists", isArtist: false),
   ];
 }
 
