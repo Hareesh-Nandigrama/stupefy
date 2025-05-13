@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:stupefy/widgets/nav_bar/nav_bar_wrapper.dart';
+import '../../model/recent_played_item.dart';
 
 import '../../widgets/home/home_app_bar.dart';
 import '../../widgets/home/home_category_list.dart';
 import '../../widgets/home/recent_played_tile.dart';
+import '../../data/recent_played_data.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String id = "/home";
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  // Dummy data simulating API response
+  final List<RecentPlayedItem> recentPlayedItems = getRecentTilesList();
+
+  final List<Map<String, dynamic>> categories = getCategories();
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +39,23 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 10,
                       mainAxisExtent: 55,
                     ),
-                    itemCount: 6,
+                    itemCount: recentPlayedItems.length,
                     itemBuilder: (context, index) {
+                      final item = recentPlayedItems[index];
                       return RecentPlayedTile(
-                        image: "artists/JID.jpg",
-                        title: "china japan nepal bhutan e sala cup namde",
+                        image: item.image,
+                        title: item.title,
                       );
                     },
                   ),
                 ],
               ),
             ),
-            HomeCategoryList(category: "Jump back in"),
-            HomeCategoryList(category: "Your top mixes"),
-            HomeCategoryList(category: "Recently Played"),
+            for (var category in categories)
+              HomeCategoryList(
+                category: category["category"]!,
+                items: List<Map<String, String>>.from(category["items"] as List),
+              ),
             SliverPadding(padding: EdgeInsets.only(bottom: 180)),
           ],
         ),

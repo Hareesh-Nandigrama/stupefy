@@ -10,10 +10,13 @@ import '../../widgets/library/library_tile.dart';
 import '../../widgets/nav_bar/nav_bar_wrapper.dart';
 import '../playlist/create_playlist_screen.dart';
 import '../profile/setting_screen.dart';
+import '../../data/recent_played_data.dart';
+import '../../model/recent_played_item.dart';
 
 class LibraryScreen extends StatelessWidget {
   static const String id = "/library";
-  const LibraryScreen({super.key});
+  LibraryScreen({super.key});
+  final List<RecentPlayedItem> recentPlayedItems = getRecentTilesList();
 
   @override
   Widget build(BuildContext context) {
@@ -130,23 +133,22 @@ class LibraryScreen extends StatelessWidget {
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return LibraryGridTile();
+                          return LibraryGridTile(
+                            recentPlayedItem: recentPlayedItems[index],
+                          );
                         },
-                        childCount: 10, // Dynamic number of items
+                        childCount: recentPlayedItems.length, // Dynamic number of items
                       ),
                     )
                     : SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
                           return LibraryTile(
-                            image: '21-Savage.jpg',
-                            title: "21 Savage",
+                            recentPlayedItem: recentPlayedItems[index],
                             size: 35,
-                            isDeletable: false,
-                            isArtist: true,
                           );
                         },
-                        childCount: 10, // Dynamic number of items
+                        childCount: recentPlayedItems.length, // Dynamic number of items
                       ),
                     );
               },

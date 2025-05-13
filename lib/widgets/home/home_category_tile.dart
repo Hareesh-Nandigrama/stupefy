@@ -5,15 +5,16 @@ import '../../pages/playlist/playlist_screen.dart';
 import '../nav_bar/custom_navigator.dart';
 
 class HomeCategoryTile extends StatelessWidget {
-  const HomeCategoryTile({super.key, required this.subtitle, required this.image});
+  const HomeCategoryTile({super.key, required this.subtitle, required this.artist, required this.image});
   final String subtitle;
+  final String artist;
   final String image;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        CustomNavigator.navigateTo(context, PlaylistScreen());
+        CustomNavigator.navigateTo(context, PlaylistScreen(playlistName: subtitle, playlistImage: image));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,14 +22,14 @@ class HomeCategoryTile extends StatelessWidget {
           SizedBox(
             height: 153,
             width: 153,
-            child: Image.asset("assets/images/home/UTOPIA.jpg"),
+            child: Image.asset('assets/images/$image'),
           ),
           const SizedBox(height: 10),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "UTOPIA",
+                subtitle,
                 style: TextStyle(
                   fontFamily: "AB",
                   fontSize: 12,
@@ -36,9 +37,8 @@ class HomeCategoryTile extends StatelessWidget {
                 ),
               ),
               Text(
-                "Album . Travis Scott",
+                "Album . $artist",
                 style: TextStyle(
-                   
                   fontSize: 12.5,
                   color: MyColors.lightGrey,
                 ),

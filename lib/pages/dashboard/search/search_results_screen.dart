@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/colors.dart';
 import '../../../widgets/library/library_tile.dart';
+import '../../../model/recent_played_item.dart';
 
 class SearchResultsScreen extends StatelessWidget {
   const SearchResultsScreen({super.key});
@@ -45,11 +46,13 @@ class SearchResultsScreen extends StatelessWidget {
                       int index,
                     ) {
                       return LibraryTile(
-                        isArtist: true,
-                        image: 'Doja-Cat.jpg',
-                        title: "Doja Cat",
+                        recentPlayedItem: RecentPlayedItem(
+                          image: 'artists/Doja-Cat.jpg',
+                          title: "Doja Cat",
+                          author: "Doja Cat",
+                          isArtist: true,
+                        ),
                         size: 23,
-                        isDeletable: true,
                       );
                     }, childCount: 7),
                   ),
