@@ -12,14 +12,12 @@ class LibraryTile extends StatelessWidget {
     required this.image,
     required this.title,
     required this.size,
-    required this.isDeletable,
     required this.isArtist,
   });
   final String image;
   String? author;
   final String title;
   final double size;
-  final bool isDeletable;
   final bool isArtist;
 
   @override

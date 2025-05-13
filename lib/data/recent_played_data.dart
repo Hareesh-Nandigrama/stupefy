@@ -1,4 +1,4 @@
-import '../models/recent_played_item.dart';
+import '../model/recent_played_item.dart';
 
 getRecentTilesList() {
   return [

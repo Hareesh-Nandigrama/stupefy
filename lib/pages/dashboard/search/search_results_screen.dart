@@ -49,7 +49,6 @@ class SearchResultsScreen extends StatelessWidget {
                         image: 'artists/Doja-Cat.jpg',
                         title: "Doja Cat",
                         size: 23,
-                        isDeletable: true,
                       );
                     }, childCount: 7),
                   ),

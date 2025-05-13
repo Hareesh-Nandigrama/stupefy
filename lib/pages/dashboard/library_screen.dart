@@ -11,7 +11,7 @@ import '../../widgets/nav_bar/nav_bar_wrapper.dart';
 import '../playlist/create_playlist_screen.dart';
 import '../profile/setting_screen.dart';
 import '../../data/recent_played_data.dart';
-import '../../models/recent_played_item.dart';
+import '../../model/recent_played_item.dart';
 
 class LibraryScreen extends StatelessWidget {
   static const String id = "/library";
@@ -149,9 +149,7 @@ class LibraryScreen extends StatelessWidget {
                             image: recentPlayedItems[index].image,
                             title: recentPlayedItems[index].title,
                             size: 35,
-                            isDeletable: false,
                             isArtist: true,
-                            author: 'multiple artists',
                           );
                         },
                         childCount: recentPlayedItems.length, // Dynamic number of items

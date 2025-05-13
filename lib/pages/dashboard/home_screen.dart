@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stupefy/widgets/nav_bar/nav_bar_wrapper.dart';
-import '../../models/recent_played_item.dart';
+import '../../model/recent_played_item.dart';
 
 import '../../widgets/home/home_app_bar.dart';
 import '../../widgets/home/home_category_list.dart';
@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
   final List<RecentPlayedItem> recentPlayedItems = getRecentTilesList();
 
   final List<Map<String, dynamic>> categories = getCategories();
-  
+
   @override
   Widget build(BuildContext context) {
     return NavBarWrapper(
